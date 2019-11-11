@@ -17,3 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   }
 });
+
+ChatsScreen.navigationOptions = {
+  title: 'Chats'
+};

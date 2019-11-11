@@ -6,6 +6,8 @@ import {
 } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import LoginScreen from '../screens/LoginScreen';
+import SignUpScreen from '../screens/SignUpScreen';
 import HomeScreen from '../screens/HomeScreen';
 import AgendaScreen from '../screens/AgendaScreen';
 import ChatsScreen from '../screens/ChatsScreen';
@@ -15,6 +17,22 @@ const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {}
 });
+
+const LoginStack = createStackNavigator(
+  {
+    Login: LoginScreen
+  },
+  config
+);
+LoginStack.path = '';
+
+const SignUpStack = createStackNavigator(
+  {
+    SignUp: SignUpScreen
+  },
+  config
+);
+SignUpStack.path = '';
 
 const HomeStack = createStackNavigator(
   {
