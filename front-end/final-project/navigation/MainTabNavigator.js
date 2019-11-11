@@ -20,19 +20,12 @@ const config = Platform.select({
 
 const LoginStack = createStackNavigator(
   {
-    Login: LoginScreen
-  },
-  config
-);
-LoginStack.path = '';
-
-const SignUpStack = createStackNavigator(
-  {
+    Login: LoginScreen,
     SignUp: SignUpScreen
   },
   config
 );
-SignUpStack.path = '';
+LoginStack.path = '';
 
 const HomeStack = createStackNavigator(
   {
@@ -114,7 +107,7 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
-const tabNavigator = createBottomTabNavigator({
+export const tabNavigator = createBottomTabNavigator({
   HomeStack,
   AgendaStack,
   ChatsStack,
