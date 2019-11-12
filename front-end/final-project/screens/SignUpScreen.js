@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, Button } from 'react-native';
-import { Input } from 'react-native-elements';
+import { ScrollView, StyleSheet, Text } from 'react-native';
+import { Input, Button } from 'react-native-elements';
 
 class SignUpScreen extends Component {
   state = {};
@@ -31,7 +31,4 @@ class SignUpScreen extends Component {
   });
 }
 
-SignUpScreen.navigationOptions = {
-  title: 'SignUp'
-};
 export default SignUpScreen;

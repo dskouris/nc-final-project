@@ -1,11 +1,15 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text, Button } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
-export default function AgendaScreen() {
+export default function AgendaScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       <Text>Agenda page</Text>
+      <Button
+        title='see info for a location'
+        onPress={() => navigation.navigate('Info', { back: 'Agenda' })}
+      />
     </ScrollView>
   );
 }
