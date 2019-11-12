@@ -1,17 +1,30 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, Button } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import AgendaCard from '../components/AgendaScreen/AgendaCard';
 
-export default function AgendaScreen({ navigation }) {
-  return (
-    <ScrollView style={styles.container}>
-      <Text>Agenda page</Text>
-      <Button
-        title='see info for a location'
-        onPress={() => navigation.navigate('Info', { back: 'Agenda' })}
-      />
-    </ScrollView>
-  );
+class AgendaScreen extends React.Component {
+  state = {
+    locations: [
+      { name: 'Eiffel tower', time: 1230, id: 25454656 },
+      { name: 'Champs Elysee', time: 1300, id: 5456465 },
+      { name: 'Louvre', time: 1400, id: 54646546 }
+    ]
+  };
+  render() {
+    return (
+      <ScrollView style={styles.container}>
+        {this.state.locations.map(location => {
+          return (
+            <AgendaCard
+              navigation={this.props.navigation}
+              location={location}
+              key={location.id}
+            />
+          );
+        })}
+      </ScrollView>
+    );
+  }
 }
 
 AgendaScreen.navigationOptions = {
@@ -25,3 +38,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   }
 });
+
+export default AgendaScreen;
