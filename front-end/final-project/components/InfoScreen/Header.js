@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {StyleSheet, Text, View, TextInput} from 'react-native'
 
-export default class Header extends Component {
-    render() {
+export default function Header()  {
+    
         return (
-            <div>
-                <h1>hello world</h1>
-            </div>
+            <View>
+                <Text>hello world</Text>
+            </View>
         )
-    }
+    
 }
