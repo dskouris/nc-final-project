@@ -1,17 +1,18 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, Button } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import AgendaCard from '../components/AgendaScreen/AgendaCard';
 
-export default function AgendaScreen({ navigation }) {
-  return (
-    <ScrollView style={styles.container}>
-      <Text>Agenda page</Text>
-      <Button
-        title='see info for a location'
-        onPress={() => navigation.navigate('Info', { back: 'Agenda' })}
-      />
-    </ScrollView>
-  );
+class AgendaScreen extends React.Component {
+  state = { locations: [] };
+  render() {
+    return (
+      <ScrollView style={styles.container}>
+        <AgendaCard navigation={this.props.navigation} />
+        <AgendaCard navigation={this.props.navigation} />
+        <AgendaCard navigation={this.props.navigation} />
+      </ScrollView>
+    );
+  }
 }
 
 AgendaScreen.navigationOptions = {
@@ -25,3 +26,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   }
 });
+
+export default AgendaScreen;
