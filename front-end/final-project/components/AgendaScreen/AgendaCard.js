@@ -2,14 +2,16 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
-const AgendaCard = ({ navigation }) => {
+const AgendaCard = ({ location, navigation }) => {
   return (
     <View>
-      <Text>Location name</Text>
-      <Text>Going here at: 12:30</Text>
+      <Text>{location.name}</Text>
+      <Text>Going here at: {location.time}</Text>
       <Button
-        title='see info for a location'
-        onPress={() => navigation.navigate('Info', { back: 'Agenda' })}
+        title='see info'
+        onPress={() =>
+          navigation.navigate('Info', { back: 'Agenda', location })
+        }
       />
     </View>
   );
