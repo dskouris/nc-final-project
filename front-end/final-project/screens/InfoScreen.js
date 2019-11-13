@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 
+import UpdateAgenda from '../components/InfoScreen/UpdateAgenda'
+
+
 export default class InfoScreen extends Component {
   state = {
     location: {
@@ -22,8 +25,27 @@ export default class InfoScreen extends Component {
     userLocation: { lat: 53.4852373, long: -2.2465376 }
   };
 
+  addToAgenda = (date) => {
+
+    this.setState((currentState) => {
+    return {  isGoing: !currentState.isGoing }
+    })
+    alert(date)
+  }
+
+  removeFromAgenda = () => {
+    this.setState((currentState) => {
+      return {  isGoing: !currentState.isGoing }
+      })
+      // filerring the location place from agenda
+      alert('removed from agenda')
+  }
+
+
   render() {
     const { location, isGoing, usersGoing } = this.state;
+    
+
     return (
       <View style={styles.container}>
         <Button
@@ -49,7 +71,7 @@ export default class InfoScreen extends Component {
         <Text>One km from Location</Text>
         </View>
         <View>
-          
+          <UpdateAgenda     isGoing={this.state.isGoing} addToAgenda= {this.addToAgenda}   removeFromAgenda={this.removeFromAgenda}/>
         </View>
       </View>
     );
