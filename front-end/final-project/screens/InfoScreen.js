@@ -5,14 +5,7 @@ import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
 
 export default class InfoScreen extends Component {
   state = {
-    location: {
-      name: 'Manchester Cathedral',
-      img:
-        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs3-media2.fl.yelpcdn.com%2Fbphoto%2FebnpeaM5JZbySlcxWCi1kQ%2Fo.jpg&f=1',
-      type: 'Cathedral',
-      address: 'Victoria Street, Manchester M3 1SX, City Centre',
-      coords: { lat: 53.4852373, long: -2.2465376 }
-    },
+    location: {  },
     isGoing: false,
     usersGoing: [
       { name: 'Tom', uuid: 'jjfdjfd294ikvnknv' },
@@ -23,6 +16,8 @@ export default class InfoScreen extends Component {
     ],
     userLocation: { lat: 53.4852373, long: -2.2465376 }
   };
+
+
 
   addToAgenda = date => {
     this.setState(currentState => {
@@ -40,8 +35,9 @@ export default class InfoScreen extends Component {
   };
 
   render() {
-    const { location, isGoing, usersGoing } = this.state;
-
+    const { isGoing, usersGoing } = this.state;
+    const location = this.props.navigation.getParam("location", {})
+    console.log(location)
     return (
       <View style={styles.container}>
         <Button
