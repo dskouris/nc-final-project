@@ -10,7 +10,11 @@ import {
 } from 'native-base';
 import List from './List';
 import Map from './Map';
+<<<<<<< HEAD
 import apiKey from '../../constants/keys.js';
+=======
+
+>>>>>>> 33a1b93377089f752f5ac0565a10f0c8221fff6e
 export default class TabsToggler extends Component {
   state = {
     display: 'list',
@@ -27,7 +31,11 @@ export default class TabsToggler extends Component {
         return Promise.all([
           position,
           fetch(
+<<<<<<< HEAD
             `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude},${position.coords.longitude}&radius=1500&key=${apiKey}`
+=======
+            `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude},${position.coords.longitude}&radius=1500&key=AIzaSyA66ygyGknz1ItPWNHy0S61QSaDeVmfFfM`
+>>>>>>> 33a1b93377089f752f5ac0565a10f0c8221fff6e
           )
         ])
           .then(([position, response]) =>
