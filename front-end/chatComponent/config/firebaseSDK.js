@@ -1,15 +1,15 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 class FirebaseSDK {
   constructor() {
     if (!firebase.apps.length) {
       firebase.initializeApp({
-        apiKey: 'AIzaSyDUAvKfB9iulnkfTM34DrgfYui8lQ7l5DI',
-        authDomain: 'nomado-1.firebaseapp.com',
-        databaseURL: 'https://nomado-1.firebaseio.com',
-        projectId: 'nomado-1',
-        storageBucket: 'nomado-1.appspot.com',
-        messagingSenderId: '98674158881'
+        apiKey: "AIzaSyDUAvKfB9iulnkfTM34DrgfYui8lQ7l5DI",
+        authDomain: "nomado-1.firebaseapp.com",
+        databaseURL: "https://nomado-1.firebaseio.com",
+        projectId: "nomado-1",
+        storageBucket: "nomado-1.appspot.com",
+        messagingSenderId: "98674158881"
         // appId: "1:98674158881:web:8d5e04d79fb3c2a0c4a260",
         // measurementId: "G-DHL66QJW29"
       });
@@ -27,7 +27,7 @@ class FirebaseSDK {
   }
 
   get ref() {
-    return firebase.database().ref('messages');
+    return firebase.database().ref("messages/messages2");
   }
 
   parse = snapshot => {
@@ -46,7 +46,7 @@ class FirebaseSDK {
   on = callback =>
     this.ref
       .limitToLast(20)
-      .on('child_added', snapshot => callback(this.parse(snapshot)));
+      .on("child_added", snapshot => callback(this.parse(snapshot)));
 
   get timestamp() {
     return firebase.database.ServerValue.TIMESTAMP;
@@ -78,55 +78,55 @@ class FirebaseSDK {
       .then(
         function() {
           console.log(
-            'created user successfully. User email:' +
+            "created user successfully. User email:" +
               user.email +
-              ' name:' +
+              " name:" +
               user.name
           );
           let userf = firebase.auth().currentUser;
           userf.updateProfile({ displayName: user.name }).then(
             function() {
               console.log(
-                'Updated displayName successfully. name:' + user.name
+                "Updated displayName successfully. name:" + user.name
               );
               alert(
-                'User ' + user.name + ' was created successfully. Please login.'
+                "User " + user.name + " was created successfully. Please login."
               );
             },
             function(error) {
-              console.warn('Error update displayName.');
+              console.warn("Error update displayName.");
             }
           );
         },
         function(error) {
           console.error(
-            'got error:' + typeof error + ' string:' + error.message
+            "got error:" + typeof error + " string:" + error.message
           );
-          alert('Create account failed. Error: ' + error.message);
+          alert("Create account failed. Error: " + error.message);
         }
       );
   };
 
   uploadImage = async uri => {
-    console.log('got image to upload. uri:' + uri);
+    console.log("got image to upload. uri:" + uri);
     try {
       const response = await fetch(uri);
       const blob = await response.blob();
       const ref = firebase
         .storage()
-        .ref('avatar')
+        .ref("avatar")
         .child(uuid.v4());
       const task = ref.put(blob);
 
       return new Promise((resolve, reject) => {
         task.on(
-          'state_changed',
+          "state_changed",
           () => {},
           reject(() => resolve(task.snapshot.downloadURL))
         );
       });
     } catch (err) {
-      console.log('uploadImage try/catch error: ' + err.message);
+      console.log("uploadImage try/catch error: " + err.message);
     }
   };
 
@@ -135,17 +135,17 @@ class FirebaseSDK {
     if (userf != null) {
       userf.updateProfile({ avatar: url }).then(
         function() {
-          console.log('Updated avatar successfully. url:' + url);
-          alert('Avatar image is saved successfully.');
+          console.log("Updated avatar successfully. url:" + url);
+          alert("Avatar image is saved successfully.");
         },
         function(error) {
-          console.warn('Error update avatar.');
-          alert('Error update avatar. Error:' + error.message);
+          console.warn("Error update avatar.");
+          alert("Error update avatar. Error:" + error.message);
         }
       );
     } else {
       console.log("can't update avatar, user is not login.");
-      alert('Unable to update avatar. You must login first.');
+      alert("Unable to update avatar. You must login first.");
     }
   };
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import { ImagePicker, Permissions } from 'expo';
+import React from "react";
+import { ImagePicker, Permissions } from "expo";
 import {
   StyleSheet,
   Text,
@@ -7,16 +7,16 @@ import {
   View,
   Button,
   ImageEditor
-} from 'react-native';
+} from "react-native";
 
-import firebaseSDK from '../config/firebaseSDK';
+import firebaseSDK from "../config/firebaseSDK";
 
 export default class Signup extends React.Component {
   state = {
-    name: 'no name',
-    email: 'test@live.com',
-    password: '123456',
-    avatar: ''
+    name: "no name",
+    email: "test@live.com",
+    password: "123456",
+    avatar: ""
   };
 
   onPressCreate = async () => {
@@ -28,7 +28,7 @@ export default class Signup extends React.Component {
       };
       await firebaseSDK.createAccount(user);
     } catch ({ message }) {
-      console.log('create account failed. catch error:' + message);
+      console.log("create account failed. catch error:" + message);
     }
   };
 
@@ -42,13 +42,13 @@ export default class Signup extends React.Component {
     );
     try {
       // only if user allows permission to camera roll
-      if (cameraRollPerm === 'granted') {
+      if (cameraRollPerm === "granted") {
         let pickerResult = await ImagePicker.launchImageLibraryAsync({
           allowsEditing: true,
           aspect: [4, 3]
         });
         console.log(
-          'ready to upload... pickerResult json:' + JSON.stringify(pickerResult)
+          "ready to upload... pickerResult json:" + JSON.stringify(pickerResult)
         );
 
         var wantedMaxSize = 150;
@@ -69,7 +69,7 @@ export default class Signup extends React.Component {
               offset: { x: 0, y: 0 },
               size: { width: pickerResult.width, height: pickerResult.height },
               displaySize: { width: wantedwidth, height: wantedheight },
-              resizeMode: 'contain'
+              resizeMode: "contain"
             },
             uri => resolve(uri),
             () => reject()
@@ -80,8 +80,8 @@ export default class Signup extends React.Component {
         await firebaseSDK.updateAvatar(uploadUrl);
       }
     } catch (err) {
-      console.log('onImageUpload error:' + err.message);
-      alert('Upload image error:' + err.message);
+      console.log("onImageUpload error:" + err.message);
+      alert("Upload image error:" + err.message);
     }
   };
 
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     height: offset * 2,
     margin: offset,
     paddingHorizontal: offset,
-    borderColor: '#111111',
+    borderColor: "#111111",
     borderWidth: 1,
     fontSize: offset
   },
