@@ -9,7 +9,6 @@ export default function SettingsScreen() {
       <Text>Settings</Text>
       <Input label='Username:' />
       <Button title='Pick a profile pic' />
-      // will add image picker functionality here -- dim
     </>
   );
 }
