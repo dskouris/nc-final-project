@@ -6,9 +6,6 @@ import * as Permissions from "expo-permissions";
 import { Input, Avatar } from "react-native-elements";
 
 export default class ProfilePicture extends React.Component {
-  state = {
-    profilePicture: null
-  };
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -24,18 +21,16 @@ export default class ProfilePicture extends React.Component {
     }
   };
   render() {
-    let { profilePicture } = this.state;
+    let { profilePicture } = this.props;
 
     return (
       <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center"
-        }}
+      // style={{
+      //   flex: 1,
+      //   alignItems: "center",
+      //   justifyContent: "center"
+      // }}
       >
-        <Avatar rounded source={{ uri: profilePicture }} />
-        <Text> Avatar </Text>
         <Button
           title={
             profilePicture
