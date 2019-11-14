@@ -6,22 +6,26 @@ import * as Permissions from "expo-permissions";
 import { Input, Avatar } from "react-native-elements";
 
 export default class ProfilePicture extends React.Component {
-  pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1
-    });
+  // pickImage = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  //     allowsEditing: true,
+  //     aspect: [4, 3],
+  //     quality: 1
+  //   });
 
-    console.log(result, "results from Image adder 19");
+  //   console.log(result, "results from Image adder 19");
 
-    if (!result.cancelled) {
-      this.setState({ profilePicture: result.uri });
-    }
+  //   if (!result.cancelled) {
+  //     this.setState({ profilePicture: result.uri });
+  //   }
+  // };
+  handleChange = () => {
+    // console.log("handle change");
+    this.props.pickImage();
   };
   render() {
-    let { profilePicture } = this.props;
+    const { profilePicture } = this.props;
 
     return (
       <View
@@ -37,7 +41,9 @@ export default class ProfilePicture extends React.Component {
               ? "Change a profile picture"
               : "1Pick a profile picture"
           }
-          onPress={this.pickImage}
+          onPress={() => {
+            this.handleChange();
+          }}
         />
         {profilePicture && (
           <Image
@@ -49,18 +55,18 @@ export default class ProfilePicture extends React.Component {
     );
   }
 
-  componentDidMount() {
-    this.getPermissionAsync();
-    console.log("mounted");
-  }
+  // componentDidMount() {
+  //   this.getPermissionAsync();
+  //   console.log("mounted");
+  // }
 
-  //FOR IOS ONLY
-  getPermissionAsync = async () => {
-    if (Constants.platform.ios) {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
-      }
-    }
-  };
+  // //FOR IOS ONLY
+  // getPermissionAsync = async () => {
+  //   if (Constants.platform.ios) {
+  //     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+  //     if (status !== "granted") {
+  //       alert("Sorry, we need camera roll permissions to make this work!");
+  //     }
+  //   }
+  // };
 }
