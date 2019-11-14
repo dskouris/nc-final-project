@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Card, CardItem, Left, Thumbnail, Right } from "native-base";
-import { Text, View, ScrollView } from "react-native";
-import { Button } from "react-native-elements";
+import React, { Component } from 'react';
+import { Card, CardItem, Left, Thumbnail, Right } from 'native-base';
+import { Text, View, ScrollView } from 'react-native';
+import { Button } from 'react-native-elements';
 
 const InfoCard = ({ location, navigation }) => {
   return (
@@ -9,17 +9,17 @@ const InfoCard = ({ location, navigation }) => {
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail source={require("../images/robot-dev.png")} />
+            <Thumbnail source={require('../images/robot-dev.png')} />
             <View>
               <Text>{location.name}</Text>
-              <Text>{location.pplGoing} going</Text>
+              <Text>0 going</Text>
             </View>
           </Left>
 
           <Button
-            title="Click to see more info"
+            title='Click to see more info'
             onPress={() =>
-              navigation.navigate("Info", { back: "Home", location })
+              navigation.navigate('Info', { back: 'Home', location })
             }
           />
         </CardItem>
