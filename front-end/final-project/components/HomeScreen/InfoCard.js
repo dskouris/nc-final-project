@@ -11,9 +11,8 @@ const InfoCard = ({ location, navigation }) => {
           <Left>
             <Thumbnail source={require("../images/robot-dev.png")} />
             <View>
-              <Text>INFO CARD CARALHO</Text>
-              {/* <Text>{location.name}</Text>
-              <Text>{location.pplGoing} people is going</Text> */}
+              <Text>{location.name}</Text>
+              <Text>{location.pplGoing} going</Text>
             </View>
           </Left>
 

@@ -2,20 +2,21 @@ import React, { Component } from "react";
 import {
   Container,
   Header,
-  Content,
   Tab,
   Tabs,
-  Body,
   Text,
   Icon,
   TabHeading
 } from "native-base";
-import List2 from "./List2";
-import MapPage from "./MapPage";
+import List from "./List";
+import Map from "./Map";
 
-export default class Test2 extends Component {
+export default class TabsToggler extends Component {
   state = {
     display: "list",
+    isLoading: "true",
+    currentCity: "MANCHESTER",
+    err: "",
     locations: [
       {
         id: 1,
@@ -68,15 +69,23 @@ export default class Test2 extends Component {
     ]
   };
   render() {
+    const { locations, isLoading } = this.state;
+    const { navigation } = this.props;
     return (
       <Container>
         <Header hasTabs>
-          <Text style={{ color: "white" }}>Welcome to MANCHESTER !!! </Text>
+          <Text style={{ color: "white", alignItems: "center" }}>
+            Welcome to {this.state.currentCity} !!!
+          </Text>
           <Icon name="heart" style={{ color: "red" }} />
         </Header>
         <Tabs>
-          <Tab heading="List2">
-            <List2 />
+          <Tab heading="List">
+            <List
+              locations={locations}
+              isLoading={isLoading}
+              navigation={navigation}
+            />
           </Tab>
           <Tab
             heading={
@@ -86,7 +95,7 @@ export default class Test2 extends Component {
               </TabHeading>
             }
           >
-            <MapPage />
+            <Map />
           </Tab>
         </Tabs>
       </Container>
