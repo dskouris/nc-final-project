@@ -1,9 +1,19 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView } from "react-native";
-import { Card, CardItem, Icon, Left, Thumbnail, Right } from "native-base";
-import InfoCard from "../components/HomeScreen/InfoCard";
+import {
+  Container,
+  Header,
+  Content,
+  Tab,
+  Tabs,
+  Body,
+  Text,
+  Icon,
+  TabHeading
+} from "native-base";
+import List2 from "./List2";
+import MapPage from "./MapPage";
 
-export default class List extends Component {
+export default class Test2 extends Component {
   state = {
     display: "list",
     locations: [
@@ -59,27 +69,27 @@ export default class List extends Component {
   };
   render() {
     return (
-      <View>
-        <Card style={{ alignItems: "center" }}>
-          <CardItem header>
-            <Icon name="map" style={{ color: "green" }} />
-            <Text>Welcome to Manchester!!! UHUUUUUUUU </Text>
-            <Icon name="heart" style={{ color: "red" }} />
-          </CardItem>
-        </Card>
-
-        <ScrollView>
-          {this.state.locations.map(location => {
-            return (
-              <InfoCard
-                navigation={this.props.navigation}
-                location={location}
-                key={location.id}
-              />
-            );
-          })}
-        </ScrollView>
-      </View>
+      <Container>
+        <Header hasTabs>
+          <Text style={{ color: "white" }}>Welcome to MANCHESTER !!! </Text>
+          <Icon name="heart" style={{ color: "red" }} />
+        </Header>
+        <Tabs>
+          <Tab heading="List2">
+            <List2 />
+          </Tab>
+          <Tab
+            heading={
+              <TabHeading>
+                <Icon name="map" />
+                <Text>Map</Text>
+              </TabHeading>
+            }
+          >
+            <MapPage />
+          </Tab>
+        </Tabs>
+      </Container>
     );
   }
 }
