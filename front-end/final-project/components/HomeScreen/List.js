@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { ScrollView } from "react-native";
+import React, { Component } from 'react';
+import { ScrollView } from 'react-native';
 
-import InfoCard from "./InfoCard";
+import InfoCard from './InfoCard';
 
 export default class List extends Component {
   render() {
