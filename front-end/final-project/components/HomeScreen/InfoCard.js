@@ -17,7 +17,7 @@ const InfoCard = ({ location, navigation }) => {
           </Left>
 
           <Button
-            title="Click to see more info"
+            title="See more info"
             onPress={() =>
               navigation.navigate("Info", { back: "Home", location })
             }
