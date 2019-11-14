@@ -36,15 +36,15 @@ export default class InfoScreen extends Component {
 
   render() {
     const { isGoing, usersGoing } = this.state;
-    const location = this.props.navigation.getParam("location", {})
-    console.log(location)
+    const {navigation} = this.props
+    const location = navigation.getParam("location", {})
     return (
       <View style={styles.container}>
         <Button
           title='go back'
           onPress={() =>
-            this.props.navigation.navigate(
-              this.props.navigation.getParam('back', 'Home')
+            navigation.navigate(
+              navigation.getParam('back', 'Home')
             )
           }
         />
@@ -68,6 +68,12 @@ export default class InfoScreen extends Component {
             isGoing={this.state.isGoing}
             addToAgenda={this.addToAgenda}
             removeFromAgenda={this.removeFromAgenda}
+          />
+        </View>
+
+        <View>
+          <Button title="Location Chat"
+            onPress={() => navigation.navigate('Chats')} 
           />
         </View>
       </View>
