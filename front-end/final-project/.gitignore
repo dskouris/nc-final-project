@@ -10,4 +10,4 @@ npm-debug.*
 web-build/
 web-report/
 .DS_Store
-.final-project/constants/keys.js
+./final-project/constants/keys.js
