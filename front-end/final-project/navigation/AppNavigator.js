@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import InfoScreen from '../screens/InfoScreen';
 import AgendaScreen from '../screens/AgendaScreen';
 
+
 const AuthStack = createStackNavigator({
   Login: LoginScreen,
   SignUp: SignUpScreen
