@@ -5,7 +5,7 @@ import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
 
 export default class InfoScreen extends Component {
   state = {
-    location: {  },
+    location: {},
     isGoing: false,
     usersGoing: [
       { name: 'Tom', uuid: 'jjfdjfd294ikvnknv' },
@@ -17,13 +17,11 @@ export default class InfoScreen extends Component {
     userLocation: { lat: 53.4852373, long: -2.2465376 }
   };
 
-
-
   addToAgenda = date => {
     this.setState(currentState => {
       return { isGoing: !currentState.isGoing };
     });
-    alert(date);
+    alert(`added to agenda for:${date}`);
   };
 
   removeFromAgenda = () => {
@@ -36,16 +34,14 @@ export default class InfoScreen extends Component {
 
   render() {
     const { isGoing, usersGoing } = this.state;
-    const {navigation} = this.props
-    const location = navigation.getParam("location", {})
+    const { navigation } = this.props;
+    const location = navigation.getParam('location', {});
     return (
       <View style={styles.container}>
         <Button
           title='go back'
           onPress={() =>
-            navigation.navigate(
-              navigation.getParam('back', 'Home')
-            )
+            navigation.navigate(navigation.getParam('back', 'Home'))
           }
         />
         <View>
@@ -72,8 +68,9 @@ export default class InfoScreen extends Component {
         </View>
 
         <View>
-          <Button title="Location Chat"
-            onPress={() => navigation.navigate('Chats')} 
+          <Button
+            title='Location Chat'
+            onPress={() => navigation.navigate('Chats')}
           />
         </View>
       </View>
