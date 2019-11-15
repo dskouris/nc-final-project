@@ -62,7 +62,7 @@ export default class SettingsScreen extends Component {
           title={surname}
           bottomDivider
           onPress={() => {
-            console.log("I've been pressed! create");
+            alert("I've been pressed!");
           }}
         />
         <ListItem
@@ -74,7 +74,7 @@ export default class SettingsScreen extends Component {
           rightIcon={{ name: "lock" }}
           title={email}
           onPress={() => {
-            console.log("You can't change me!!!");
+            alert("You can't change me!!!");
           }}
           bottomDivider
         />
