@@ -15,7 +15,7 @@ export default class TabsToggler extends Component {
   state = {
     display: 'list',
     isLoading: 'true',
-    currentCity: 'MANCHESTER',
+    currentCity: '',
     err: '',
     locations: [],
     userCoords: { latitude: 0, longitude: 0 }
@@ -27,7 +27,7 @@ export default class TabsToggler extends Component {
         return Promise.all([
           position,
           fetch(
-            `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude},${position.coords.longitude}&radius=1500&key=${apiKey}`
+            `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude},${position.coords.longitude}&radius=1500&type=tourist_attraction&key=${apiKey}`
           )
         ])
           .then(([position, response]) =>
@@ -37,7 +37,7 @@ export default class TabsToggler extends Component {
             this.setState({
               isLoading: false,
               locations: results,
-              currentCity: results[0].name,
+              currentCity: results[0].vicinity,
               userCoords: position.coords
             })
           )
@@ -47,17 +47,17 @@ export default class TabsToggler extends Component {
     );
   }
   render() {
-    const { locations } = this.state;
+    const { locations, currentCity, isLoading, userCoords } = this.state;
     const { navigation } = this.props;
     return (
       <Container>
-        {this.state.isLoading ? (
+        {isLoading ? (
           <Text>Loading...</Text>
         ) : (
           <>
             <Header hasTabs>
               <Text style={{ color: 'white', alignItems: 'center' }}>
-                Welcome to {this.state.currentCity} !!!
+                Welcome to {currentCity} !!!
               </Text>
               <Icon name='heart' style={{ color: 'red' }} />
             </Header>
@@ -73,7 +73,7 @@ export default class TabsToggler extends Component {
                   </TabHeading>
                 }
               >
-                <Map userCoords={this.state.userCoords} locations={locations} />
+                <Map userCoords={userCoords} locations={locations} />
               </Tab>
             </Tabs>
           </>
