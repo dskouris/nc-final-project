@@ -9,6 +9,7 @@ import {
   TabHeading
 } from 'native-base';
 import List from './List';
+import Loading from './Loading';
 import Map from './Map';
 import apiKey from '../../constants/keys.js';
 export default class TabsToggler extends Component {
@@ -52,7 +53,7 @@ export default class TabsToggler extends Component {
     return (
       <Container>
         {isLoading ? (
-          <Text>Loading...</Text>
+          <Loading />
         ) : (
           <>
             <Header hasTabs>
