@@ -68,13 +68,7 @@ export default class InfoScreen extends Component {
       <Text>Loading...</Text>
     ) : (
       <Container>
-        <Button
-          title="go back"
-          onPress={() =>
-            navigation.navigate(navigation.getParam("back", "Home"))
-          }
-        />
-        <Header title="hey" />
+        {/* <Header /> */}
         <Content>
           <Button
             iconLeft
@@ -88,7 +82,7 @@ export default class InfoScreen extends Component {
               <Text>Back</Text>
             </Left>
           </Button>
-          <Card backgroundColor="red">
+          <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
                 <Thumbnail source={wandr} />
@@ -96,14 +90,24 @@ export default class InfoScreen extends Component {
                   <Text style={{ fontSize: 24, fontWeight: "700" }}>
                     {location.name}
                   </Text>
+                  <Text note> 0.8km from you</Text>
                 </Body>
               </Left>
             </CardItem>
-            <CardItem cardBody>
-              <Image
-                source={{ uri: location.img }}
-                style={{ height: 200, width: null, flex: 1 }}
-              />
+            <CardItem>
+              <Body>
+                <Image
+                  source={{ uri: location.img }}
+                  style={{ height: 200, width: 300, flex: 1 }}
+                />
+                <Text>
+                  Cathedral, formally the Cathedral and Collegiate Church of St
+                  Mary, St Denys and St George, in Manchester, England, is the
+                  mother church of the Anglican Diocese of Manchester, seat of
+                  the Bishop of Manchester and the city's parish church. It is
+                  on Victoria Street in Manchester city centre.
+                </Text>
+              </Body>
             </CardItem>
             <CardItem>
               <Left>
@@ -122,9 +126,8 @@ export default class InfoScreen extends Component {
                 </Button>
               </Body>
               <Right>
-                <Text>0.8 km from you</Text>
+                <Text>{isGoing ? "You Are Going" : "You Are Not Going"}</Text>
               </Right>
-              <Text>{isGoing ? "You Are Going" : "You Are Not Going"}</Text>
             </CardItem>
           </Card>
           <View>
