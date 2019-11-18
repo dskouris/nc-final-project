@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Animated, StyleSheet, View, Text } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Callout } from 'react-native-maps';
 
@@ -61,9 +61,9 @@ class Map extends Component {
           {this.props.locations.map((location, index) => {
             let coords = location.geometry.location;
             return (
-              <>
+              <Fragment key={location.id}>
                 <MapView.Marker
-                  key={location.id}
+                  key={location.id + 'marker'}
                   title={location.name}
                   coordinate={{ latitude: coords.lat, longitude: coords.lng }}
                   onCalloutPress={() => {
@@ -73,12 +73,21 @@ class Map extends Component {
                     });
                   }}
                 >
-                  <Animated.View style={[this.styles.markerWrap]}>
-                    <Animated.View style={[this.styles.ring]} />
-                    <View style={this.styles.marker} />
-                  </Animated.View>
+                  {/* 
+                  If we want to customise markers, we can keep this code. if not we will discard
+                  
+                  <Animated.View
+                    style={[this.styles.markerWrap]}
+                    key={location.id}
+                  >
+                    <Animated.View
+                      style={[this.styles.ring]}
+                      key={location.id}
+                    />
+                    <View style={this.styles.marker} key={location.id} />
+                  </Animated.View> */}
                 </MapView.Marker>
-              </>
+              </Fragment>
             );
           })}
         </MapView>

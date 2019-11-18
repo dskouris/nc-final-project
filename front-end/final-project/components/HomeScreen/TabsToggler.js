@@ -59,7 +59,6 @@ export default class TabsToggler extends Component {
               <Text style={{ color: 'white', alignItems: 'center' }}>
                 Welcome to {currentCity} !!!
               </Text>
-              <Icon name='heart' style={{ color: 'red' }} />
             </Header>
             <Tabs>
               <Tab heading='List'>
