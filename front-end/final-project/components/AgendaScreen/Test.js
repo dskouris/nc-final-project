@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Image, Text, ScrollView, View, Dimensions } from "react-native";
 import cooking from "../images/cooking.jpeg";
-import Carousel from "./Carousel";
+// import Carousel from "../HomeScreen/Carousel";
 
 const { height, width } = Dimensions.get("window");
 
@@ -23,10 +23,10 @@ export default class Test extends Component {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
+              {/* <Carousel />
               <Carousel />
               <Carousel />
-              <Carousel />
-              <Carousel />
+              <Carousel /> */}
             </ScrollView>
           </View>
           <View style={{ marginTop: 40, paddingHorizontal: 20 }}>

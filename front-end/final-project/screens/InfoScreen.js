@@ -8,14 +8,14 @@ import {
   Content,
   Card,
   CardItem,
-  // Thumbnail,
+  Thumbnail,
   Button,
   Icon,
   Left,
   Body,
   Right
 } from "native-base";
-import Test from "../components/AgendaScreen/Test";
+import wandr from "./images/wandr.png";
 
 export default class InfoScreen extends Component {
   state = {
@@ -67,7 +67,6 @@ export default class InfoScreen extends Component {
     return isLoading ? (
       <Text>Loading...</Text>
     ) : (
-      // <Test />
       <Container>
         <Button
           title="go back"
@@ -92,7 +91,7 @@ export default class InfoScreen extends Component {
           <Card backgroundColor="red">
             <CardItem>
               <Left>
-                {/* <Thumbnail source={{ uri: wandr }} /> */}
+                <Thumbnail source={wandr} />
                 <Body>
                   <Text style={{ fontSize: 24, fontWeight: "700" }}>
                     {location.name}
