@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { Animated, StyleSheet, View, Text } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Callout } from 'react-native-maps';
 
 class Map extends Component {
   styles = StyleSheet.create({
@@ -11,6 +11,7 @@ class Map extends Component {
       right: 0,
       bottom: 0,
       justifyContent: 'flex-end',
+
       alignItems: 'center'
     },
     map: {
@@ -30,16 +31,16 @@ class Map extends Component {
       width: 8,
       height: 8,
       borderRadius: 4,
-      backgroundColor: 'rgba(130,4,150, 0.9)'
+      backgroundColor: '#F6EF0F'
     },
     ring: {
       width: 24,
       height: 24,
       borderRadius: 12,
-      backgroundColor: 'rgba(130,4,150, 0.3)',
+      backgroundColor: '#F6EF0F',
       position: 'absolute',
       borderWidth: 1,
-      borderColor: 'rgba(130,4,150, 0.5)'
+      borderColor: '#F6EF0F'
     }
   });
   render() {
@@ -47,6 +48,7 @@ class Map extends Component {
       <View style={this.styles.container}>
         <MapView
           style={this.styles.map}
+          navigation={this.props.navigation}
           provider={PROVIDER_GOOGLE}
           showsUserLocation
           initialRegion={{
@@ -56,18 +58,27 @@ class Map extends Component {
             longitudeDelta: 0.0421
           }}
         >
-          {this.props.locations.map((marker, index) => {
-            let coords = marker.geometry.location;
+          {this.props.locations.map((location, index) => {
+            let coords = location.geometry.location;
             return (
-              <MapView.Marker
-                key={index}
-                coordinate={{ latitude: coords.lat, longitude: coords.lng }}
-              >
-                <Animated.View style={[this.styles.markerWrap]}>
-                  <Animated.View style={[this.styles.ring]} />
-                  <View style={this.styles.marker} />
-                </Animated.View>
-              </MapView.Marker>
+              <>
+                <MapView.Marker
+                  key={location.id}
+                  title={location.name}
+                  coordinate={{ latitude: coords.lat, longitude: coords.lng }}
+                  onCalloutPress={() => {
+                    this.props.navigation.navigate('Info', {
+                      location: location,
+                      back: 'Home'
+                    });
+                  }}
+                >
+                  <Animated.View style={[this.styles.markerWrap]}>
+                    <Animated.View style={[this.styles.ring]} />
+                    <View style={this.styles.marker} />
+                  </Animated.View>
+                </MapView.Marker>
+              </>
             );
           })}
         </MapView>

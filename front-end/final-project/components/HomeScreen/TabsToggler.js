@@ -27,7 +27,7 @@ export default class TabsToggler extends Component {
         return Promise.all([
           position,
           fetch(
-            `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude},${position.coords.longitude}&radius=1500&type=tourist_attraction&key=${apiKey}`
+            `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.coords.latitude},${position.coords.longitude}&type=tourist_attraction&radius=1500&key=${apiKey}`
           )
         ])
           .then(([position, response]) =>
@@ -73,7 +73,11 @@ export default class TabsToggler extends Component {
                   </TabHeading>
                 }
               >
-                <Map userCoords={userCoords} locations={locations} />
+                <Map
+                  userCoords={userCoords}
+                  locations={locations}
+                  navigation={navigation}
+                />
               </Tab>
             </Tabs>
           </>
