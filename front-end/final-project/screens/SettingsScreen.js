@@ -8,11 +8,12 @@ import * as Permissions from "expo-permissions";
 
 export default class SettingsScreen extends Component {
   state = {
-    uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+    uuid: "",
     firstName: "Billy",
     surname: "Crystal",
     email: "b.crystal@mail",
-    username: "billy321"
+    username: "billy321",
+    uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg"
   };
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({

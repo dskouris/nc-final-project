@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Button, Image } from 'react-native';
-
+import apiKey from '../constants/keys';
 import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
 
 export default class InfoScreen extends Component {
   state = {
+    isLoading: true,
     location: {},
     isGoing: false,
     usersGoing: [
@@ -16,6 +17,19 @@ export default class InfoScreen extends Component {
     ],
     userLocation: { lat: 53.4852373, long: -2.2465376 }
   };
+
+  componentDidMount() {
+    const location = this.props.navigation.getParam('location', {});
+    return Promise.all([
+      location,
+      fetch(
+        `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&maxheight=300&photoreference=${location.photos[0].photo_reference}&key=${apiKey}`
+      )
+    ]).then(([location, img]) => {
+      location.img = img.url;
+      this.setState({ location, isLoading: false });
+    });
+  }
 
   addToAgenda = date => {
     this.setState(currentState => {
@@ -33,10 +47,12 @@ export default class InfoScreen extends Component {
   };
 
   render() {
-    const { isGoing, usersGoing } = this.state;
+    const { isGoing, usersGoing, location, isLoading } = this.state;
     const { navigation } = this.props;
-    const location = navigation.getParam('location', {});
-    return (
+
+    return isLoading ? (
+      <Text>Loading...</Text>
+    ) : (
       <View style={styles.container}>
         <Button
           title='go back'
@@ -48,7 +64,7 @@ export default class InfoScreen extends Component {
           <Text>{location.name}</Text>
           <Image
             source={{ uri: location.img }}
-            style={{ width: '80%', height: 200 }}
+            style={{ width: '80%', height: 300 }}
           />
           <Text>{usersGoing.length} Going</Text>
           <Text>{isGoing ? 'You Are Going' : 'You Are Not Going'}</Text>

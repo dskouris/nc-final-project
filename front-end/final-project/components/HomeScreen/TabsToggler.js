@@ -9,6 +9,7 @@ import {
   TabHeading
 } from 'native-base';
 import List from './List';
+import Loading from './Loading';
 import Map from './Map';
 import apiKey from '../../constants/keys.js';
 export default class TabsToggler extends Component {
@@ -52,14 +53,13 @@ export default class TabsToggler extends Component {
     return (
       <Container>
         {isLoading ? (
-          <Text>Loading...</Text>
+          <Loading />
         ) : (
           <>
             <Header hasTabs>
               <Text style={{ color: 'white', alignItems: 'center' }}>
                 Welcome to {currentCity} !!!
               </Text>
-              <Icon name='heart' style={{ color: 'red' }} />
             </Header>
             <Tabs>
               <Tab heading='List'>
