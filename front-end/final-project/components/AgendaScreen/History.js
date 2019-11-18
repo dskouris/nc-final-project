@@ -5,7 +5,7 @@ export default function History(props) {
   return (
     <ScrollView>
       {props.history.map(place => {
-        return <Text>{place.name}</Text>;
+        return <Text key={place.id}>{place.name}</Text>;
       })}
     </ScrollView>
   );
