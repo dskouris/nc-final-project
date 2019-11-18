@@ -11,6 +11,7 @@ class Map extends Component {
       right: 0,
       bottom: 0,
       justifyContent: 'flex-end',
+
       alignItems: 'center'
     },
     map: {
@@ -47,6 +48,7 @@ class Map extends Component {
       <View style={this.styles.container}>
         <MapView
           style={this.styles.map}
+          navigation={this.props.navigation}
           provider={PROVIDER_GOOGLE}
           showsUserLocation
           initialRegion={{
@@ -61,9 +63,15 @@ class Map extends Component {
             return (
               <>
                 <MapView.Marker
-                  key={index}
+                  key={location.id}
                   title={location.name}
                   coordinate={{ latitude: coords.lat, longitude: coords.lng }}
+                  onCalloutPress={() => {
+                    this.props.navigation.navigate('Info', {
+                      location: location,
+                      back: 'Home'
+                    });
+                  }}
                 >
                   <Animated.View style={[this.styles.markerWrap]}>
                     <Animated.View style={[this.styles.ring]} />
