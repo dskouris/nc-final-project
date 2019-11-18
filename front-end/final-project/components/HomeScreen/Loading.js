@@ -1,25 +1,26 @@
 import React from 'react';
 import { Container, Text } from 'native-base';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 
 const Loading = () => {
   const styles = StyleSheet.create({
     container: {
+      justifyContent: 'center',
+      alignItems: 'center',
       flex: 1,
-      paddingTop: 100,
-      backgroundColor: '#DE4C5D',
-      color: '#fff'
+      backgroundColor: '#fff'
     },
-    text: {
-      color: '#fff',
+    image: {
+      resizeMode: 'contain',
+      height: 200,
+      width: 200,
       margin: 'auto'
     }
   });
 
   return (
     <Container style={styles.container}>
-      <Text style={styles.text}>WANDR</Text>
-      <Text style={styles.text}>This page is loading</Text>
+      <Image source={require('../images/wandr.png')} style={styles.image} />
     </Container>
   );
 };
