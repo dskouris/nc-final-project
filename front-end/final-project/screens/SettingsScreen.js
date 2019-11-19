@@ -22,7 +22,7 @@ export default class SettingsScreen extends Component {
     surname: "Crystal",
     email: "b.crystal@mail",
     username: "billy321",
-    uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg"
+    uri: "https://avidcareerist.com/wp-content/uploads/2017/06/Photographer.png"
   };
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -77,8 +77,8 @@ export default class SettingsScreen extends Component {
 
               <Image
                 source={{
-                  uri:
-                    "https://avidcareerist.com/wp-content/uploads/2017/06/Photographer.png"
+                  uri: uri
+                  // "https://avidcareerist.com/wp-content/uploads/2017/06/Photographer.png"
                 }} //https://i.pravatar.cc/300 avatar generator
                 style={styles.image}
               />

@@ -1,4 +1,4 @@
-export const distanceCalculator = (lat1, lon1, lat2, lon2) => {
+export const calculateDistance = (lat1, lon1, lat2, lon2) => {
   if (lat1 == lat2 && lon1 == lon2) {
     return 0;
   } else {
@@ -15,6 +15,7 @@ export const distanceCalculator = (lat1, lon1, lat2, lon2) => {
     dist = Math.acos(dist);
     dist = (dist * 180) / Math.PI;
     dist = dist * 60 * 1.1515;
-    return dist * 1.609344;
+    dist = dist * 1.609344;
+    return Math.round(dist * 10) / 10;
   }
 };

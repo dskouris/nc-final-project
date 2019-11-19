@@ -17,6 +17,7 @@ import {
   Body,
   Right
 } from 'native-base';
+import Loading from '../components/HomeScreen/Loading';
 import wandr from './images/wandr.png';
 
 export default class InfoScreen extends Component {
@@ -77,7 +78,7 @@ export default class InfoScreen extends Component {
     const { navigation } = this.props;
 
     return isLoading ? (
-      <Text>Loading...</Text>
+      <Loading />
     ) : (
       <Container>
         {/* <Header /> */}
@@ -102,7 +103,7 @@ export default class InfoScreen extends Component {
                   <Text style={{ fontSize: 24, fontWeight: '700' }}>
                     {location.name}
                   </Text>
-                  <Text note> 0.8km from you</Text>
+                  <Text note> {location.distanceFromUser}km from you</Text>
                 </Body>
               </Left>
             </CardItem>
