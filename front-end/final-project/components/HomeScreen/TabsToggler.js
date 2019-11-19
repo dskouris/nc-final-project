@@ -12,6 +12,8 @@ import List from './List';
 import Loading from './Loading';
 import Map from './Map';
 import apiKey from '../../constants/keys.js';
+import * as utils from '../../utils/utils';
+
 export default class TabsToggler extends Component {
   state = {
     display: 'list',
@@ -34,21 +36,35 @@ export default class TabsToggler extends Component {
           .then(([position, response]) =>
             Promise.all([position, response.json()])
           )
-          .then(([position, { results }]) =>
+          .then(([position, { results }]) => {
+            results.forEach(result => {
+              result.distanceFromUser = utils.calculateDistance(
+                position.coords.latitude,
+                position.coords.longitude,
+                result.geometry.location.lat,
+                result.geometry.location.lng
+              );
+            });
             this.setState({
               isLoading: false,
               locations: results,
               currentCity: results[0].vicinity,
               userCoords: position.coords
-            })
-          )
+            });
+          })
           .catch(console.log);
       },
       err => console.log(err)
     );
   }
   render() {
-    const { locations, currentCity, isLoading, userCoords } = this.state;
+    const {
+      locations,
+      currentCity,
+      isLoading,
+      userCoords,
+      distanceFromLocation
+    } = this.state;
     const { navigation } = this.props;
     return (
       <Container>
@@ -81,6 +97,7 @@ export default class TabsToggler extends Component {
                   userCoords={userCoords}
                   locations={locations}
                   navigation={navigation}
+                  distanceFromLocation={distanceFromLocation}
                 />
               </Tab>
             </Tabs>

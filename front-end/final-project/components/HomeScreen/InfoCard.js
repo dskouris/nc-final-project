@@ -2,15 +2,8 @@ import React, { Component } from 'react';
 import { Card, CardItem, Left, Thumbnail, Right } from 'native-base';
 import { Text, View, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
-import * as utils from '../../utils/utils';
 
 const InfoCard = ({ location, navigation, userCoords }) => {
-  let distanceFromLocation = utils.calculateDistance(
-    userCoords.latitude,
-    userCoords.longitude,
-    location.geometry.location.lat,
-    location.geometry.location.lng
-  );
   return (
     <View>
       <Card>
@@ -20,7 +13,7 @@ const InfoCard = ({ location, navigation, userCoords }) => {
             <View>
               <Text>{location.name}</Text>
               <Text>0 going</Text>
-              <Text>{distanceFromLocation}km away</Text>
+              <Text>{location.distanceFromUser}km away</Text>
             </View>
           </Left>
 
@@ -29,8 +22,7 @@ const InfoCard = ({ location, navigation, userCoords }) => {
             onPress={() =>
               navigation.navigate('Info', {
                 back: 'Home',
-                location,
-                distanceFromLocation
+                location
               })
             }
           />
