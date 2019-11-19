@@ -134,43 +134,6 @@ export default class SettingsScreen extends Component {
           </View>
         </ScrollView>
       </SafeAreaView>
-
-      // <View>
-      //   <ListItem
-      //     leftAvatar={{ source: { uri } }}
-      //     title="Profile details"
-      //     bottomDivider
-      //   />
-      //   <ListItem
-      //     rightIcon={{ name: "create" }}
-      //     title={firstName}
-      //     bottomDivider
-      //   />
-
-      //   <ListItem
-      //     rightIcon={{ name: "create" }}
-      //     title={surname}
-      //     bottomDivider
-      //     onPress={() => {
-      //       alert("I've been pressed!");
-      //     }}
-      //   />
-      //   <ListItem
-      //     rightIcon={{ name: "create" }}
-      //     title={username}
-      //     bottomDivider
-      //   />
-      //   <ListItem
-      //     rightIcon={{ name: "lock" }}
-      //     title={email}
-      //     onPress={() => {
-      //       alert("You can't change me!!!");
-      //     }}
-      //     bottomDivider
-      //   />
-
-      //   <ProfilePicture profilePicture={uri} pickImage={this.pickImage} />
-      // </View>
     );
   }
 }

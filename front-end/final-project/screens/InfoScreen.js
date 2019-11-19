@@ -16,8 +16,8 @@ import {
   Right
 } from "native-base";
 import Loading from "../components/HomeScreen/Loading";
-import wandr from "./images/wandr.png";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+import wandr from "./images/wandr.png";
 
 export default class InfoScreen extends Component {
   state = {
@@ -72,18 +72,24 @@ export default class InfoScreen extends Component {
       <Container>
         {/* <Header /> */}
         <Content>
-          <Button
-            iconLeft
-            light
-            onPress={() =>
-              navigation.navigate(navigation.getParam("back", "Home"))
-            }
-          >
-            <Icon name="arrow-back" />
-            <Left>
-              <Text>Back</Text>
-            </Left>
-          </Button>
+          <View style={styles.titleBar}>
+            <Ionicons
+              onPress={() =>
+                navigation.navigate(navigation.getParam("back", "Home"))
+              }
+              name="ios-arrow-back"
+              size={24}
+              color="#DE4C5D"
+            ></Ionicons>
+            <Ionicons
+              name="ios-home"
+              size={24}
+              color="#DE4C5D"
+              onPress={() =>
+                navigation.navigate(navigation.getParam("back", "Home"))
+              }
+            ></Ionicons>
+          </View>
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
@@ -92,7 +98,7 @@ export default class InfoScreen extends Component {
                   <Text style={{ fontSize: 24, fontWeight: "700" }}>
                     {location.name}
                   </Text>
-                  <Text note> {location.distanceFromUser}km from you</Text>
+                  <Text note> 0.8km from you</Text>
                 </Body>
               </Left>
             </CardItem>
@@ -153,6 +159,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: "#fff"
+  },
+  titleBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+    marginHorizontal: 15
   }
 });
 
