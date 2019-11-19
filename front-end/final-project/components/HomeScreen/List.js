@@ -1,18 +1,35 @@
-import React, { Component } from "react";
-import { Image, Text, ScrollView, View, Dimensions } from "react-native";
+import React, { Component } from 'react';
+import { Image, Text, ScrollView, View, Dimensions } from 'react-native';
 
-import InfoCard from "./InfoCard";
-import ListPopular from "./ListPopular";
-
-const { height, width } = Dimensions.get("window");
+import InfoCard from './InfoCard';
 
 export default class List extends Component {
   render() {
-    const { locations, navigation } = this.props;
+    const { locations, navigation, userCoords } = this.props;
     return (
       <ScrollView>
-        <View style={{ flex: 1, paddingTop: 20 }}>
-          <Text
+        {locations.map(location => {
+          return (
+            <InfoCard
+              navigation={navigation}
+              location={location}
+              userCoords={userCoords}
+              key={location.id}
+            />
+          );
+        })}
+      </ScrollView>
+    );
+  }
+}
+
+// const { height, width } = Dimensions.get("window");
+
+{
+  /* <View style={{ flex: 1, paddingTop: 20 }}> */
+}
+{
+  /* <Text
             style={{ fontSize: 24, fontWeight: "700", paddingHorizontal: 20 }}
           >
             The most popular places
@@ -25,27 +42,29 @@ export default class List extends Component {
               <ListPopular location={locations[0]} />
               <ListPopular location={locations[1]} />
             </ScrollView>
-          </View>
-          <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
-            <Text
-              style={{ fontSize: 24, fontWeight: "700", paddingHorizontal: 20 }}
-            >
-              List of places
-            </Text>
-            <Text style={{ fontWeight: "100", marginTop: 10 }}>
-              See interesting places in the city
-            </Text>
-            <ScrollView>
-              {locations.map(location => {
-                return (
-                  <InfoCard
-                    navigation={navigation}
-                    location={location}
-                    key={location.id}
-                  />
-                );
-              })}
-              {/* <Image
+          </View> */
+}
+{
+  /* <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
+    <Text style={{ fontSize: 24, fontWeight: "700", paddingHorizontal: 20 }}>
+      List of places
+    </Text>
+    <Text style={{ fontWeight: "100", marginTop: 10 }}>
+      See interesting places in the city
+    </Text>
+    <ScrollView>
+      {locations.map(location => {
+        return (
+          <InfoCard
+            navigation={navigation}
+            location={location}
+            key={location.id}
+          />
+        );
+      })} */
+}
+{
+  /* <Image
                 source={cooking}
                 style={{
                   flex: 1,
@@ -53,11 +72,10 @@ export default class List extends Component {
                   borderWidth: 1,
                   borderColor: "#dddddd"
                 }}
-              /> */}
-            </ScrollView>
-          </View>
-        </View>
-      </ScrollView>
-    );
-  }
+              /> */
+}
+{
+  /* </ScrollView>
+  </View>
+</View>; */
 }

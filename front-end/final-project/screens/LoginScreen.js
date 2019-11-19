@@ -15,7 +15,6 @@ class LoginScreen extends Component {
   state = { name: '', email: '', password: '', avatar: '' };
 
   onPressLogin = async () => {
-    console.log('pressed');
     const user = {
       name: this.state.name,
       email: this.state.email,
@@ -32,20 +31,15 @@ class LoginScreen extends Component {
   };
 
   loginSuccess = uid => {
-    console.log(uid);
-    console.log('login successful, navigate to chat.');
-    // api.getUserData(uid).then(userInfo => {
-    //   this.props.navigation.navigate('Home', {
-    //     uid,
-    //     userInfo
-    //   });
-    // })
-    this.props.navigation.navigate('Home', {
-      uid,
-      name: this.state.name,
-      email: this.state.email,
-      avatar: this.state.avatar
-    });
+    api
+      .getUserData(uid)
+      .then(userInfo => {
+        this.props.navigation.navigate('Home', {
+          uid,
+          userInfo
+        });
+      })
+      .catch(console.log);
   };
 
   loginFailed = () => {
@@ -62,25 +56,25 @@ class LoginScreen extends Component {
       <ScrollView style={this.styles.container}>
         <Text>Login</Text>
         <Input
-          label="Email:"
-          placeholder="example@address.com"
-          autoCapitalize="none"
+          label='Email:'
+          placeholder='example@address.com'
+          autoCapitalize='none'
           value={this.state.email}
           onChangeText={this.onChangeTextEmail}
         />
         <Input
-          label="Password:"
+          label='Password:'
           secureTextEntry={true}
           value={this.state.password}
           onChangeText={this.onChangeTextPassword}
         />
         <Button
-          title="Log in"
+          title='Log in'
           onPress={this.onPressLogin}
           buttonStyle={{ width: 200, margin: 10 }}
         />
         <Button
-          title="Create new account"
+          title='Create new account'
           onPress={() => this.props.navigation.navigate('SignUp')}
           buttonStyle={{ width: 200, margin: 10, backgroundColor: 'green' }}
         />
