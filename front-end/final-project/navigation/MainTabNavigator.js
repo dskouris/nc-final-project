@@ -11,6 +11,7 @@ import SignUpScreen from '../screens/SignUpScreen';
 import HomeScreen from '../screens/HomeScreen';
 import AgendaScreen from '../screens/AgendaScreen';
 import ChatsScreen from '../screens/ChatsScreen';
+import ChatroomScreen from '../screens/ChatroomScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const config = Platform.select({
@@ -71,6 +72,7 @@ AgendaStack.path = '';
 
 const ChatsStack = createStackNavigator(
   {
+    Chatrooms: ChatroomScreen,
     Chats: ChatsScreen
   },
   config

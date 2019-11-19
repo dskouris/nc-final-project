@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import apiKey from "../constants/keys";
 import UpdateAgenda from "../components/InfoScreen/UpdateAgenda";
+=======
+import React, { Component } from 'react';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import apiKey from '../constants/keys';
+import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
+import * as api from '../components/api';
+import firebaseSDK from '../components/firebaseSDK';
+>>>>>>> 7ff3ca6db7b6bf1d6a88458857dfcdee051244bc
 import {
   Container,
   Header,
@@ -48,10 +57,20 @@ export default class InfoScreen extends Component {
   }
 
   addToAgenda = date => {
-    this.setState(currentState => {
-      return { isGoing: !currentState.isGoing };
+    const location = this.state;
+    uid = firebaseSDK.uid;
+    const agendaPoint = {
+      id: location.id,
+      date,
+      chatKey: `${location.id}${date}`,
+      name: location.name
+    };
+    api.updateAgenda(uid, agendaPoint).then(updatedUser => {
+      this.setState(currentState => {
+        return { isGoing: !currentState.isGoing };
+      });
+      alert(`added to agenda for:${date}`);
     });
-    alert(`added to agenda for:${date}`);
   };
 
   removeFromAgenda = () => {
@@ -72,6 +91,7 @@ export default class InfoScreen extends Component {
       <Container>
         {/* <Header /> */}
         <Content>
+<<<<<<< HEAD
           <View style={styles.titleBar}>
             <Ionicons
               onPress={() =>
@@ -90,6 +110,20 @@ export default class InfoScreen extends Component {
               }
             ></Ionicons>
           </View>
+=======
+          <Button
+            iconLeft
+            light
+            onPress={() =>
+              navigation.navigate(navigation.getParam('back', 'Home'))
+            }
+          >
+            <Icon name="arrow-back" />
+            <Left>
+              <Text>Back</Text>
+            </Left>
+          </Button>
+>>>>>>> 7ff3ca6db7b6bf1d6a88458857dfcdee051244bc
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
