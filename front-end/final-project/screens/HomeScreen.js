@@ -8,7 +8,6 @@ export default class HomeScreen extends Component {
   };
 
   render() {
-    console.log(this.props.navigation);
     return <TabsToggler navigation={this.props.navigation} />;
   }
 }

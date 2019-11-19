@@ -50,28 +50,38 @@ export default class InfoScreen extends Component {
   }
 
   addToAgenda = date => {
-    const location = this.state;
-    uid = firebaseSDK.uid;
+    const { location } = this.state;
+    const uid = firebaseSDK.uid;
     const agendaPoint = {
       id: location.id,
       date,
       chatKey: `${location.id}${date}`,
       name: location.name
     };
-    api.updateAgenda(uid, agendaPoint).then(updatedUser => {
-      this.setState(currentState => {
-        return { isGoing: !currentState.isGoing };
-      });
-      alert(`added to agenda for:${date}`);
-    });
+    return api
+      .updateAgenda(uid, agendaPoint)
+      .then(updatedUser => {
+        this.setState(currentState => {
+          return { isGoing: !currentState.isGoing };
+        });
+        alert(
+          `added to agenda for:${date}. \nYou can now see this in your chats`
+        );
+      })
+      .catch(console.log);
   };
 
   removeFromAgenda = () => {
     this.setState(currentState => {
       return { isGoing: !currentState.isGoing };
     });
+<<<<<<< HEAD
     // filerring the location place from agenda
     alert("removed from agenda");
+=======
+    // filtering the location place from agenda
+    alert('removed from agenda');
+>>>>>>> 2f0ca3b98df26d2d7037985b4ea98a5417a23675
   };
 
   render() {
@@ -84,6 +94,7 @@ export default class InfoScreen extends Component {
       <Container>
         {/* <Header /> */}
         <Content>
+<<<<<<< HEAD
           <View style={styles.titleBar}>
             <Ionicons
               onPress={() =>
@@ -102,6 +113,20 @@ export default class InfoScreen extends Component {
               }
             ></Ionicons>
           </View>
+=======
+          <Button
+            iconLeft
+            light
+            onPress={() =>
+              navigation.navigate(navigation.getParam('back', 'Home'))
+            }
+          >
+            <Icon name='arrow-back' />
+            <Left>
+              <Text>Back</Text>
+            </Left>
+          </Button>
+>>>>>>> 2f0ca3b98df26d2d7037985b4ea98a5417a23675
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
@@ -132,10 +157,11 @@ export default class InfoScreen extends Component {
             <CardItem>
               <Left>
                 <Button transparent>
-                  <Icon active name="people" />
+                  <Icon active name='people' />
                   <Text> {usersGoing.length} Going</Text>
                 </Button>
               </Left>
+<<<<<<< HEAD
               <Body>
                 <Button
                   transparent
@@ -145,6 +171,8 @@ export default class InfoScreen extends Component {
                   <Text>Go to chat</Text>
                 </Button>
               </Body>
+=======
+>>>>>>> 2f0ca3b98df26d2d7037985b4ea98a5417a23675
               <Right>
                 <Text>{isGoing ? "You Are Going" : "You Are Not Going"}</Text>
               </Right>
