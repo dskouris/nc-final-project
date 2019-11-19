@@ -49,27 +49,32 @@ export default class InfoScreen extends Component {
   }
 
   addToAgenda = date => {
-    const location = this.state;
-    uid = firebaseSDK.uid;
+    const { location } = this.state;
+    const uid = firebaseSDK.uid;
     const agendaPoint = {
       id: location.id,
       date,
       chatKey: `${location.id}${date}`,
       name: location.name
     };
-    api.updateAgenda(uid, agendaPoint).then(updatedUser => {
-      this.setState(currentState => {
-        return { isGoing: !currentState.isGoing };
-      });
-      alert(`added to agenda for:${date}`);
-    });
+    return api
+      .updateAgenda(uid, agendaPoint)
+      .then(updatedUser => {
+        this.setState(currentState => {
+          return { isGoing: !currentState.isGoing };
+        });
+        alert(
+          `added to agenda for:${date}. \nYou can now see this in your chats`
+        );
+      })
+      .catch(console.log);
   };
 
   removeFromAgenda = () => {
     this.setState(currentState => {
       return { isGoing: !currentState.isGoing };
     });
-    // filerring the location place from agenda
+    // filtering the location place from agenda
     alert('removed from agenda');
   };
 
@@ -90,7 +95,7 @@ export default class InfoScreen extends Component {
               navigation.navigate(navigation.getParam('back', 'Home'))
             }
           >
-            <Icon name="arrow-back" />
+            <Icon name='arrow-back' />
             <Left>
               <Text>Back</Text>
             </Left>
@@ -125,19 +130,10 @@ export default class InfoScreen extends Component {
             <CardItem>
               <Left>
                 <Button transparent>
-                  <Icon active name="people" />
+                  <Icon active name='people' />
                   <Text> {usersGoing.length} Going</Text>
                 </Button>
               </Left>
-              <Body>
-                <Button
-                  transparent
-                  onPress={() => navigation.navigate('Chats')}
-                >
-                  <Icon active name="chatbubbles" />
-                  <Text>Go to chat</Text>
-                </Button>
-              </Body>
               <Right>
                 <Text>{isGoing ? 'You Are Going' : 'You Are Not Going'}</Text>
               </Right>
