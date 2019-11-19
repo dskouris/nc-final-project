@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Image, Text, ScrollView, View, Dimensions } from "react-native";
+import React, { Component } from 'react';
+import { Image, Text, ScrollView, View, Dimensions } from 'react-native';
 
-import InfoCard from "./InfoCard";
+import InfoCard from './InfoCard';
 
 export default class List extends Component {
   render() {
-    const { locations, navigation } = this.props;
+    const { locations, navigation, userCoords } = this.props;
     return (
       <ScrollView>
         {locations.map(location => {
@@ -13,6 +13,7 @@ export default class List extends Component {
             <InfoCard
               navigation={navigation}
               location={location}
+              userCoords={userCoords}
               key={location.id}
             />
           );

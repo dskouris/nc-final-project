@@ -63,7 +63,11 @@ export default class TabsToggler extends Component {
             </Header>
             <Tabs>
               <Tab heading='List'>
-                <List locations={locations} navigation={navigation} />
+                <List
+                  locations={locations}
+                  navigation={navigation}
+                  userCoords={userCoords}
+                />
               </Tab>
               <Tab
                 heading={
