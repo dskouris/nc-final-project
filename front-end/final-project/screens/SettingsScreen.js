@@ -59,16 +59,27 @@ export default class SettingsScreen extends Component {
   };
   render() {
     const { uri, firstName, surname, username, email } = this.state;
+    const { navigation } = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.titleBar}>
             <Ionicons
+              onPress={() =>
+                navigation.navigate(navigation.getParam("back", "Home"))
+              }
               name="ios-arrow-back"
               size={24}
               color="#DE4C5D"
             ></Ionicons>
-            <Ionicons name="ios-home" size={24} color="#DE4C5D"></Ionicons>
+            <Ionicons
+              name="ios-home"
+              size={24}
+              color="#DE4C5D"
+              onPress={() =>
+                navigation.navigate(navigation.getParam("back", "Home"))
+              }
+            ></Ionicons>
           </View>
 
           <View style={{ alignSelf: "center" }}>
@@ -78,8 +89,7 @@ export default class SettingsScreen extends Component {
               <Image
                 source={{
                   uri: uri
-                  // "https://avidcareerist.com/wp-content/uploads/2017/06/Photographer.png"
-                }} //https://i.pravatar.cc/300 avatar generator
+                }}
                 style={styles.image}
               />
             </View>
@@ -124,43 +134,6 @@ export default class SettingsScreen extends Component {
           </View>
         </ScrollView>
       </SafeAreaView>
-
-      // <View>
-      //   <ListItem
-      //     leftAvatar={{ source: { uri } }}
-      //     title="Profile details"
-      //     bottomDivider
-      //   />
-      //   <ListItem
-      //     rightIcon={{ name: "create" }}
-      //     title={firstName}
-      //     bottomDivider
-      //   />
-
-      //   <ListItem
-      //     rightIcon={{ name: "create" }}
-      //     title={surname}
-      //     bottomDivider
-      //     onPress={() => {
-      //       alert("I've been pressed!");
-      //     }}
-      //   />
-      //   <ListItem
-      //     rightIcon={{ name: "create" }}
-      //     title={username}
-      //     bottomDivider
-      //   />
-      //   <ListItem
-      //     rightIcon={{ name: "lock" }}
-      //     title={email}
-      //     onPress={() => {
-      //       alert("You can't change me!!!");
-      //     }}
-      //     bottomDivider
-      //   />
-
-      //   <ProfilePicture profilePicture={uri} pickImage={this.pickImage} />
-      // </View>
     );
   }
 }

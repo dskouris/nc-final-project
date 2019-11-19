@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Container,
   Header,
@@ -7,19 +7,19 @@ import {
   Text,
   Icon,
   TabHeading
-} from 'native-base';
-import List from './List';
-import Loading from './Loading';
-import Map from './Map';
-import apiKey from '../../constants/keys.js';
-import * as utils from '../../utils/utils';
+} from "native-base";
+import List from "./List";
+import Loading from "./Loading";
+import Map from "./Map";
+import apiKey from "../../constants/keys.js";
+import * as utils from "../../utils/utils";
 
 export default class TabsToggler extends Component {
   state = {
-    display: 'list',
-    isLoading: 'true',
-    currentCity: '',
-    err: '',
+    display: "list",
+    isLoading: "true",
+    currentCity: "",
+    err: "",
     locations: [],
     userCoords: { latitude: 0, longitude: 0 }
   };
@@ -72,13 +72,21 @@ export default class TabsToggler extends Component {
           <Loading />
         ) : (
           <>
-            <Header hasTabs>
-              <Text style={{ color: 'white', alignItems: 'center' }}>
+            <Header hasTabs style={{ backgroundColor: "#DE4C5D" }}>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "400",
+                  paddingHorizontal: 20,
+                  alignItems: "center"
+                }}
+              >
                 Welcome to {currentCity} !!!
               </Text>
             </Header>
-            <Tabs>
-              <Tab heading='List'>
+            <Tabs style={{ backgroundColor: "#DE4C5D" }}>
+              <Tab heading="List">
                 <List
                   locations={locations}
                   navigation={navigation}
@@ -88,7 +96,7 @@ export default class TabsToggler extends Component {
               <Tab
                 heading={
                   <TabHeading>
-                    <Icon name='map' />
+                    <Icon name="map" />
                     <Text>Map</Text>
                   </TabHeading>
                 }
