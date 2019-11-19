@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Image, Text, ScrollView, View, Dimensions } from "react-native";
-
-import InfoCard from "./InfoCard";
-import ListPopular from "./ListPopular";
+import cooking from "../images/cooking.jpeg";
+// import Carousel from "../HomeScreen/Carousel";
 
 const { height, width } = Dimensions.get("window");
 
-export default class List extends Component {
+export default class Test extends Component {
   render() {
-    const { locations, navigation } = this.props;
+    // const { isGoing, usersGoing, location, isLoading } = this.state;
+    // const { navigation } = this.props;
+
     return (
-      <ScrollView>
+      <ScrollView scrollEventThrottle={16}>
         <View style={{ flex: 1, paddingTop: 20 }}>
           <Text
             style={{ fontSize: 24, fontWeight: "700", paddingHorizontal: 20 }}
@@ -22,8 +23,10 @@ export default class List extends Component {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
-              <ListPopular location={locations[0]} />
-              <ListPopular location={locations[1]} />
+              {/* <Carousel />
+              <Carousel />
+              <Carousel />
+              <Carousel /> */}
             </ScrollView>
           </View>
           <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
@@ -33,19 +36,11 @@ export default class List extends Component {
               List of places
             </Text>
             <Text style={{ fontWeight: "100", marginTop: 10 }}>
-              See interesting places in the city
+              {" "}
+              See interesting places in the city{" "}
             </Text>
-            <ScrollView>
-              {locations.map(location => {
-                return (
-                  <InfoCard
-                    navigation={navigation}
-                    location={location}
-                    key={location.id}
-                  />
-                );
-              })}
-              {/* <Image
+            <View style={{ width: width - 40, height: 200, marginTop: 20 }}>
+              <Image
                 source={cooking}
                 style={{
                   flex: 1,
@@ -53,8 +48,8 @@ export default class List extends Component {
                   borderWidth: 1,
                   borderColor: "#dddddd"
                 }}
-              /> */}
-            </ScrollView>
+              />
+            </View>
           </View>
         </View>
       </ScrollView>

@@ -17,11 +17,16 @@ import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
 export default class SettingsScreen extends Component {
   state = {
+<<<<<<< HEAD
     uri: "",
+=======
+    uuid: "",
+>>>>>>> 72e3ab3cd17b0f8b0590bfea18161abcd4e3a12a
     firstName: "Billy",
     surname: "Crystal",
     email: "b.crystal@mail",
-    username: "billy321"
+    username: "billy321",
+    uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg"
   };
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
