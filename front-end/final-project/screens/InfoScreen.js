@@ -1,7 +1,9 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
-import apiKey from "../constants/keys";
-import UpdateAgenda from "../components/InfoScreen/UpdateAgenda";
+import React, { Component } from 'react';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import apiKey from '../constants/keys';
+import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
+import * as api from '../components/api';
+import firebaseSDK from '../components/firebaseSDK';
 import {
   Container,
   Header,
@@ -14,8 +16,8 @@ import {
   Left,
   Body,
   Right
-} from "native-base";
-import wandr from "./images/wandr.png";
+} from 'native-base';
+import wandr from './images/wandr.png';
 
 export default class InfoScreen extends Component {
   state = {
@@ -23,17 +25,17 @@ export default class InfoScreen extends Component {
     location: {},
     isGoing: false,
     usersGoing: [
-      { name: "Tom", uuid: "jjfdjfd294ikvnknv" },
-      { name: "Dimitris", uuid: "jjfdjfdff294ikvnknv" },
-      { name: "Poulina", uuid: "jjfdjf55554i390" },
-      { name: "Sara", uuid: "j55djfd294i390" },
-      { name: "Krishan", uuid: "jj66jfd294i390" }
+      { name: 'Tom', uuid: 'jjfdjfd294ikvnknv' },
+      { name: 'Dimitris', uuid: 'jjfdjfdff294ikvnknv' },
+      { name: 'Poulina', uuid: 'jjfdjf55554i390' },
+      { name: 'Sara', uuid: 'j55djfd294i390' },
+      { name: 'Krishan', uuid: 'jj66jfd294i390' }
     ],
     userLocation: { lat: 53.4852373, long: -2.2465376 }
   };
 
   componentDidMount() {
-    const location = this.props.navigation.getParam("location", {});
+    const location = this.props.navigation.getParam('location', {});
     return Promise.all([
       location,
       fetch(
@@ -46,10 +48,20 @@ export default class InfoScreen extends Component {
   }
 
   addToAgenda = date => {
-    this.setState(currentState => {
-      return { isGoing: !currentState.isGoing };
+    const location = this.state;
+    uid = firebaseSDK.uid;
+    const agendaPoint = {
+      id: location.id,
+      date,
+      chatKey: `${location.id}${date}`,
+      name: location.name
+    };
+    api.updateAgenda(uid, agendaPoint).then(updatedUser => {
+      this.setState(currentState => {
+        return { isGoing: !currentState.isGoing };
+      });
+      alert(`added to agenda for:${date}`);
     });
-    alert(`added to agenda for:${date}`);
   };
 
   removeFromAgenda = () => {
@@ -57,7 +69,7 @@ export default class InfoScreen extends Component {
       return { isGoing: !currentState.isGoing };
     });
     // filerring the location place from agenda
-    alert("removed from agenda");
+    alert('removed from agenda');
   };
 
   render() {
@@ -74,7 +86,7 @@ export default class InfoScreen extends Component {
             iconLeft
             light
             onPress={() =>
-              navigation.navigate(navigation.getParam("back", "Home"))
+              navigation.navigate(navigation.getParam('back', 'Home'))
             }
           >
             <Icon name="arrow-back" />
@@ -87,7 +99,7 @@ export default class InfoScreen extends Component {
               <Left>
                 <Thumbnail source={wandr} />
                 <Body>
-                  <Text style={{ fontSize: 24, fontWeight: "700" }}>
+                  <Text style={{ fontSize: 24, fontWeight: '700' }}>
                     {location.name}
                   </Text>
                   <Text note> 0.8km from you</Text>
@@ -119,14 +131,14 @@ export default class InfoScreen extends Component {
               <Body>
                 <Button
                   transparent
-                  onPress={() => navigation.navigate("Chats")}
+                  onPress={() => navigation.navigate('Chats')}
                 >
                   <Icon active name="chatbubbles" />
                   <Text>Go to chat</Text>
                 </Button>
               </Body>
               <Right>
-                <Text>{isGoing ? "You Are Going" : "You Are Not Going"}</Text>
+                <Text>{isGoing ? 'You Are Going' : 'You Are Not Going'}</Text>
               </Right>
             </CardItem>
           </Card>
@@ -144,13 +156,13 @@ export default class InfoScreen extends Component {
 }
 
 InfoScreen.navigationOptions = {
-  title: "Info"
+  title: 'Info'
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   }
 });
 

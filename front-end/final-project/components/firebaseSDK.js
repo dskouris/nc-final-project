@@ -15,6 +15,11 @@ class FirebaseSDK {
       });
     }
   }
+
+  state = {
+    chatkey: ''
+  };
+
   login = async (user, success_callback, failed_callback) => {
     console.log('logging in');
     await firebase
@@ -32,8 +37,12 @@ class FirebaseSDK {
   }
 
   get ref() {
-    return firebase.database().ref('messages/messages2');
+    return firebase.database().ref(`messages/${this.state.chatkey}`);
   }
+
+  addChatkey = chatkey => {
+    this.state.chatkey = chatkey;
+  };
 
   parse = snapshot => {
     const { timestamp: numberStamp, text, user } = snapshot.val();

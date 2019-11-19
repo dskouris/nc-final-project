@@ -26,18 +26,19 @@ class LoginScreen extends Component {
   loginSuccess = uid => {
     console.log(uid);
     console.log('login successful, navigate to chat.');
-    // api.getUserData(uid).then(userInfo => {
-    //   this.props.navigation.navigate('Home', {
-    //     uid,
-    //     userInfo
-    //   });
-    // })
-    this.props.navigation.navigate('Home', {
-      uid,
-      name: this.state.name,
-      email: this.state.email,
-      avatar: this.state.avatar
+    api.getUserData(uid).then(userInfo => {
+      console.log(userInfo);
+      this.props.navigation.navigate('Home', {
+        uid,
+        userInfo
+      });
     });
+    // this.props.navigation.navigate('Home', {
+    //   uid,
+    //   name: this.state.name,
+    //   email: this.state.email,
+    //   avatar: this.state.avatar
+    // });
   };
 
   loginFailed = () => {
