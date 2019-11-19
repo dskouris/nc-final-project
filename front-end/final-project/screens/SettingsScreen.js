@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
-import { ListItem } from "react-native-elements";
+import {
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Image
+} from "react-native";
+import { Header, ListItem, Button } from "react-native-elements";
 import ProfilePicture from "../components/SettingsScreen/ProfilePicture";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 
+import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+
 export default class SettingsScreen extends Component {
   state = {
-    uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+    uri: "",
     firstName: "Billy",
     surname: "Crystal",
     email: "b.crystal@mail",
@@ -42,45 +51,115 @@ export default class SettingsScreen extends Component {
       }
     }
   };
+
+  handleChange = () => {
+    // console.log("handle change");
+    this.pickImage();
+  };
   render() {
     const { uri, firstName, surname, username, email } = this.state;
     return (
-      <View>
-        <ListItem
-          leftAvatar={{ source: { uri } }}
-          title="Profile details"
-          bottomDivider
-        />
-        <ListItem
-          rightIcon={{ name: "create" }}
-          title={firstName}
-          bottomDivider
-        />
+      <SafeAreaView style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.titleBar}>
+            <Ionicons
+              name="ios-arrow-back"
+              size={24}
+              color="#DE4C5D"
+            ></Ionicons>
+            <Ionicons name="ios-home" size={24} color="#DE4C5D"></Ionicons>
+          </View>
 
-        <ListItem
-          rightIcon={{ name: "create" }}
-          title={surname}
-          bottomDivider
-          onPress={() => {
-            alert("I've been pressed!");
-          }}
-        />
-        <ListItem
-          rightIcon={{ name: "create" }}
-          title={username}
-          bottomDivider
-        />
-        <ListItem
-          rightIcon={{ name: "lock" }}
-          title={email}
-          onPress={() => {
-            alert("You can't change me!!!");
-          }}
-          bottomDivider
-        />
+          <View style={{ alignSelf: "center" }}>
+            <View style={styles.profileImage}>
+              {/* here is placement for actual image */}
 
-        <ProfilePicture profilePicture={uri} pickImage={this.pickImage} />
-      </View>
+              <Image
+                source={{
+                  uri:
+                    "https://avidcareerist.com/wp-content/uploads/2017/06/Photographer.png"
+                }} //https://i.pravatar.cc/300 avatar generator
+                style={styles.image}
+              />
+            </View>
+            <View style={styles.update}>
+              <Ionicons
+                name="ios-create"
+                size={35}
+                color="white"
+                style={{ marginTop: 1, marginLeft: 2 }}
+                onPress={() => {
+                  this.handleChange();
+                }}
+              />
+            </View>
+          </View>
+
+          <View style={styles.text}>
+            <Text
+              style={{ fontWeight: "200", fontSize: 30 }}
+              value="username"
+              onPress={() => {
+                alert("Change username!");
+              }}
+            >
+              {username}
+            </Text>
+            <Text
+              style={{ fontWeight: "600", fontSize: 20 }}
+              onPress={() => {
+                alert("Change firstName surname!");
+              }}
+              value="firstName"
+            >
+              {firstName} {surname}
+            </Text>
+            <Text
+              style={{ fontWeight: "100", fontSize: 15, padding: 15 }}
+              value="email"
+            >
+              {email}
+            </Text>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+
+      // <View>
+      //   <ListItem
+      //     leftAvatar={{ source: { uri } }}
+      //     title="Profile details"
+      //     bottomDivider
+      //   />
+      //   <ListItem
+      //     rightIcon={{ name: "create" }}
+      //     title={firstName}
+      //     bottomDivider
+      //   />
+
+      //   <ListItem
+      //     rightIcon={{ name: "create" }}
+      //     title={surname}
+      //     bottomDivider
+      //     onPress={() => {
+      //       alert("I've been pressed!");
+      //     }}
+      //   />
+      //   <ListItem
+      //     rightIcon={{ name: "create" }}
+      //     title={username}
+      //     bottomDivider
+      //   />
+      //   <ListItem
+      //     rightIcon={{ name: "lock" }}
+      //     title={email}
+      //     onPress={() => {
+      //       alert("You can't change me!!!");
+      //     }}
+      //     bottomDivider
+      //   />
+
+      //   <ProfilePicture profilePicture={uri} pickImage={this.pickImage} />
+      // </View>
     );
   }
 }
@@ -88,3 +167,44 @@ export default class SettingsScreen extends Component {
 SettingsScreen.navigationOptions = {
   title: "Settings"
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white"
+  },
+  titleBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+    marginHorizontal: 15
+  },
+  image: {
+    flex: 1,
+    height: undefined,
+    width: undefined
+  },
+  profileImage: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    overflow: "hidden"
+  },
+  update: {
+    backgroundColor: "#DE4C5D",
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    width: 50,
+    height: 50,
+    borderRadius: 40,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  text: {
+    alignSelf: "center",
+    alignItems: "center",
+    marginTop: 30,
+    padding: 15
+  }
+});

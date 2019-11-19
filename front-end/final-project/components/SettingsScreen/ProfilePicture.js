@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Button, Image, View, Text } from "react-native";
+import { Button, Image, View, Text} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import { Input, Avatar } from "react-native-elements";
+import { Input, Avatar, Badge } from "react-native-elements";
 
 export default class ProfilePicture extends React.Component {
   // pickImage = async () => {
@@ -20,10 +20,17 @@ export default class ProfilePicture extends React.Component {
   //     this.setState({ profilePicture: result.uri });
   //   }
   // };
-  handleChange = () => {
-    // console.log("handle change");
-    this.props.pickImage();
-  };
+
+
+
+
+  // handleChange = () => {
+  //   // console.log("handle change");
+  //   this.props.pickImage();
+  // };
+
+
+  
   render() {
     const { profilePicture } = this.props;
 
@@ -38,7 +45,7 @@ export default class ProfilePicture extends React.Component {
         <Button
           title={
             profilePicture
-              ? "Change a profile picture"
+              ? "Update a profile picture"
               : "1Pick a profile picture"
           }
           onPress={() => {
@@ -46,11 +53,22 @@ export default class ProfilePicture extends React.Component {
           }}
         />
         {profilePicture && (
-          <Image
+
+          <Avatar
+            size="xlarge"
+            rounded
             source={{ uri: profilePicture }}
-            style={{ width: 200, height: 200 }}
+            // style={{ width: 200, height: 200 }}
+            // activeOpacity={0.7}
+            containerStyle={{flex: 2, marginLeft: 20, }}
+
           />
+
+  
         )}
+              
+
+  />
       </View>
     );
   }
@@ -60,13 +78,13 @@ export default class ProfilePicture extends React.Component {
   //   console.log("mounted");
   // }
 
-  // //FOR IOS ONLY
-  // getPermissionAsync = async () => {
-  //   if (Constants.platform.ios) {
-  //     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-  //     if (status !== "granted") {
-  //       alert("Sorry, we need camera roll permissions to make this work!");
-  //     }
-  //   }
-  // };
+  //FOR IOS ONLY
+//   getPermissionAsync = async () => {
+//     if (Constants.platform.ios) {
+//       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+//       if (status !== "granted") {
+//         alert("Sorry, we need camera roll permissions to make this work!");
+//       }
+//     }
+//   };
 }
