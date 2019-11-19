@@ -17,11 +17,8 @@ import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
 export default class SettingsScreen extends Component {
   state = {
-<<<<<<< HEAD
-    uri: "",
-=======
+
     uuid: "",
->>>>>>> 72e3ab3cd17b0f8b0590bfea18161abcd4e3a12a
     firstName: "Billy",
     surname: "Crystal",
     email: "b.crystal@mail",

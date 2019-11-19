@@ -4,6 +4,13 @@ import { Input, Button } from 'react-native-elements';
 import firebaseSDK from '../components/firebaseSDK';
 import * as api from '../components/api';
 
+
+
+// jack.sparrow@dummy.com
+// BlackPearl
+// barbossa@dummy.com
+// 789789
+
 class LoginScreen extends Component {
   state = { name: '', email: '', password: '', avatar: '' };
 
@@ -15,6 +22,7 @@ class LoginScreen extends Component {
       password: this.state.password,
       avatar: this.state.avatar
     };
+
 
     const response = firebaseSDK.login(
       user,
