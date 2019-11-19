@@ -56,7 +56,8 @@ export default class InfoScreen extends Component {
       id: location.id,
       date,
       chatKey: `${location.id}${date}`,
-      name: location.name
+      name: location.name,
+      location
     };
     return api
       .updateAgenda(uid, agendaPoint)
