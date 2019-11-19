@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import TabsToggler from '../components/HomeScreen/TabsToggler';
+import TabsToggler from "../components/HomeScreen/TabsToggler";
 
 export default class HomeScreen extends Component {
   state = {
-    userLoggedIn: ''
+    userLoggedIn: ""
   };
 
   render() {
@@ -13,5 +13,5 @@ export default class HomeScreen extends Component {
 }
 
 HomeScreen.navigationOptions = {
-  title: 'Home'
+  title: "Home"
 };

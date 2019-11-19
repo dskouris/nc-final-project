@@ -76,13 +76,8 @@ export default class InfoScreen extends Component {
     this.setState(currentState => {
       return { isGoing: !currentState.isGoing };
     });
-<<<<<<< HEAD
-    // filerring the location place from agenda
-    alert("removed from agenda");
-=======
     // filtering the location place from agenda
-    alert('removed from agenda');
->>>>>>> 2f0ca3b98df26d2d7037985b4ea98a5417a23675
+    alert("removed from agenda");
   };
 
   render() {
@@ -95,7 +90,6 @@ export default class InfoScreen extends Component {
       <Container>
         {/* <Header /> */}
         <Content>
-<<<<<<< HEAD
           <View style={styles.titleBar}>
             <Ionicons
               onPress={() =>
@@ -114,20 +108,6 @@ export default class InfoScreen extends Component {
               }
             ></Ionicons>
           </View>
-=======
-          <Button
-            iconLeft
-            light
-            onPress={() =>
-              navigation.navigate(navigation.getParam('back', 'Home'))
-            }
-          >
-            <Icon name='arrow-back' />
-            <Left>
-              <Text>Back</Text>
-            </Left>
-          </Button>
->>>>>>> 2f0ca3b98df26d2d7037985b4ea98a5417a23675
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
@@ -158,22 +138,10 @@ export default class InfoScreen extends Component {
             <CardItem>
               <Left>
                 <Button transparent>
-                  <Icon active name='people' />
+                  <Icon active name="people" />
                   <Text> {usersGoing.length} Going</Text>
                 </Button>
               </Left>
-<<<<<<< HEAD
-              <Body>
-                <Button
-                  transparent
-                  onPress={() => navigation.navigate("Chats")}
-                >
-                  <Icon active name="chatbubbles" />
-                  <Text>Go to chat</Text>
-                </Button>
-              </Body>
-=======
->>>>>>> 2f0ca3b98df26d2d7037985b4ea98a5417a23675
               <Right>
                 <Text>{isGoing ? "You Are Going" : "You Are Not Going"}</Text>
               </Right>
