@@ -44,7 +44,11 @@ export default class InfoScreen extends Component {
       )
     ]).then(([location, img]) => {
       location.img = img.url;
-      this.setState({ location, isLoading: false });
+      this.setState({
+        location,
+        isLoading: false,
+        isGoing: this.props.navigation.getParam('isGoing', false)
+      });
     });
   }
 

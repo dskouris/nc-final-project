@@ -11,7 +11,8 @@ const AgendaCard = ({ location, navigation }) => {
         onPress={() =>
           navigation.navigate('Info', {
             back: 'Agenda',
-            location: location.location
+            location: location.location,
+            isGoing: true
           })
         }
       />
