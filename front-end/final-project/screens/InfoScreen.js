@@ -92,7 +92,7 @@ export default class InfoScreen extends Component {
                   <Text style={{ fontSize: 24, fontWeight: "700" }}>
                     {location.name}
                   </Text>
-                  <Text note> 0.8km from you</Text>
+                  <Text note> {location.distanceFromUser}km from you</Text>
                 </Body>
               </Left>
             </CardItem>
