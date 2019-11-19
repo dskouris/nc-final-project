@@ -29,15 +29,6 @@ const InfoCard = ({ location, navigation, userCoords }) => {
             size={24}
             color="#DE4C5D"
           ></Ionicons>
-          {/* <Button
-            title="See more info"
-            onPress={() =>
-              navigation.navigate("Info", {
-                back: "Home",
-                location
-              })
-            }
-          /> */}
         </CardItem>
       </Card>
     </View>

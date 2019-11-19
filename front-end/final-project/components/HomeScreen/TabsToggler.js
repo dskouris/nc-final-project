@@ -73,11 +73,19 @@ export default class TabsToggler extends Component {
         ) : (
           <>
             <Header hasTabs style={{ backgroundColor: "#DE4C5D" }}>
-              <Text style={{ color: "white", alignItems: "center" }}>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "400",
+                  paddingHorizontal: 20,
+                  alignItems: "center"
+                }}
+              >
                 Welcome to {currentCity} !!!
               </Text>
             </Header>
-            <Tabs>
+            <Tabs style={{ backgroundColor: "#DE4C5D" }}>
               <Tab heading="List">
                 <List
                   locations={locations}

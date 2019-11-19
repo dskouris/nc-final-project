@@ -1,16 +1,9 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import apiKey from "../constants/keys";
 import UpdateAgenda from "../components/InfoScreen/UpdateAgenda";
-=======
-import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
-import apiKey from '../constants/keys';
-import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
-import * as api from '../components/api';
-import firebaseSDK from '../components/firebaseSDK';
->>>>>>> 7ff3ca6db7b6bf1d6a88458857dfcdee051244bc
+import * as api from "../components/api";
+import firebaseSDK from "../components/firebaseSDK";
 import {
   Container,
   Header,
@@ -91,7 +84,6 @@ export default class InfoScreen extends Component {
       <Container>
         {/* <Header /> */}
         <Content>
-<<<<<<< HEAD
           <View style={styles.titleBar}>
             <Ionicons
               onPress={() =>
@@ -110,20 +102,6 @@ export default class InfoScreen extends Component {
               }
             ></Ionicons>
           </View>
-=======
-          <Button
-            iconLeft
-            light
-            onPress={() =>
-              navigation.navigate(navigation.getParam('back', 'Home'))
-            }
-          >
-            <Icon name="arrow-back" />
-            <Left>
-              <Text>Back</Text>
-            </Left>
-          </Button>
->>>>>>> 7ff3ca6db7b6bf1d6a88458857dfcdee051244bc
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
