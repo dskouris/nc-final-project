@@ -72,7 +72,7 @@ class LoginScreen extends Component {
           <Image source={require("./images/wandr.png")} style={styles.image} />
           <StatusBar barStyle="light-content"></StatusBar>
 
-          <Text style={styles.welcome}>{`Welcome to \n Wandr`}</Text>
+          <Text style={styles.welcome}>W A N D R</Text>
           <View style={styles.loginForm}>
             <View>
               <Text style={styles.name}>Email</Text>
@@ -132,12 +132,12 @@ const styles = StyleSheet.create({
   },
   welcome: {
     marginTop: 30,
-    fontSize: 18,
-    fontWeight: "300",
+    fontSize: 26,
+    fontWeight: "400",
     textAlign: "center"
   },
   loginForm: {
-    marginTop: 120,
+    marginTop: 60,
     width: 300,
     maxWidth: "70%",
     marginBottom: 48,
@@ -169,7 +169,8 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     marginTop: 120,
-    alignSelf: "center"
+    alignSelf: "center",
+    resizeMode: 'contain',
   }
 });
 
