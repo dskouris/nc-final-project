@@ -11,7 +11,7 @@ class UpdateAgenda extends Component {
       <View>
         {this.props.isGoing ? (
           <Button
-            title='Cancel'
+            title='Remove from agenda'
             onPress={() => this.props.removeFromAgenda(this.state.date)}
           />
         ) : (
