@@ -85,36 +85,42 @@ class FirebaseSDK {
     this.ref.off();
   }
 
-  createAccount = async user => {
+  createAccount = async (user, success, fail) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
       .then(
-        function() {
-          console.log('created user successfully. User email:' + user.email);
-          let userf = firebase.auth().currentUser;
-          userf.updateProfile({ displayName: user.name }).then(
-            function() {
-              console.log(
-                'Updated displayName successfully. name:' + user.name
-              );
-              alert(
-                'User ' +
-                  user.email +
-                  ' was created successfully. Please login.'
-              );
-            },
-            function(error) {
-              console.warn('Error update displayName.');
-            }
-          );
+        addedUser => {
+          if (addedUser) {
+            success(addedUser.user.uid);
+          }
         },
-        function(error) {
-          console.error(
-            'got error:' + typeof error + ' string:' + error.message
-          );
-          alert('Create account failed. Error: ' + error.message);
-        }
+        fail
+        // function() {
+        //   console.log('created user successfully. User email:' + user.email);
+        //   let userf = firebase.auth().currentUser;
+        //   userf.updateProfile({ displayName: user.name }).then(
+        //     function() {
+        //       console.log(
+        //         'Updated displayName successfully. name:' + user.name
+        //       );
+        //       alert(
+        //         'User ' +
+        //           user.email +
+        //           ' was created successfully. Please login.'
+        //       );
+        //     },
+        //     function(error) {
+        //       console.warn('Error update displayName.');
+        //     }
+        //   );
+        // },
+        // function(error) {
+        //   console.error(
+        //     'got error:' + typeof error + ' string:' + error.message
+        //   );
+        //   alert('Create account failed. Error: ' + error.message);
+        // }
       );
   };
 

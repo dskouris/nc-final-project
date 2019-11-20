@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
-import apiKey from "../constants/keys";
-import UpdateAgenda from "../components/InfoScreen/UpdateAgenda";
-import * as api from "../components/api";
-import firebaseSDK from "../components/firebaseSDK";
+import React, { Component } from 'react';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import apiKey from '../constants/keys';
+import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
+import * as api from '../components/api';
+import firebaseSDK from '../components/firebaseSDK';
 import {
   Container,
   Header,
@@ -16,28 +16,22 @@ import {
   Left,
   Body,
   Right
-} from "native-base";
-import Loading from "../components/HomeScreen/Loading";
-import { MaterialIcons, Ionicons } from "@expo/vector-icons";
-import wandr from "./images/wandr.png";
+} from 'native-base';
+import Loading from '../components/HomeScreen/Loading';
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import wandr from './images/wandr.png';
 
 export default class InfoScreen extends Component {
   state = {
     isLoading: true,
     location: {},
     isGoing: false,
-    usersGoing: [
-      { name: "Tom", uuid: "jjfdjfd294ikvnknv" },
-      { name: "Dimitris", uuid: "jjfdjfdff294ikvnknv" },
-      { name: "Poulina", uuid: "jjfdjf55554i390" },
-      { name: "Sara", uuid: "j55djfd294i390" },
-      { name: "Krishan", uuid: "jj66jfd294i390" }
-    ],
-    userLocation: { lat: 53.4852373, long: -2.2465376 }
+    usersGoing: [],
+    userLocation: { lat: 0, long: 0 }
   };
 
   componentDidMount() {
-    const location = this.props.navigation.getParam("location", {});
+    const location = this.props.navigation.getParam('location', {});
     return Promise.all([
       location,
       fetch(
@@ -81,7 +75,7 @@ export default class InfoScreen extends Component {
       return { isGoing: !currentState.isGoing };
     });
     // filtering the location place from agenda
-    alert("removed from agenda");
+    alert('removed from agenda');
   };
 
   render() {
@@ -97,18 +91,18 @@ export default class InfoScreen extends Component {
           <View style={styles.titleBar}>
             <Ionicons
               onPress={() =>
-                navigation.navigate(navigation.getParam("back", "Home"))
+                navigation.navigate(navigation.getParam('back', 'Home'))
               }
-              name="ios-arrow-back"
+              name='ios-arrow-back'
               size={24}
-              color="#DE4C5D"
+              color='#DE4C5D'
             ></Ionicons>
             <Ionicons
-              name="ios-home"
+              name='ios-home'
               size={24}
-              color="#DE4C5D"
+              color='#DE4C5D'
               onPress={() =>
-                navigation.navigate(navigation.getParam("back", "Home"))
+                navigation.navigate(navigation.getParam('back', 'Home'))
               }
             ></Ionicons>
           </View>
@@ -117,7 +111,7 @@ export default class InfoScreen extends Component {
               <Left>
                 <Thumbnail source={wandr} />
                 <Body>
-                  <Text style={{ fontSize: 24, fontWeight: "700" }}>
+                  <Text style={{ fontSize: 24, fontWeight: '700' }}>
                     {location.name}
                   </Text>
                   <Text note> 0.8km from you</Text>
@@ -142,12 +136,12 @@ export default class InfoScreen extends Component {
             <CardItem>
               <Left>
                 <Button transparent>
-                  <Icon active name="people" />
+                  <Icon active name='people' />
                   <Text> {usersGoing.length} Going</Text>
                 </Button>
               </Left>
               <Right>
-                <Text>{isGoing ? "You Are Going" : "You Are Not Going"}</Text>
+                <Text>{isGoing ? 'You Are Going' : 'You Are Not Going'}</Text>
               </Right>
             </CardItem>
           </Card>
@@ -165,17 +159,17 @@ export default class InfoScreen extends Component {
 }
 
 InfoScreen.navigationOptions = {
-  title: "Info"
+  title: 'Info'
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   },
   titleBar: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 20,
     marginHorizontal: 15
   }
