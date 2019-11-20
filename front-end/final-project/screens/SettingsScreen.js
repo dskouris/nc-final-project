@@ -139,7 +139,7 @@ export default class SettingsScreen extends Component {
 }
 
 SettingsScreen.navigationOptions = {
-  title: "Settings"
+  title: "Profile"
 };
 
 const styles = StyleSheet.create({

@@ -1,9 +1,9 @@
-import React from 'react';
-import { StyleSheet, Text, Button, View } from 'react-native';
-import PlanHistoryToggler from '../components/AgendaScreen/PlanHistoryToggler';
-import * as api from '../components/api';
-import firebaseSDK from '../components/firebaseSDK';
-import Loading from '../components/HomeScreen/Loading';
+import React from "react";
+import { StyleSheet, Text, Button, View } from "react-native";
+import PlanHistoryToggler from "../components/AgendaScreen/PlanHistoryToggler";
+import * as api from "../components/api";
+import firebaseSDK from "../components/firebaseSDK";
+import Loading from "../components/HomeScreen/Loading";
 class AgendaScreen extends React.Component {
   state = {
     isLoading: true,
@@ -26,29 +26,18 @@ class AgendaScreen extends React.Component {
         user={this.state.user}
       />
     );
-    // <View style={styles.container}>
-    //   {this.state.going.map(location => {
-    //     return (
-    //       <AgendaCard
-    //         navigation={this.props.navigation}
-    //         location={location}
-    //         key={location.id}
-    //       />
-    //     );
-    //   })}
-    // </View>
   }
 }
 
 AgendaScreen.navigationOptions = {
-  title: 'Agenda'
+  title: "Agenda"
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff"
   }
 });
 
