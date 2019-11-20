@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   Header,
@@ -9,19 +9,19 @@ import {
   TabHeading,
   Thumbnail,
   Image
-} from "native-base";
-import List from "./List";
-import Loading from "./Loading";
-import Map from "./Map";
-import apiKey from "../../constants/keys.js";
-import * as utils from "../../utils/utils";
+} from 'native-base';
+import List from './List';
+import Loading from './Loading';
+import Map from './Map';
+import apiKey from '../../constants/keys.js';
+import * as utils from '../../utils/utils';
 
 export default class TabsToggler extends Component {
   state = {
-    display: "list",
-    isLoading: "true",
-    currentCity: "",
-    err: "",
+    display: 'list',
+    isLoading: 'true',
+    currentCity: '',
+    err: '',
     locations: [],
     userCoords: { latitude: 0, longitude: 0 }
   };
@@ -89,10 +89,10 @@ export default class TabsToggler extends Component {
               </Text>
             </Header> */}
 
-            <Tabs style={{ backgroundColor: "#DE4C5D" }}>
+            <Tabs style={{ backgroundColor: '#DE4C5D' }}>
               <Tab
                 heading={
-                  <TabHeading style={{ backgroundColor: "#DE4C5D" }}>
+                  <TabHeading style={{ backgroundColor: '#DE4C5D' }}>
                     <Text>List</Text>
                   </TabHeading>
                 }
@@ -105,8 +105,8 @@ export default class TabsToggler extends Component {
               </Tab>
               <Tab
                 heading={
-                  <TabHeading style={{ backgroundColor: "#DE4C5D" }}>
-                    <Icon name="map" />
+                  <TabHeading style={{ backgroundColor: '#DE4C5D' }}>
+                    <Icon name='map' />
                     <Text>Map</Text>
                   </TabHeading>
                 }
