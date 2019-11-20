@@ -8,7 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  StatusBar
+  StatusBar,
+  KeyboardAvoidingView
 } from "react-native";
 
 import firebaseSDK from "../components/firebaseSDK";
@@ -69,39 +70,16 @@ class LoginScreen extends Component {
         source={require("../components/images/landmarks.png")}
       >
         <ScrollView>
-          <Image source={require("./images/wandr.png")} style={styles.image} />
-          <StatusBar barStyle="light-content"></StatusBar>
+          <KeyboardAvoidingView behavior="position">
+            <Image
+              source={require("./images/wandr.png")}
+              style={styles.image}
+            />
+            <StatusBar barStyle="light-content"></StatusBar>
 
-          <Text style={styles.welcome}>W A N D R</Text>
-          <View style={styles.loginForm}>
-            <View>
-              <Text style={styles.name}>Email</Text>
-              <TextInput
-                // label='Email:'
-                placeholder="example@address.com"
-                autoCapitalize="none"
-                value={this.state.email}
-                onChangeText={this.onChangeTextEmail}
-                style={styles.textinput}
-              ></TextInput>
-            </View>
+            <Text style={styles.welcome}>W A N D R</Text>
 
-            <View style={{ marginTop: 30 }}>
-              <Text style={styles.name}>Password</Text>
-              <TextInput
-                secureTextEntry={true}
-                autoCapitalize="none"
-                value={this.state.password}
-                onChangeText={this.onChangeTextPassword}
-                style={styles.textinput}
-              ></TextInput>
-            </View>
-
-            <TouchableOpacity style={styles.button} onPress={this.onPressLogin}>
-              <Text style={{ color: "#FFF", fontWeight: "500" }}>Log in</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={{ alignSelf: "center", marginTop: 32 }}>
+            <TouchableOpacity style={{ alignSelf: "center", marginTop: 12 }}>
               <Text
                 style={{ color: "#414959", fontSize: 13 }}
                 onPress={() => this.props.navigation.navigate("SignUp")}
@@ -113,11 +91,43 @@ class LoginScreen extends Component {
                     color: "#E9446A"
                   }}
                 >
-                  Sign Up
+                  {` Sign Up`}
                 </Text>
               </Text>
             </TouchableOpacity>
-          </View>
+
+            <View style={styles.loginForm}>
+              <View>
+                <Text style={styles.name}>Email</Text>
+                <TextInput
+                  // label='Email:'
+                  placeholder="example@address.com"
+                  autoCapitalize="none"
+                  value={this.state.email}
+                  onChangeText={this.onChangeTextEmail}
+                  style={styles.textinput}
+                ></TextInput>
+              </View>
+
+              <View style={{ marginTop: 30 }}>
+                <Text style={styles.name}>Password</Text>
+                <TextInput
+                  secureTextEntry={true}
+                  autoCapitalize="none"
+                  value={this.state.password}
+                  onChangeText={this.onChangeTextPassword}
+                  style={styles.textinput}
+                ></TextInput>
+              </View>
+
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this.onPressLogin}
+              >
+                <Text style={{ color: "#FFF", fontWeight: "500" }}>Log in</Text>
+              </TouchableOpacity>
+            </View>
+          </KeyboardAvoidingView>
         </ScrollView>
       </ImageBackground>
     );
@@ -131,7 +141,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center'
   },
   welcome: {
-    marginTop: 30,
+    marginTop: 20,
     fontSize: 26,
     fontWeight: "400",
     textAlign: "center"
@@ -161,16 +171,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     backgroundColor: "#E9446A",
     borderRadius: 4,
-    height: 52,
+    height: 40,
     alignItems: "center",
     justifyContent: "center"
   },
   image: {
     width: 80,
     height: 80,
-    marginTop: 120,
+    marginTop: 60,
     alignSelf: "center",
-    resizeMode: 'contain',
+    resizeMode: "contain"
   }
 });
 
