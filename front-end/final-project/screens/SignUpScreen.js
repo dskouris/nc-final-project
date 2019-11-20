@@ -30,24 +30,48 @@ class SignUpScreen extends Component {
           email: this.state.email,
           password: this.state.password
         };
-        await firebaseSDK.createAccount(user);
+        const response = await firebaseSDK.createAccount(
+          user,
+          this.createSuccess,
+          this.createFail
+        );
       } catch ({ message }) {
         console.log('create account failed. catch error:' + message);
       }
-      this.props.navigation.navigate('Login');
     } else {
       alert('Signup failed - please ensure that passwords match.');
     }
   };
 
+  createSuccess = uid => {
+    console.log('firebase create user success', uid);
+    newUser = this.createUserObject(uid);
+    api
+      .addNewUser(newUser)
+      .then(postedUser => {
+        if (postedUser) {
+          alert('Your new profile has been created. Please login.');
+          this.props.navigation.navigate('Login');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  createFail = () => {
+    console.log('error on firebase creation');
+    alert('Account creation failed - please try again later');
+  };
+
   createUserObject = uuid => {
-    return {
+    const newUserObj = {
       uuid: uuid,
       email: this.state.email,
       username: this.state.username,
       Profile: {
         firstname: this.state.firstname,
-        lastname: this.state.lastname,
+        lastname: this.state.surname,
         img: '',
         user_description: '',
         age: '',
@@ -58,6 +82,7 @@ class SignUpScreen extends Component {
         going: []
       }
     };
+    return JSON.stringify(newUserObj);
   };
 
   onChangeTextEmail = email => this.setState({ email });
@@ -96,6 +121,7 @@ class SignUpScreen extends Component {
               placeholder="Email"
               onChangeText={this.onChangeTextEmail}
               style={styles.round}
+              autoCapitalize="none"
             />
           </View>
 

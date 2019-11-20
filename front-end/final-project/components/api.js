@@ -16,7 +16,7 @@ export const getUserData = uuid => {
 export const addNewUser = newUserObject => {
   return axios
     .post(
-      `https://be-nc-final-project-nomado.herokuapp.com/api/users/`,
+      `https://be-nc-final-project-nomado.herokuapp.com/api/users`,
       newUserObject
     )
     .then(({ data }) => {
