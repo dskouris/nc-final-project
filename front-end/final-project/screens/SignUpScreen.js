@@ -10,6 +10,8 @@ import {
 import * as api from '../components/api';
 import firebaseSDK from '../components/firebaseSDK';
 
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+
 class SignUpScreen extends Component {
   state = {
     email: '',
@@ -105,12 +107,6 @@ class SignUpScreen extends Component {
             />
           </View>
 
-          {/*            
-            <Input
-              label="Profile Picture URL:"
-              onChangeText={this.onChangeTextProfilePicture}
-            /> */}
-
           <View style={styles.center}>
             <TextInput
               placeholder="Password"
@@ -130,21 +126,23 @@ class SignUpScreen extends Component {
           </View>
 
           {/* 
-            <View style={styles.center}>
-            <Button rounded light  onPress={this.onPressCreate}>
-            <Text style={styles.button}>Create Account</Text>
-            </Button>
-           </View> */}
-
-          <TouchableOpacity style={styles.button} onPress={this.onPressCreate}>
-            <Text style={{ color: '#FFF', fontWeight: '500' }}>
-              Create Account
-            </Text>
-          </TouchableOpacity>
-
-          {/* <Button title="Create Account" onPress={this.onPressCreate} /> */}
+           <TouchableOpacity style={styles.button} onPress={this.onPressCreate}>
+                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Create Account</Text>
+                </TouchableOpacity> */}
+          <View style={styles.button}>
+            <TouchableOpacity style={styles.update}>
+              <MaterialIcons
+                name="arrow-forward"
+                size={35}
+                color="white"
+                style={{ marginTop: 1, marginLeft: 2 }}
+                onPress={this.onPressCreate}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
+      // </View>
     );
   }
 }
@@ -194,11 +192,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF'
   },
   button: {
-    marginTop: 20,
-    marginHorizontal: 60,
-    backgroundColor: '#DE4C5D',
-    borderRadius: 20,
+    marginTop: 60,
+    //  marginHorizontal: 60,
+    // backgroundColor: "#DE4C5D",
+    // borderRadius: 20,
     height: 42,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  update: {
+    backgroundColor: '#DE4C5D',
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 70,
+    height: 70,
+    borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center'
   }
