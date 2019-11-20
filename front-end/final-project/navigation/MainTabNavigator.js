@@ -40,13 +40,10 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
+      name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
     />
-  )
+  ),
+  tabBarOptions: { activeTintColor: '#444851' }
 };
 
 HomeStack.path = '';
@@ -63,9 +60,10 @@ AgendaStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+      name={Platform.OS === 'ios' ? 'ios-calendar' : 'md-calendar'}
     />
-  )
+  ),
+  tabBarOptions: { activeTintColor: '#444851' }
 };
 
 AgendaStack.path = '';
@@ -83,9 +81,10 @@ ChatsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+      name={Platform.OS === 'ios' ? 'ios-chatboxes' : 'md-chatboxes'}
     />
-  )
+  ),
+  tabBarOptions: { activeTintColor: '#444851' }
 };
 
 ChatsStack.path = '';
@@ -98,13 +97,14 @@ const SettingsStack = createStackNavigator(
 );
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+  tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
     />
-  )
+  ),
+  tabBarOptions: { activeTintColor: '#444851' }
 };
 
 SettingsStack.path = '';
