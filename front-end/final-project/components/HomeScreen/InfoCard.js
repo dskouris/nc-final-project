@@ -19,7 +19,7 @@ class InfoCard extends Component {
         this.setState({ location });
       });
     } else {
-      location.img = 'IMG-NOTFOUND-HERE';
+      location.img = false;
       this.setState({ location });
     }
   }
@@ -39,7 +39,13 @@ class InfoCard extends Component {
           <Card>
             <CardItem>
               <Left>
-                <Thumbnail source={{ uri: location.img }} />
+                <Thumbnail
+                  source={
+                    location.img
+                      ? { uri: location.img }
+                      : require('../images/robot-dev.png')
+                  }
+                />
                 <View>
                   <Text>{location.name}</Text>
                   <Text>0 going</Text>

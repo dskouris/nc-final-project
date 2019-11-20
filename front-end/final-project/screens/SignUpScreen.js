@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -9,11 +9,11 @@ import {
   KeyboardAvoidingView,
   Image,
   StatusBar
-} from "react-native";
-import * as api from "../components/api";
-import firebaseSDK from "../components/firebaseSDK";
+} from 'react-native';
+import * as api from '../components/api';
+import firebaseSDK from '../components/firebaseSDK';
 
-import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 class SignUpScreen extends Component {
   static navigationOptions = {
@@ -21,13 +21,13 @@ class SignUpScreen extends Component {
   };
 
   state = {
-    email: "",
-    password: "",
-    firstname: "",
-    surname: "",
-    username: "",
-    url: "",
-    confirmPassword: ""
+    email: '',
+    password: '',
+    firstname: '',
+    surname: '',
+    username: '',
+    url: '',
+    confirmPassword: ''
   };
 
   onPressCreate = async () => {
@@ -43,22 +43,22 @@ class SignUpScreen extends Component {
           this.createFail
         );
       } catch ({ message }) {
-        console.log("create account failed. catch error:" + message);
+        console.log('create account failed. catch error:' + message);
       }
     } else {
-      alert("Signup failed - please ensure that passwords match.");
+      alert('Signup failed - please ensure that passwords match.');
     }
   };
 
   createSuccess = uid => {
-    console.log("firebase create user success", uid);
+    console.log('firebase create user success', uid);
     newUser = this.createUserObject(uid);
     api
       .addNewUser(newUser)
       .then(postedUser => {
         if (postedUser) {
-          alert("Your new profile has been created. Please login.");
-          this.props.navigation.navigate("Login");
+          alert('Your new profile has been created. Please login.');
+          this.props.navigation.navigate('Login');
         }
       })
       .catch(err => {
@@ -67,8 +67,8 @@ class SignUpScreen extends Component {
   };
 
   createFail = () => {
-    console.log("error on firebase creation");
-    alert("Account creation failed - please try again later");
+    console.log('error on firebase creation');
+    alert('Account creation failed - please try again later');
   };
 
   createUserObject = uuid => {
@@ -79,10 +79,10 @@ class SignUpScreen extends Component {
       Profile: {
         firstname: this.state.firstname,
         lastname: this.state.surname,
-        img: "",
-        user_description: "",
-        age: "",
-        gender: ""
+        img: '',
+        user_description: '',
+        age: '',
+        gender: ''
       },
       Agenda: {
         history: [],
@@ -104,20 +104,20 @@ class SignUpScreen extends Component {
   render() {
     return (
       <ScrollView>
-        <KeyboardAvoidingView behavior="position">
-          <StatusBar barStyle="light-content"></StatusBar>
+        <KeyboardAvoidingView behavior='position'>
+          <StatusBar barStyle='light-content'></StatusBar>
           <View style={styles.container}>
             <Image
-              source={require("./images/wandr.png")}
+              source={require('./images/wandr.png')}
               style={styles.image}
             />
 
             <Text style={styles.welcome}>{`W A N D R`}</Text>
 
-            <TouchableOpacity style={{ alignSelf: "center", marginTop: 12 }}>
+            <TouchableOpacity style={{ alignSelf: 'center', marginTop: 12 }}>
               <Text
-                style={{ color: "#E9446A", fontWeight: "500", fontSize: 13 }}
-                onPress={() => this.props.navigation.navigate("Login")}
+                style={{ color: '#E9446A', fontWeight: '500', fontSize: 13 }}
+                onPress={() => this.props.navigation.navigate('Login')}
               >
                 {`<- Cancel`}
               </Text>
@@ -126,7 +126,7 @@ class SignUpScreen extends Component {
             <View style={styles.form}>
               <View style={styles.center}>
                 <TextInput
-                  placeholder="Name"
+                  placeholder='Name'
                   style={styles.round}
                   onChangeText={this.onChangeTextFirstName}
                 />
@@ -134,7 +134,7 @@ class SignUpScreen extends Component {
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder="Surname"
+                  placeholder='Surname'
                   onChangeText={this.onChangeTextSurname}
                   style={styles.round}
                 />
@@ -142,16 +142,16 @@ class SignUpScreen extends Component {
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder="Email"
+                  placeholder='Email'
                   onChangeText={this.onChangeTextEmail}
                   style={styles.round}
-                  autoCapitalize="none"
+                  autoCapitalize='none'
                 />
               </View>
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder="Username"
+                  placeholder='Username'
                   onChangeText={this.onChangeTextUsername}
                   style={styles.round}
                 />
@@ -159,7 +159,7 @@ class SignUpScreen extends Component {
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder="Password"
+                  placeholder='Password'
                   secureTextEntry={true}
                   onChangeText={this.onChangeTextPassword}
                   style={styles.round}
@@ -168,7 +168,7 @@ class SignUpScreen extends Component {
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder="Confirm Password"
+                  placeholder='Confirm Password'
                   secureTextEntry={true}
                   onChangeText={this.onChangeTextConfirmPassword}
                   style={styles.round}
@@ -178,9 +178,9 @@ class SignUpScreen extends Component {
               <View style={styles.button}>
                 <TouchableOpacity style={styles.update}>
                   <MaterialIcons
-                    name="arrow-forward"
+                    name='arrow-forward'
                     size={35}
-                    color="white"
+                    color='white'
                     style={{ marginTop: 1, marginLeft: 2 }}
                     onPress={this.onPressCreate}
                   />
@@ -199,64 +199,64 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // paddingTop: 30,
-    backgroundColor: "#FFFF"
+    backgroundColor: '#FFFF'
   },
   welcome: {
     fontSize: 20,
-    fontWeight: "400",
-    textAlign: "center",
+    fontWeight: '400',
+    textAlign: 'center',
     marginTop: 20
   },
   form: {
     marginTop: 40,
     marginHorizontal: 60,
     marginBottom: 20,
-    justifyContent: "center",
+    justifyContent: 'center',
     // width: 300,
-   maxHight: "80%",
+    maxHeight: '80%'
   },
   input: {
-    color: "#8A8F9E",
+    color: '#8A8F9E',
     fontSize: 18,
-    textTransform: "uppercase"
+    textTransform: 'uppercase'
   },
 
   center: {
-    justifyContent: "center",
+    justifyContent: 'center',
 
     margin: 10
   },
   round: {
-    textAlign: "center",
+    textAlign: 'center',
     height: 30,
     borderWidth: 1,
-    borderColor: "#DE4C5D",
+    borderColor: '#DE4C5D',
     borderRadius: 40,
-    backgroundColor: "#FFF"
+    backgroundColor: '#FFF'
   },
   button: {
     marginTop: 60,
     height: 42,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   update: {
-    backgroundColor: "#DE4C5D",
-    position: "absolute",
+    backgroundColor: '#DE4C5D',
+    position: 'absolute',
     bottom: 0,
     right: 0,
     width: 70,
     height: 70,
     borderRadius: 40,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   image: {
     width: 80,
     height: 80,
     marginTop: 60,
-    alignSelf: "center",
-    resizeMode: "contain"
+    alignSelf: 'center',
+    resizeMode: 'contain'
   }
 });
 
