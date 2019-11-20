@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text, ImageBackground } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import firebaseSDK from '../components/firebaseSDK';
 import * as api from '../components/api';
+import { View } from 'native-base';
 
 
 
@@ -53,7 +54,10 @@ class LoginScreen extends Component {
 
   render() {
     return (
-      <ScrollView style={this.styles.container}>
+      // <ScrollView >
+         <ImageBackground style={styles.container} source={require('../components/images/airplane.png')} >
+        
+        <View style={styles.loginForm}> 
         <Text>Login</Text>
         <Input
           label='Email:'
@@ -78,16 +82,30 @@ class LoginScreen extends Component {
           onPress={() => this.props.navigation.navigate('SignUp')}
           buttonStyle={{ width: 200, margin: 10, backgroundColor: 'green' }}
         />
-      </ScrollView>
+
+        </View>
+         </ImageBackground>
+      // </ScrollView>
     );
   }
-  styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 30,
-      backgroundColor: '#fff'
-    }
-  });
 }
+
+
+
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+         justifyContent: 'center',
+         alignItems: 'center',
+        backgroundColor: '#fff'
+      }, 
+      loginForm: {
+
+       width: '80%',
+       height: '20%',
+        // marginHorizontal: 180,
+        
+      }
+    });
 
 export default LoginScreen;

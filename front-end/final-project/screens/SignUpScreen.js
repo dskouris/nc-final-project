@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet, Text, View, TextInput, TouchableOpacity, } from "react-native";
 import * as api from "../components/api";
 import firebaseSDK from "../components/firebaseSDK";
+
+import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+
+
 
 class SignUpScreen extends Component {
   state = {
@@ -44,12 +48,16 @@ class SignUpScreen extends Component {
     return (
      
         <View style={styles.container}>
+         
           <Text style={styles.welcome}>{`Hello Sign up for New Account!`}</Text>
 
           <View style={styles.form}>
 
             <View style={styles.center}>
+           
+           
               <TextInput
+
                 placeholder="Name"
                 style={styles.round}
                 onChangeText={this.onChangeTextFirstName}
@@ -81,11 +89,6 @@ class SignUpScreen extends Component {
             </View>
 
 
-{/*            
-            <Input
-              label="Profile Picture URL:"
-              onChangeText={this.onChangeTextProfilePicture}
-            /> */}
 
 
 <View style={styles.center}>
@@ -105,12 +108,7 @@ class SignUpScreen extends Component {
               style={styles.round} />
             </View>
 
-{/* 
-            <View style={styles.center}>
-            <Button rounded light  onPress={this.onPressCreate}>
-            <Text style={styles.button}>Create Account</Text>
-            </Button>
-           </View> */}
+
 
            <TouchableOpacity style={styles.button} onPress={this.onPressCreate}>
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>Create Account</Text>
@@ -118,6 +116,7 @@ class SignUpScreen extends Component {
         
             {/* <Button title="Create Account" onPress={this.onPressCreate} /> */}
           </View>
+         
         </View>
     
     );
@@ -178,7 +177,7 @@ const styles = StyleSheet.create({
       height: 42,
       alignItems: "center",
       justifyContent: "center"
-  }
+  },
 });
 
 export default SignUpScreen;
