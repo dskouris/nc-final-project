@@ -7,7 +7,14 @@ import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 const InfoCard = ({ location, navigation, userCoords }) => {
   return (
     <View>
-      <Card>
+      <Card
+        onPress={() =>
+          navigation.navigate("Info", {
+            back: "Home",
+            location
+          })
+        }
+      >
         <CardItem>
           <Left>
             <Thumbnail source={require("../images/robot-dev.png")} />
@@ -19,12 +26,6 @@ const InfoCard = ({ location, navigation, userCoords }) => {
           </Left>
 
           <Ionicons
-            onPress={() =>
-              navigation.navigate("Info", {
-                back: "Home",
-                location
-              })
-            }
             name="ios-arrow-forward"
             size={24}
             color="#DE4C5D"
