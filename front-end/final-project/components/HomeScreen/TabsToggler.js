@@ -6,7 +6,9 @@ import {
   Tabs,
   Text,
   Icon,
-  TabHeading
+  TabHeading,
+  Thumbnail,
+  Image
 } from "native-base";
 import List from "./List";
 import Loading from "./Loading";
@@ -73,6 +75,7 @@ export default class TabsToggler extends Component {
         ) : (
           <>
             <Header hasTabs style={{ backgroundColor: "#DE4C5D" }}>
+              {/* <Image source={{ uri: "../images/wandr.png" }} /> */}
               <Text
                 style={{
                   color: "white",
@@ -86,7 +89,13 @@ export default class TabsToggler extends Component {
               </Text>
             </Header>
             <Tabs style={{ backgroundColor: "#DE4C5D" }}>
-              <Tab heading="List">
+              <Tab
+                heading={
+                  <TabHeading style={{ backgroundColor: "#DE4C5D" }}>
+                    <Text>List</Text>
+                  </TabHeading>
+                }
+              >
                 <List
                   locations={locations}
                   navigation={navigation}
@@ -95,7 +104,7 @@ export default class TabsToggler extends Component {
               </Tab>
               <Tab
                 heading={
-                  <TabHeading>
+                  <TabHeading style={{ backgroundColor: "#DE4C5D" }}>
                     <Icon name="map" />
                     <Text>Map</Text>
                   </TabHeading>

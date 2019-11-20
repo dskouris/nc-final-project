@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Container, Tabs, Tab, TabHeading } from "native-base";
-import { Text } from "react-native";
+import { Container, Tabs, Tab, TabHeading, Text } from "native-base";
+
 import Plan from "./Plan";
 import History from "./History";
 
