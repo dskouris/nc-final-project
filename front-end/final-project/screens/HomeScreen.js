@@ -13,5 +13,10 @@ export default class HomeScreen extends Component {
 }
 
 HomeScreen.navigationOptions = {
-  title: "Home"
+  title: "Welcome to WANDR",
+  headerStyle: { backgroundColor: "#DE4C5D" },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "bold"
+  }
 };

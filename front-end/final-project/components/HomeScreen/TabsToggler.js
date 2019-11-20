@@ -74,9 +74,9 @@ export default class TabsToggler extends Component {
           <Loading />
         ) : (
           <>
-            <Header hasTabs style={{ backgroundColor: "#DE4C5D" }}>
+            {/* <Header hasTabs style={{ backgroundColor: "#DE4C5D" }}>
               {/* <Image source={{ uri: "../images/wandr.png" }} /> */}
-              <Text
+            {/* <Text
                 style={{
                   color: "white",
                   fontSize: 18,
@@ -87,7 +87,8 @@ export default class TabsToggler extends Component {
               >
                 Welcome to {currentCity} !!!
               </Text>
-            </Header>
+            </Header> */}
+
             <Tabs style={{ backgroundColor: "#DE4C5D" }}>
               <Tab
                 heading={
