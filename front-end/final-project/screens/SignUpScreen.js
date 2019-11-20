@@ -110,11 +110,22 @@ class SignUpScreen extends Component {
 
 
 
+{/* 
            <TouchableOpacity style={styles.button} onPress={this.onPressCreate}>
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>Create Account</Text>
-                </TouchableOpacity>
-        
-            {/* <Button title="Create Account" onPress={this.onPressCreate} /> */}
+                </TouchableOpacity> */}
+<View style={styles.button} >
+
+                <TouchableOpacity style={styles.update}>
+              <MaterialIcons
+                name="arrow-forward"
+                size={35}
+                color="white"
+                style={{ marginTop: 1, marginLeft: 2 }}
+                onPress={this.onPressCreate}
+              />
+            </TouchableOpacity>
+            </View> 
           </View>
          
         </View>
@@ -170,13 +181,24 @@ const styles = StyleSheet.create({
  backgroundColor : "#FFF", 
   }, 
   button: {
-      marginTop: 20,
-      marginHorizontal: 60,
-      backgroundColor: "#DE4C5D",
-      borderRadius: 20,
-      height: 42,
+      marginTop: 60,
+      //  marginHorizontal: 60,
+      // backgroundColor: "#DE4C5D",
+      // borderRadius: 20,
+        height: 42,
       alignItems: "center",
       justifyContent: "center"
+  },
+  update: {
+    backgroundColor: "#DE4C5D",
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    width: 70,
+    height: 70,
+    borderRadius: 40,
+    alignItems: "center",
+    justifyContent: "center"
   },
 });
 
