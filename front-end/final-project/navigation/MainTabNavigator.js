@@ -42,7 +42,8 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
     />
-  )
+  ),
+  tabBarOptions: { activeTintColor: '#444851' }
 };
 
 HomeStack.path = '';
@@ -61,7 +62,8 @@ AgendaStack.navigationOptions = {
       focused={focused}
       name={Platform.OS === 'ios' ? 'ios-calendar' : 'md-calendar'}
     />
-  )
+  ),
+  tabBarOptions: { activeTintColor: '#444851' }
 };
 
 AgendaStack.path = '';
@@ -81,7 +83,8 @@ ChatsStack.navigationOptions = {
       focused={focused}
       name={Platform.OS === 'ios' ? 'ios-chatboxes' : 'md-chatboxes'}
     />
-  )
+  ),
+  tabBarOptions: { activeTintColor: '#444851' }
 };
 
 ChatsStack.path = '';
@@ -100,7 +103,8 @@ SettingsStack.navigationOptions = {
       focused={focused}
       name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
     />
-  )
+  ),
+  tabBarOptions: { activeTintColor: '#444851' }
 };
 
 SettingsStack.path = '';
