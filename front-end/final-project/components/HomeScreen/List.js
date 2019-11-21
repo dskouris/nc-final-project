@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { Image, Text, ScrollView, View, Dimensions } from 'react-native';
 
 import InfoCard from './InfoCard';
+import { Content } from 'native-base';
 
 export default class List extends Component {
   render() {
     const { locations, navigation, userCoords } = this.props;
     return (
-      <ScrollView>
+      <ScrollView style={{
+        justifyContent: "flex-start",
+        marginHorizontal: 10,
+        marginTop: 10
+      }} >
+        <Content padder> 
         {locations.map(location => {
           return (
             <InfoCard
@@ -18,6 +24,7 @@ export default class List extends Component {
             />
           );
         })}
+        </Content>
       </ScrollView>
     );
   }
