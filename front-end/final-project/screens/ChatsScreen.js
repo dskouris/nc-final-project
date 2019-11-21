@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text, ImageBackground } from "react-native";
-import { ExpoLinksView } from "@expo/samples";
-
-import { GiftedChat } from "react-native-gifted-chat";
-import firebaseSDK from "../components/firebaseSDK";
+import React, { Component } from 'react';
+import { StyleSheet, ImageBackground, Platform } from 'react-native';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
+import { GiftedChat } from 'react-native-gifted-chat';
+import firebaseSDK from '../components/firebaseSDK';
 
 class ChatsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: (navigation.state.params || {}).name || "Chat!"
+    title: (navigation.state.params || {}).name || 'Chat!'
   });
 
   state = {
@@ -41,13 +40,14 @@ class ChatsScreen extends React.Component {
     return (
       <ImageBackground
         style={styles.container}
-        source={require("../components/images/landmarks.png")}
+        source={require('../components/images/landmarks.png')}
       >
         <GiftedChat
           messages={this.state.messages}
           onSend={firebaseSDK.send}
           user={this.user}
         />
+        {Platform.OS === 'android' ? <KeyboardSpacer topSpacing={50} /> : null}
       </ImageBackground>
     );
   }
@@ -57,16 +57,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
 
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   }
 });
 
 ChatsScreen.navigationOptions = {
   title: `Chat room`,
-  headerStyle: { backgroundColor: "#DE4C5D" },
-  headerTintColor: "#fff",
+  headerStyle: { backgroundColor: '#DE4C5D' },
+  headerTintColor: '#fff',
   headerTitleStyle: {
-    fontWeight: "bold"
+    fontWeight: 'bold'
   }
 };
 export default ChatsScreen;

@@ -67,3 +67,13 @@ export const addPersonalityToUser = (uuid, personalityData) => {
       return data;
     });
 };
+
+export const getNumberOfUsersGoing = locationID => {
+  return axios
+    .get(
+      `https://be-nc-final-project-nomado.herokuapp.com/api/locations/${locationID}`
+    )
+    .then(({ data }) => {
+      return data;
+    });
+};

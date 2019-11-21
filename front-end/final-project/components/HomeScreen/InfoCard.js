@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Card,
   CardItem,
@@ -8,13 +8,13 @@ import {
   Icon,
   Title,
   Subtitle,
-  Content, 
+  Content,
   Badge
-
-} from "native-base";
-import { Text, View, TouchableOpacity } from "react-native";
-import apiKey from "../../constants/keys";
-import { Ionicons } from "@expo/vector-icons";
+} from 'native-base';
+import { Text, View, TouchableOpacity } from 'react-native';
+import apiKey from '../../constants/keys';
+import * as api from '../api';
+import { Ionicons } from '@expo/vector-icons';
 
 class InfoCard extends Component {
   state = { location: {} };
@@ -25,9 +25,11 @@ class InfoCard extends Component {
         location,
         fetch(
           `https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&maxheight=150&photoreference=${location.photos[0].photo_reference}&key=${apiKey}`
-        )
-      ]).then(([location, img]) => {
+        ),
+        api.getNumberOfUsersGoing(location.id)
+      ]).then(([location, img, usersGoing]) => {
         location.img = img.url;
+        location.usersGoing = usersGoing;
         this.setState({ location });
       });
     } else {
@@ -42,8 +44,8 @@ class InfoCard extends Component {
       <View>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("Info", {
-              back: "Home",
+            navigation.navigate('Info', {
+              back: 'Home',
               location
             })
           }
@@ -64,29 +66,23 @@ class InfoCard extends Component {
                     marginRight: 10
                   }}
                 />
-                <View style={{ alignItems: "flex-start", top: -10, flex: 1 }}>
-                  <Text style={{ fontSize: 16, fontWeight: "400" }}>
+                <View style={{ alignItems: 'flex-start', top: -10, flex: 1 }}>
+                  <Text style={{ fontSize: 16, fontWeight: '400' }}>
                     {location.name}
                   </Text>
 
-
-
-
-
-                  <Text style={{ fontWeight: "200" }}>
-                    {" "}
-
-
-
-                    0 going  {location.distanceFromUser}km away
+                  <Text style={{ fontWeight: '200' }}>
+                    {' '}
+                    {location.usersGoing} going {location.distanceFromUser}km
+                    away
                   </Text>
                 </View>
               </Left>
 
               <Ionicons
-                name="ios-arrow-forward"
+                name='ios-arrow-forward'
                 size={24}
-                color="#DE4C5D"
+                color='#DE4C5D'
               ></Ionicons>
             </CardItem>
           </Card>
