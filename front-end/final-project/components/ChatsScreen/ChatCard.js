@@ -5,12 +5,16 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function ChatCard(props) {
   return (
-    <View>
+    <View
+      style={{
+        justifyContent: "flex-start",
+        marginHorizontal: 10,
+        marginTop: 10
+      }}
+    >
       <TouchableOpacity onPress={() => props.enterChat(props.chatroom.chatKey)}>
-        <Card>
-          <CardItem
-            style={{ backgroundColor: "#dbdbdb", paddingHorizontal: 10 }}
-          >
+        <Card style={{ backgroundColor: "#dbdbdb", paddingHorizontal: 5 }}>
+          <CardItem bordered>
             <View>
               <Text style={{ fontSize: 16, fontWeight: "bold" }}>
                 {props.chatroom.name}

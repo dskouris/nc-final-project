@@ -17,7 +17,7 @@ class AgendaScreen extends React.Component {
       .then(user => this.setState({ user, isLoading: false }));
   }
   // make check is going from agenda to see see info
-  render() {
+  render( ) {
     return this.state.isLoading ? (
       <Loading />
     ) : (

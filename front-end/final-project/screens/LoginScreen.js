@@ -22,8 +22,8 @@ class LoginScreen extends Component {
   };
   state = {
     name: "",
-    email: "",
-    password: "",
+    email: "barbossa@dummy.com",
+    password: "789789",
     avatar: ""
   };
 

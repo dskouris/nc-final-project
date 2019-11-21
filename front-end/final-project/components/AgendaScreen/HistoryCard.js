@@ -5,7 +5,11 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function HistoryCard(props) {
   return (
-    <View>
+    <View style={{
+      justifyContent: "flex-start",
+      marginHorizontal: 10,
+      marginTop: 10
+    }}> 
       <TouchableOpacity
         onPress={() =>
           navigation.navigate("Info", {
@@ -15,7 +19,7 @@ export default function HistoryCard(props) {
           })
         }
       >
-        <Card>
+        <Card style={{ backgroundColor: "#dbdbdb", paddingHorizontal: 5 }}>
           <CardItem
             style={{ backgroundColor: "#fafad2", paddingHorizontal: 10 }}
           >

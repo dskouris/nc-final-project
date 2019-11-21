@@ -10,6 +10,7 @@ import {
 import firebaseSDK from "../components/firebaseSDK";
 import * as api from "../components/api";
 import ChatCard from "../components/ChatsScreen/ChatCard";
+import {Container} from 'native-base'
 
 export default class Chatrooms extends React.Component {
   state = {
@@ -28,6 +29,7 @@ export default class Chatrooms extends React.Component {
 
   render() {
     return (
+      <Container> 
       <ImageBackground
         style={styles.container}
         source={require("../components/images/landmarks.png")}
@@ -49,6 +51,7 @@ export default class Chatrooms extends React.Component {
           })}
         </View>
       </ImageBackground>
+      </Container>
     );
   }
 

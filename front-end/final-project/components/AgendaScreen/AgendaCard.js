@@ -5,7 +5,11 @@ import { Ionicons } from "@expo/vector-icons";
 
 const AgendaCard = ({ location, navigation }) => {
   return (
-    <View>
+    <View style={{
+      justifyContent: "flex-start",
+      marginHorizontal: 10,
+      marginTop: 10
+    }}>
       <TouchableOpacity
         onPress={() =>
           navigation.navigate("Info", {
@@ -15,9 +19,9 @@ const AgendaCard = ({ location, navigation }) => {
           })
         }
       >
-        <Card>
+        <Card style={{ backgroundColor: "#dbdbdb", paddingHorizontal: 5 }}>
           <CardItem
-            style={{ backgroundColor: "#ffe4c4", paddingHorizontal: 10 }}
+           // style={{ backgroundColor: "#ffe4c4", paddingHorizontal: 10 }}
           >
             <View>
               <Text style={{ fontSize: 16, fontWeight: "bold" }}>
