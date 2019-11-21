@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -6,27 +6,27 @@ import {
   ScrollView,
   StyleSheet,
   Image
-} from "react-native";
-import { Button } from "react-native-elements";
+} from 'react-native';
+import { Button } from 'react-native-elements';
 
-import * as ImagePicker from "expo-image-picker";
-import Constants from "expo-constants";
-import * as Permissions from "expo-permissions";
-import * as api from "../components/api";
-import firebaseSDK from "../components/firebaseSDK";
-import Loading from "../components/HomeScreen/Loading";
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
+import * as api from '../components/api';
+import firebaseSDK from '../components/firebaseSDK';
+import Loading from '../components/HomeScreen/Loading';
 
-import { MaterialIcons, Ionicons } from "@expo/vector-icons";
-import { Header, Left, Body, Title, Right, Container } from "native-base";
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { Header, Left, Body, Title, Right, Container } from 'native-base';
 
 export default class SettingsScreen extends Component {
   state = {
-    uuid: "",
-    firstName: "",
-    surname: "",
-    email: "",
-    username: "",
-    uri: "",
+    uuid: '',
+    firstName: '',
+    surname: '',
+    email: '',
+    username: '',
+    uri: '',
     userObj: {},
     isLoading: true
   };
@@ -38,7 +38,7 @@ export default class SettingsScreen extends Component {
       quality: 1
     });
 
-    console.log(result, "results from settings screen 28");
+    console.log(result, 'results from settings screen 28');
 
     if (!result.cancelled) {
       this.setState({ uri: result.uri });
@@ -65,8 +65,8 @@ export default class SettingsScreen extends Component {
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
       }
     }
   };
@@ -77,7 +77,7 @@ export default class SettingsScreen extends Component {
   };
 
   goToQuiz = () => {
-    this.props.navigation.navigate("Quiz", {
+    this.props.navigation.navigate('Quiz', {
       userObj: this.state.userObj
     });
   };
@@ -93,17 +93,17 @@ export default class SettingsScreen extends Component {
       userObj,
       isLoading
     } = this.state;
-    if (uri === "") {
+    if (uri === '') {
       imgsrc =
-        "http://bodicoteparishcouncil.co.uk/wp-content/uploads/2016/09/avatar-placeholder-generic.jpg";
+        'http://bodicoteparishcouncil.co.uk/wp-content/uploads/2016/09/avatar-placeholder-generic.jpg';
     } else imgsrc = uri;
     let quizShow;
     if (!userObj.personality) {
-      quizShow = { switch: false, text: "Take A Quick Quiz" };
+      quizShow = { switch: false, text: 'Take A Quick Quiz' };
     } else
       quizShow = {
         switch: true,
-        text: "You Have Already Taken The Quiz"
+        text: 'You Have Already Taken The Quiz'
       };
     const { navigation } = this.props;
     if (isLoading) {
@@ -112,11 +112,11 @@ export default class SettingsScreen extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <Container>
-          <Header style={{ backgroundColor: "#DE4C5D" }}>
+          <Header style={{ backgroundColor: '#DE4C5D' }}>
             <Left>
               <Ionicons
                 onPress={() =>
-                  navigation.navigate(navigation.getParam("back", "Home"))
+                  navigation.navigate(navigation.getParam('back', 'Home'))
                 }
                 name="ios-arrow-back"
                 size={24}
@@ -126,16 +126,16 @@ export default class SettingsScreen extends Component {
             <Body>
               <Text
                 style={{
-                  color: "#fff",
+                  color: '#fff',
                   fontSize: 20,
-                  fontWeight: "bold",
-                  justifyContent: "center"
+                  fontWeight: 'bold',
+                  justifyContent: 'center'
                 }}
               >
                 Wandr Profile
               </Text>
             </Body>
-            <Right>
+            {/* <Right>
               <Ionicons
                 name="ios-home"
                 size={24}
@@ -144,7 +144,7 @@ export default class SettingsScreen extends Component {
                   navigation.navigate(navigation.getParam("back", "Home"))
                 }
               ></Ionicons>
-            </Right>
+            </Right> */}
           </Header>
           {/* <View style={styles.titleBar}>
             <Ionicons
@@ -165,7 +165,7 @@ export default class SettingsScreen extends Component {
             ></Ionicons>
           </View> */}
 
-          <View style={{ alignSelf: "center", marginTop: 40 }}>
+          <View style={{ alignSelf: 'center', marginTop: 40 }}>
             <View style={styles.profileImage}>
               {/* here is placement for actual image */}
 
@@ -175,7 +175,7 @@ export default class SettingsScreen extends Component {
                 }}
                 alt={{
                   uri:
-                    "http://bodicoteparishcouncil.co.uk/wp-content/uploads/2016/09/avatar-placeholder-generic.jpg"
+                    'http://bodicoteparishcouncil.co.uk/wp-content/uploads/2016/09/avatar-placeholder-generic.jpg'
                 }}
                 style={styles.image}
               />
@@ -195,25 +195,25 @@ export default class SettingsScreen extends Component {
 
           <View style={styles.text}>
             <Text
-              style={{ fontWeight: "200", fontSize: 30 }}
+              style={{ fontWeight: '200', fontSize: 30 }}
               value="username"
               onPress={() => {
-                alert("Change username!");
+                alert('Change username!');
               }}
             >
               {username}
             </Text>
             <Text
-              style={{ fontWeight: "600", fontSize: 20 }}
+              style={{ fontWeight: '600', fontSize: 20 }}
               onPress={() => {
-                alert("Change firstName surname!");
+                alert('Change firstName surname!');
               }}
               value="firstName"
             >
               {firstName} {surname}
             </Text>
             <Text
-              style={{ fontWeight: "100", fontSize: 15, padding: 15 }}
+              style={{ fontWeight: '100', fontSize: 15, padding: 15 }}
               value="email"
             >
               {email}
@@ -237,11 +237,11 @@ SettingsScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
+    backgroundColor: 'white'
   },
   titleBar: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 20,
     marginHorizontal: 15
   },
@@ -254,22 +254,22 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 100,
-    overflow: "hidden"
+    overflow: 'hidden'
   },
   update: {
-    backgroundColor: "#DE4C5D",
-    position: "absolute",
+    backgroundColor: '#DE4C5D',
+    position: 'absolute',
     bottom: 0,
     right: 0,
     width: 50,
     height: 50,
     borderRadius: 40,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   text: {
-    alignSelf: "center",
-    alignItems: "center",
+    alignSelf: 'center',
+    alignItems: 'center',
     marginTop: 30,
     padding: 15
   }
