@@ -63,7 +63,11 @@ class InfoCard extends Component {
                   source={
                     location.img
                       ? { uri: location.img }
+<<<<<<< HEAD
                       : require("../images/robot-dev.png")
+=======
+                      : require('../images/placeholder-img.png')
+>>>>>>> 16fc3ad09bf826c5da9404111ae5f8e1c34ec4a6
                   }
                   style={{
                     width: 90,
