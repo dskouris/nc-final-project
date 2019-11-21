@@ -105,7 +105,7 @@ export default class InfoScreen extends Component {
             <Ionicons
               name='ios-home'
               size={24}
-              color='#DE4C5D'
+              color='#fff'
               onPress={() =>
                 navigation.navigate(navigation.getParam('back', 'Home'))
               }
@@ -158,7 +158,12 @@ export default class InfoScreen extends Component {
 }
 
 InfoScreen.navigationOptions = {
-  title: 'Info'
+  title: 'Wandr',
+  headerStyle: { backgroundColor: "#DE4C5D" },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "bold"
+  }
 };
 const styles = StyleSheet.create({
   container: {
@@ -170,7 +175,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
-    marginHorizontal: 15
+    marginHorizontal: 15,
+    backgroundColor: "#DE4C5D",
+
   }
 });
 

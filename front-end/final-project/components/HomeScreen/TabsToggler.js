@@ -78,12 +78,12 @@ export default class TabsToggler extends Component {
                   color: "white", fontSize: 18, fontWeight: "400",paddingHorizontal: 20, alignItems: "center"}} >  Welcome to {currentCity} !!!
               </Text> </Header> */}
 
-            <Tabs style={{ backgroundColor: "#DE4C5D" }}>
+            <Tabs >
               <Tab
                 heading={
                   <TabHeading
                     style={{ backgroundColor: "#ffffff" }}
-                    // style={{ backgroundColor: '#DE4C5D' }}
+    
                   >
                     <Text style={{ color: "#DE4C5D" }}>List</Text>
                   </TabHeading>
@@ -99,7 +99,7 @@ export default class TabsToggler extends Component {
                 heading={
                   <TabHeading
                     style={{ backgroundColor: "#ffffff" }}
-                    // style={{ backgroundColor: '#DE4C5D' }}
+                   
                   >
                     <Icon name="map" style={{ color: "#DE4C5D" }} />
                     <Text style={{ color: "#DE4C5D" }}>Map</Text>
