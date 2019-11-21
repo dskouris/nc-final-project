@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
 class UpdateAgenda extends Component {
   state = {
     date: new Date().toISOString().split('T')[0]
   };
+  styles = {
+    button: {
+      marginTop: 30,
+      marginHorizontal: 30,
+      backgroundColor: '#E9446A',
+      borderRadius: 4,
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  };
   render() {
     return (
       <View>
         {this.props.isGoing ? (
-          <Button
-            title='Remove from agenda'
+          <TouchableOpacity
+            style={this.styles.button}
             onPress={() => this.props.removeFromAgenda(this.state.date)}
-          />
+          >
+            <Text style={{ color: '#FFF', fontWeight: '500' }}>
+              Remove from agenda
+            </Text>
+          </TouchableOpacity>
         ) : (
           <>
             <DatePicker
@@ -41,11 +56,14 @@ class UpdateAgenda extends Component {
                 this.setState({ date });
               }}
             />
-
-            <Button
-              title='Add'
+            <TouchableOpacity
+              style={this.styles.button}
               onPress={() => this.props.addToAgenda(this.state.date)}
-            />
+            >
+              <Text style={{ color: '#FFF', fontWeight: '500' }}>
+                Add to agenda
+              </Text>
+            </TouchableOpacity>
           </>
         )}
       </View>
