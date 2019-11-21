@@ -47,3 +47,10 @@ export const removeFromAgenda = (uuid, locationIDObj) => {
       return data;
     });
 };
+
+export const getPersonality = wordpool => {
+  console.log('here');
+  return axios.post('http://localhost:9090/api/', wordpool).then(({ data }) => {
+    return data;
+  });
+};

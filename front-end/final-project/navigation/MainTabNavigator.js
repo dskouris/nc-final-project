@@ -13,6 +13,7 @@ import AgendaScreen from '../screens/AgendaScreen';
 import ChatsScreen from '../screens/ChatsScreen';
 import ChatroomScreen from '../screens/ChatroomScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import PersonalityQuizScreen from '../screens/PersonalityQuizScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -91,7 +92,8 @@ ChatsStack.path = '';
 
 const SettingsStack = createStackNavigator(
   {
-    Settings: SettingsScreen
+    Settings: SettingsScreen,
+    Quiz: PersonalityQuizScreen
   },
   config
 );

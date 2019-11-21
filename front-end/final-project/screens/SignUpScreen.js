@@ -104,8 +104,8 @@ class SignUpScreen extends Component {
   render() {
     return (
       <ScrollView>
-        <KeyboardAvoidingView behavior='position'>
-          <StatusBar barStyle='light-content'></StatusBar>
+        <KeyboardAvoidingView behavior="position">
+          <StatusBar barStyle="light-content"></StatusBar>
           <View style={styles.container}>
             <Image
               source={require('./images/wandr.png')}
@@ -126,7 +126,7 @@ class SignUpScreen extends Component {
             <View style={styles.form}>
               <View style={styles.center}>
                 <TextInput
-                  placeholder='Name'
+                  placeholder="Name"
                   style={styles.round}
                   onChangeText={this.onChangeTextFirstName}
                 />
@@ -134,7 +134,7 @@ class SignUpScreen extends Component {
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder='Surname'
+                  placeholder="Surname"
                   onChangeText={this.onChangeTextSurname}
                   style={styles.round}
                 />
@@ -142,16 +142,16 @@ class SignUpScreen extends Component {
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder='Email'
+                  placeholder="Email"
                   onChangeText={this.onChangeTextEmail}
                   style={styles.round}
-                  autoCapitalize='none'
+                  autoCapitalize="none"
                 />
               </View>
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder='Username'
+                  placeholder="Username"
                   onChangeText={this.onChangeTextUsername}
                   style={styles.round}
                 />
@@ -159,7 +159,7 @@ class SignUpScreen extends Component {
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder='Password'
+                  placeholder="Password"
                   secureTextEntry={true}
                   onChangeText={this.onChangeTextPassword}
                   style={styles.round}
@@ -168,7 +168,7 @@ class SignUpScreen extends Component {
 
               <View style={styles.center}>
                 <TextInput
-                  placeholder='Confirm Password'
+                  placeholder="Confirm Password"
                   secureTextEntry={true}
                   onChangeText={this.onChangeTextConfirmPassword}
                   style={styles.round}
@@ -178,9 +178,9 @@ class SignUpScreen extends Component {
               <View style={styles.button}>
                 <TouchableOpacity style={styles.update}>
                   <MaterialIcons
-                    name='arrow-forward'
+                    name="arrow-forward"
                     size={35}
-                    color='white'
+                    color="white"
                     style={{ marginTop: 1, marginLeft: 2 }}
                     onPress={this.onPressCreate}
                   />
@@ -213,11 +213,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     justifyContent: 'center',
     // width: 300,
-<<<<<<< HEAD
-   maxHeight: "80%",
-=======
     maxHeight: '80%'
->>>>>>> 3ccc3e0cb8a41a0f9d90749e9d649e4d1eb680b2
   },
   input: {
     color: '#8A8F9E',
