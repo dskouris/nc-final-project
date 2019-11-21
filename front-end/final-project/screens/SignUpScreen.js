@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     justifyContent: "center",
     // width: 300,
-   maxHight: "80%",
+   maxHeight: "80%",
   },
   input: {
     color: "#8A8F9E",
