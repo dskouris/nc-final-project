@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Card,
   CardItem,
@@ -8,10 +8,10 @@ import {
   Icon,
   Title,
   Subtitle
-} from "native-base";
-import { Text, View, TouchableOpacity } from "react-native";
-import apiKey from "../../constants/keys";
-import { Ionicons } from "@expo/vector-icons";
+} from 'native-base';
+import { Text, View, TouchableOpacity } from 'react-native';
+import apiKey from '../../constants/keys';
+import { Ionicons } from '@expo/vector-icons';
 
 class InfoCard extends Component {
   state = { location: {} };
@@ -39,20 +39,25 @@ class InfoCard extends Component {
       <View>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("Info", {
-              back: "Home",
+            navigation.navigate('Info', {
+              back: 'Home',
               location
             })
           }
         >
           <Card style={{ borderRadius: 5, marginHorizontal: 5 }}>
-            <CardItem style={{ backgroundColor: "#ffebcd" }}>
+            <CardItem
+              style={{
+                borderBottomColor: '#444851',
+                borderTopColor: '#444851'
+              }}
+            >
               <Left>
                 <Thumbnail
                   source={
                     location.img
                       ? { uri: location.img }
-                      : require("../images/robot-dev.png")
+                      : require('../images/robot-dev.png')
                   }
                   style={{
                     width: 80,
@@ -61,8 +66,8 @@ class InfoCard extends Component {
                     marginRight: 10
                   }}
                 />
-                <View style={{ alignItems: "flex-start", top: -10 }}>
-                  <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                <View style={{ alignItems: 'flex-start', top: -10 }}>
+                  <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
                     {location.name}
                   </Text>
                   <Text>0 going</Text>
@@ -71,9 +76,9 @@ class InfoCard extends Component {
               </Left>
 
               <Ionicons
-                name="ios-arrow-forward"
+                name='ios-arrow-forward'
                 size={24}
-                color="#DE4C5D"
+                color='#DE4C5D'
               ></Ionicons>
             </CardItem>
           </Card>

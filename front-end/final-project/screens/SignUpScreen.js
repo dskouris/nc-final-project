@@ -213,11 +213,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     justifyContent: 'center',
     // width: 300,
-<<<<<<< HEAD
-   maxHeight: "80%",
-=======
     maxHeight: '80%'
->>>>>>> 3ccc3e0cb8a41a0f9d90749e9d649e4d1eb680b2
   },
   input: {
     color: '#8A8F9E',
