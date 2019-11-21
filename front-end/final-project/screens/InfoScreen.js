@@ -73,19 +73,19 @@ export default class InfoScreen extends Component {
   removeFromAgenda = () => {
     // Having issues with delete method, will fix and implement this.
 
-    // const { location } = this.state;
-    // const uid = firebaseSDK.uid;
-    // const locationIDObj = { id: location.id };
-    // console.log(locationIDObj);
-    // return api
-    //   .removeFromAgenda(uid)
-    //   .then(data => {
-    //   })
-    //   .catch(console.log);
-    this.setState(currentState => {
-      return { isGoing: !currentState.isGoing };
-    });
-    alert('removed from agenda');
+    const { location } = this.state;
+    const uid = firebaseSDK.uid;
+    const locationIDObj = { id: location.id };
+
+    return api
+      .updateAgenda(uid, locationIDObj)
+      .then(data => {
+        this.setState(currentState => {
+          return { isGoing: !currentState.isGoing };
+        });
+        alert('removed from agenda');
+      })
+      .catch(console.log);
   };
 
   render() {
