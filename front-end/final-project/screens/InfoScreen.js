@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
-import apiKey from "../constants/keys";
-import UpdateAgenda from "../components/InfoScreen/UpdateAgenda";
-import * as api from "../components/api";
-import firebaseSDK from "../components/firebaseSDK";
+import React, { Component } from 'react';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import apiKey from '../constants/keys';
+import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
+import * as api from '../components/api';
+import firebaseSDK from '../components/firebaseSDK';
 import {
   Container,
   Header,
@@ -17,10 +17,10 @@ import {
   Body,
   Right,
   Title
-} from "native-base";
-import Loading from "../components/HomeScreen/Loading";
-import { Ionicons } from "@expo/vector-icons";
-import wandr from "./images/wandr.png";
+} from 'native-base';
+import Loading from '../components/HomeScreen/Loading';
+import { Ionicons } from '@expo/vector-icons';
+import wandr from './images/wandr.png';
 
 export default class InfoScreen extends Component {
   state = {
@@ -28,24 +28,81 @@ export default class InfoScreen extends Component {
     location: {},
     isGoing: false,
     usersGoing: [],
-    userLocation: { lat: 0, long: 0 }
+    userLocation: { lat: 0, long: 0 },
+    locationFound: null,
+    recommender: false,
+    placePersonality: null,
+    user: {},
+    wandrRec: null,
+    matchChecked: false
+  };
+
+  getRecommend = () => {
+    console.log(this.state.location.name);
+    let place = { place: this.state.location.name };
+    api.getScrape(place).then(returnedScrape => {
+      console.log(returnedScrape);
+      if (returnedScrape.description === 'no data found for place') {
+        this.setState({ locationFound: false, recommender: false });
+      } else {
+        let wordpool = { wordpool: returnedScrape.description };
+        api.getPersonality(wordpool).then(persObj => {
+          console.log(persObj);
+          this.setState({
+            locationFound: true,
+            placePersonality: persObj.userP,
+            recommender: false
+          });
+        });
+      }
+    });
+  };
+
+  checkMatch = () => {
+    const placePersonality = this.state.placePersonality;
+    const userPersonality = this.state.user.personality;
+
+    console.log(placePersonality, userPersonality);
+
+    const arrAvg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
+
+    let matchArr = [];
+
+    userPersonality.forEach((reading, index) => {
+      matchArr.push(reading - placePersonality[index]);
+    });
+
+    const matchAvg = Math.abs(arrAvg(matchArr));
+    console.log(matchAvg);
+
+    if (matchAvg < 0.2) {
+      this.setState({ wandrRec: true, matchChecked: true });
+    } else {
+      this.setState({ wandrRec: false, matchChecked: true });
+    }
   };
 
   componentDidMount() {
-    const location = this.props.navigation.getParam("location", {});
+    const uuid = firebaseSDK.uid;
+    const location = this.props.navigation.getParam('location', {});
     return Promise.all([
       location,
       fetch(
         `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&maxheight=300&photoreference=${location.photos[0].photo_reference}&key=${apiKey}`
-      )
-    ]).then(([location, img]) => {
-      location.img = img.url;
-      this.setState({
-        location,
-        isLoading: false,
-        isGoing: this.props.navigation.getParam("isGoing", false)
-      });
-    });
+      ),
+      api.getUserData(uuid)
+    ])
+      .then(([location, img, user]) => {
+        location.img = img.url;
+        this.setState({
+          location,
+          isLoading: false,
+          isGoing: this.props.navigation.getParam('isGoing', false),
+          recommender: true,
+          user
+        });
+      })
+      .then(console.log('mounted'));
   }
 
   addToAgenda = date => {
@@ -66,7 +123,7 @@ export default class InfoScreen extends Component {
           return { isGoing: !currentState.isGoing };
         });
         alert(`Added to agenda`);
-        navigation.navigate("Agenda");
+        navigation.navigate('Agenda');
       })
       .catch(console.log);
   };
@@ -86,18 +143,34 @@ export default class InfoScreen extends Component {
   };
 
   render() {
-    const { isGoing, usersGoing, location, isLoading } = this.state;
+    const {
+      isGoing,
+      usersGoing,
+      location,
+      isLoading,
+      recommender,
+      locationFound,
+      user,
+      wandrRec,
+      matchChecked
+    } = this.state;
     const { navigation } = this.props;
+    if (recommender) {
+      this.getRecommend();
+    }
+    if (locationFound && user.personality && !matchChecked) {
+      this.checkMatch();
+    }
     return isLoading ? (
       <Loading />
     ) : (
       <Container>
-        <Header style={{ backgroundColor: "#DE4C5D" }}>
+        <Header style={{ backgroundColor: '#DE4C5D' }}>
           <Left>
             <Button transparent>
               <Ionicons
                 onPress={() =>
-                  navigation.navigate(navigation.getParam("back", "Home"))
+                  navigation.navigate(navigation.getParam('back', 'Home'))
                 }
                 name="ios-arrow-back"
                 size={24}
@@ -106,7 +179,7 @@ export default class InfoScreen extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={{color: "#fff"}}> {location.name} </Title>
+            <Title style={{ color: '#fff' }}> {location.name} </Title>
           </Body>
 
           <Right>
@@ -116,25 +189,26 @@ export default class InfoScreen extends Component {
                 size={24}
                 color="#fff"
                 onPress={() =>
-                  navigation.navigate(navigation.getParam("back", "Home"))
+                  navigation.navigate(navigation.getParam('back', 'Home'))
                 }
               ></Ionicons>
             </Button>
           </Right>
         </Header>
 
-        <Content style={{marginTop: 10}}>
+        <Content style={{ marginTop: 10 }}>
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
                 {/* <Thumbnail source={wandr} style={{ resizeMode: "contain" }} /> */}
                 <Body>
-                  <Text style={{ fontSize: 18, fontWeight: "500" }}> 
-                 
+                  <Text style={{ fontSize: 18, fontWeight: '500' }}>
                     {location.name}
                   </Text>
                   <Text note>{location.distanceFromUser}km from you</Text>
-                  <Text note>{isGoing ? "You Are Going" : "You Are Not Going"}</Text>
+                  <Text note>
+                    {isGoing ? 'You Are Going' : 'You Are Not Going'}
+                  </Text>
                 </Body>
               </Left>
             </CardItem>
@@ -142,23 +216,48 @@ export default class InfoScreen extends Component {
               <Body>
                 <Image
                   source={{ uri: location.img }}
-                  style={{  flex: 1, height: 300, width: 380, justifyContent: "center"}}
+                  style={{
+                    flex: 1,
+                    height: 300,
+                    width: 380,
+                    justifyContent: 'center'
+                  }}
                 />
-                <Text style={{paddingVertical: 10, fontWeight: "300" }}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lobortis nulla vel posuere fermentum. Ut id lectus ante. Nullam dignissim tellus nec tempus gravida. Nullam nec turpis eget nisi rhoncus molestie quis vel libero. Sed in tellus ligula. Vestibulum pulvinar lectus libero, vel vulputate neque sollicitudin vitae. Ut cursus orci cursus commodo lacinia. Integer consectetur aliquet risus at pretium. Integer sollicitudin efficitur finibus. Sed blandit ex id nisl malesuada viverra. Sed at dapibus nisl. </Text>
+                {wandrRec && <Text>Wandr recommends this place for you!</Text>}
+                <Text
+                  style={{
+                    paddingVertical: 10,
+                    fontWeight: '300'
+                  }}
+                >
+                  {' '}
+                  {this.state.user.email}
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Phasellus lobortis nulla vel posuere fermentum. Ut id lectus
+                  ante. Nullam dignissim tellus nec tempus gravida. Nullam nec
+                  turpis eget nisi rhoncus molestie quis vel libero. Sed in
+                  tellus ligula. Vestibulum pulvinar lectus libero, vel
+                  vulputate neque sollicitudin vitae. Ut cursus orci cursus
+                  commodo lacinia. Integer consectetur aliquet risus at pretium.
+                  Integer sollicitudin efficitur finibus. Sed blandit ex id nisl
+                  malesuada viverra. Sed at dapibus nisl.{' '}
+                </Text>
               </Body>
             </CardItem>
-            <CardItem >
+            <CardItem>
               <Left>
                 <Button transparent>
                   <Icon active name="people" />
                   <Text>{usersGoing.length} Going</Text>
-               
                 </Button>
               </Left>
               <Right>
-              <Text>Users rating: {location.rating}</Text>
+                <Text>Users rating: {location.rating}</Text>
               </Right>
             </CardItem>
+            {this.state.showRecommend && (
+              <Text>Wandr Recommends This Place For You!</Text>
+            )}
           </Card>
           <View>
             <UpdateAgenda
@@ -174,20 +273,17 @@ export default class InfoScreen extends Component {
 }
 
 InfoScreen.navigationOptions = {
-  title: "Wandr",
-  headerStyle: { backgroundColor: "#DE4C5D" },
-  headerTintColor: "#fff",
+  title: 'Wandr',
+  headerStyle: { backgroundColor: '#DE4C5D' },
+  headerTintColor: '#fff',
   headerTitleStyle: {
-    fontWeight: "bold"
+    fontWeight: 'bold'
   }
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: "#fff"
-  },
- 
+    backgroundColor: '#fff'
+  }
 });
-
-
