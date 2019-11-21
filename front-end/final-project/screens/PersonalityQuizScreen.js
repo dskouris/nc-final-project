@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Slider from 'react-native-slider';
 import * as api from '../components/api';
+import firebaseSDK from '../components/firebaseSDK';
 
 export default class App extends React.Component {
   state = {
@@ -100,14 +101,33 @@ export default class App extends React.Component {
   };
 
   onPressAction = async () => {
+    const uuid = this.props.navigation.state.params.userObj.uuid;
     let words = await this.createWordPool();
     try {
       api
         .getPersonality({ wordpool: words })
-        .then(data => {
-          this.successfulCall(data);
-        })
-        .then(alert('Thanks for taking the quiz!'));
+        // .then(data => {
+        //   this.successfulCall(data);
+        //   return data;
+        // })
+        .then(object => {
+          api.addPersonalityToUser(uuid, object).then(returnedUser => {
+            console.log('from the function', returnedUser);
+            if (returnedUser) {
+              alert('Thanks for taking the quiz!');
+              this.props.navigation.navigate('Settings', {
+                newUserObj: returnedUser
+              });
+            }
+          });
+        });
+      // .then(returnedUser => {
+      //   console.log(returnedUser);
+      //   if (returnedUser) {
+      //     console.log(returnedUser);
+      //     alert('Thanks for taking the quiz!');
+      //   }
+      // });
     } catch (error) {
       console.log(error);
     }
@@ -115,6 +135,7 @@ export default class App extends React.Component {
   };
 
   render() {
+    console.log(this.props.navigation.state);
     return (
       <View style={styles.container}>
         <Text>I am more...</Text>

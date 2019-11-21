@@ -49,8 +49,21 @@ export const removeFromAgenda = (uuid, locationIDObj) => {
 };
 
 export const getPersonality = wordpool => {
-  console.log('here');
-  return axios.post('http://localhost:9090/api/', wordpool).then(({ data }) => {
-    return data;
-  });
+  return axios
+    .post('https://wandr-ai-server.herokuapp.com/api/personality', wordpool)
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+export const addPersonalityToUser = (uuid, personalityData) => {
+  console.log('here', uuid, personalityData.userP);
+  return axios
+    .patch(
+      `https://be-nc-final-project-nomado.herokuapp.com/api/personality/${uuid}`,
+      personalityData.userP
+    )
+    .then(({ data }) => {
+      return data;
+    });
 };

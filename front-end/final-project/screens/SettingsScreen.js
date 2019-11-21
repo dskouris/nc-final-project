@@ -14,6 +14,7 @@ import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import * as api from '../components/api';
 import firebaseSDK from '../components/firebaseSDK';
+import Loading from '../components/HomeScreen/Loading';
 
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
@@ -25,7 +26,8 @@ export default class SettingsScreen extends Component {
     email: '',
     username: '',
     uri: '',
-    userObj: {}
+    userObj: {},
+    isLoading: true
   };
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -51,11 +53,11 @@ export default class SettingsScreen extends Component {
         email: userObj.email,
         username: userObj.username,
         uri: userObj.Profile.img,
-        userObj
+        userObj,
+        isLoading: false
       });
     });
     this.getPermissionAsync();
-    console.log('mounted');
   }
 
   //FOR IOS ONLY
@@ -73,22 +75,29 @@ export default class SettingsScreen extends Component {
     this.pickImage();
   };
 
-  goToQuiz = userObj => {
+  goToQuiz = () => {
     this.props.navigation.navigate('Quiz', {
-      userObj
+      userObj: this.state.userObj
     });
   };
 
   render() {
     let imgsrc;
-    const { uri, firstName, surname, username, email, userObj } = this.state;
-    console.log(userObj);
+    const {
+      uri,
+      firstName,
+      surname,
+      username,
+      email,
+      userObj,
+      isLoading
+    } = this.state;
     if (uri === '') {
       imgsrc =
         'http://bodicoteparishcouncil.co.uk/wp-content/uploads/2016/09/avatar-placeholder-generic.jpg';
     } else imgsrc = uri;
     let quizShow;
-    if (!userObj.Personality) {
+    if (!userObj.personality) {
       quizShow = { switch: false, text: 'Take A Quick Quiz' };
     } else
       quizShow = {
@@ -96,6 +105,9 @@ export default class SettingsScreen extends Component {
         text: 'You Have Already Taken The Quiz'
       };
     const { navigation } = this.props;
+    if (isLoading) {
+      return <Loading />;
+    }
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
