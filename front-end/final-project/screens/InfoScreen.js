@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
-import apiKey from '../constants/keys';
-import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
-import * as api from '../components/api';
-import firebaseSDK from '../components/firebaseSDK';
+import React, { Component } from "react";
+import { View, StyleSheet, Text, Image } from "react-native";
+import apiKey from "../constants/keys";
+import UpdateAgenda from "../components/InfoScreen/UpdateAgenda";
+import * as api from "../components/api";
+import firebaseSDK from "../components/firebaseSDK";
 import {
   Container,
   Header,
@@ -15,11 +15,12 @@ import {
   Icon,
   Left,
   Body,
-  Right
-} from 'native-base';
-import Loading from '../components/HomeScreen/Loading';
-import { Ionicons } from '@expo/vector-icons';
-import wandr from './images/wandr.png';
+  Right,
+  Title
+} from "native-base";
+import Loading from "../components/HomeScreen/Loading";
+import { Ionicons } from "@expo/vector-icons";
+import wandr from "./images/wandr.png";
 
 export default class InfoScreen extends Component {
   state = {
@@ -31,7 +32,7 @@ export default class InfoScreen extends Component {
   };
 
   componentDidMount() {
-    const location = this.props.navigation.getParam('location', {});
+    const location = this.props.navigation.getParam("location", {});
     return Promise.all([
       location,
       fetch(
@@ -42,7 +43,7 @@ export default class InfoScreen extends Component {
       this.setState({
         location,
         isLoading: false,
-        isGoing: this.props.navigation.getParam('isGoing', false)
+        isGoing: this.props.navigation.getParam("isGoing", false)
       });
     });
   }
@@ -65,7 +66,7 @@ export default class InfoScreen extends Component {
           return { isGoing: !currentState.isGoing };
         });
         alert(`Added to agenda`);
-        navigation.navigate('Agenda');
+        navigation.navigate("Agenda");
       })
       .catch(console.log);
   };
@@ -91,33 +92,58 @@ export default class InfoScreen extends Component {
       <Loading />
     ) : (
       <Container>
-        <Header  style={{backgroundColor: '#DE4C5D'}}  />
-        <Content>
-          <View style={styles.titleBar}>
-            <Ionicons
-              onPress={() =>
-                navigation.navigate(navigation.getParam('back', 'Home'))
-              }
-              name='ios-arrow-back'
-              size={24}
-              color='#DE4C5D'
-            ></Ionicons>
-            <Ionicons
-              name='ios-home'
-              size={24}
-              color='#fff'
-              onPress={() =>
-                navigation.navigate(navigation.getParam('back', 'Home'))
-              }
-            ></Ionicons>
-          </View>
+        <Header style={{ backgroundColor: "#DE4C5D" }}>
+          <Left>
+            <Button transparent>
+              <Ionicons
+                onPress={() =>
+                  navigation.navigate(navigation.getParam("back", "Home"))
+                }
+                name="ios-arrow-back"
+                size={24}
+                color="#fff"
+              ></Ionicons>
+            </Button>
+          </Left>
+          <Body>
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 20,
+                fontWeight: "bold",
+                justifyContent: "center"
+              }}
+            >
+              {location.name}
+            </Text>
+          </Body>
+
+          <Right>
+            <Button>
+              <Ionicons
+                name="ios-home"
+                size={24}
+                color="#fff"
+                onPress={() =>
+                  navigation.navigate(navigation.getParam("back", "Home"))
+                }
+              ></Ionicons>
+            </Button>
+          </Right>
+        </Header>
+
+        <Content style={{ marginTop: 10 }}>
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
-                <Thumbnail source={wandr} style={{ resizeMode: 'contain' }} />
+                {/* <Thumbnail source={wandr} style={{ resizeMode: "contain" }} /> */}
                 <Body>
-                  <Text style={{ fontSize: 24, fontWeight: '700' }}>
+                  <Text style={{ fontSize: 18, fontWeight: "500" }}>
                     {location.name}
+                  </Text>
+                  <Text note>{location.distanceFromUser}km from you</Text>
+                  <Text note>
+                    {isGoing ? "You Are Going" : "You Are Not Going"}
                   </Text>
                 </Body>
               </Left>
@@ -126,21 +152,36 @@ export default class InfoScreen extends Component {
               <Body>
                 <Image
                   source={{ uri: location.img }}
-                  style={{ height: 200, width: 300, flex: 1 }}
+                  style={{
+                    flex: 1,
+                    height: 300,
+                    width: 380,
+                    justifyContent: "center"
+                  }}
                 />
+                <Text style={{ paddingVertical: 10, fontWeight: "300" }}>
+                  {" "}
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Phasellus lobortis nulla vel posuere fermentum. Ut id lectus
+                  ante. Nullam dignissim tellus nec tempus gravida. Nullam nec
+                  turpis eget nisi rhoncus molestie quis vel libero. Sed in
+                  tellus ligula. Vestibulum pulvinar lectus libero, vel
+                  vulputate neque sollicitudin vitae. Ut cursus orci cursus
+                  commodo lacinia. Integer consectetur aliquet risus at pretium.
+                  Integer sollicitudin efficitur finibus. Sed blandit ex id nisl
+                  malesuada viverra. Sed at dapibus nisl.{" "}
+                </Text>
               </Body>
             </CardItem>
-            <CardItem style={{ flexDirection: 'column' }}>
+            <CardItem>
               <Left>
                 <Button transparent>
-                  <Icon active name='people' />
+                  <Icon active name="people" />
                   <Text>{usersGoing.length} Going</Text>
-                  <Text>{location.distanceFromUser}km from you</Text>
-                  <Text>Average user rating: {location.rating}</Text>
                 </Button>
               </Left>
               <Right>
-                <Text>{isGoing ? 'You Are Going' : 'You Are Not Going'}</Text>
+                <Text>Users rating: {location.rating}</Text>
               </Right>
             </CardItem>
           </Card>
@@ -158,7 +199,7 @@ export default class InfoScreen extends Component {
 }
 
 InfoScreen.navigationOptions = {
-  title: 'Wandr',
+  title: "Wandr",
   headerStyle: { backgroundColor: "#DE4C5D" },
   headerTintColor: "#fff",
   headerTitleStyle: {
@@ -169,54 +210,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff'
-  },
-  titleBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 20,
-    marginHorizontal: 15,
-    backgroundColor: "#DE4C5D",
-
+    backgroundColor: "#fff"
   }
 });
-
-{
-  /* <View style={styles.container}>
-  <Button
-    title='go back'
-    onPress={() =>
-      navigation.navigate(navigation.getParam('back', 'Home'))
-    }
-  />
-  <View>
-    <Text>{location.name}</Text>
-    <Image
-      source={{ uri: location.img }}
-      style={{ width: '80%', height: 300 }}
-    />
-    <Text>{usersGoing.length} Going</Text>
-    <Text>{isGoing ? 'You Are Going' : 'You Are Not Going'}</Text>
-  </View>
-
-  <View>
-    <Text>{location.type}</Text>
-    <Text>{location.address}</Text>
-    <Text>One km from Location</Text>
-  </View>
-  <View>
-    <UpdateAgenda
-      isGoing={this.state.isGoing}
-      addToAgenda={this.addToAgenda}
-      removeFromAgenda={this.removeFromAgenda}
-    />
-  </View>
-
-  <View>
-    <Button
-      title='Location Chat'
-      onPress={() => navigation.navigate('Chats')}
-    />
-  </View>
-</View> */
-}
