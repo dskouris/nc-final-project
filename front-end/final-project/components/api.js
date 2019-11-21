@@ -36,3 +36,21 @@ export const updateAgenda = (uuid, agendaPoint) => {
       return data;
     });
 };
+
+export const removeFromAgenda = (uuid, locationIDObj) => {
+  return axios
+    .delete(
+      `https://be-nc-final-project-nomado.herokuapp.com/api/users/${uuid}`,
+      locationIDObj
+    )
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+export const getPersonality = wordpool => {
+  console.log('here');
+  return axios.post('http://localhost:9090/api/', wordpool).then(({ data }) => {
+    return data;
+  });
+};

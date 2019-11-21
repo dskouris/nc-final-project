@@ -49,6 +49,7 @@ export default class InfoScreen extends Component {
 
   addToAgenda = date => {
     const { location } = this.state;
+    const { navigation } = this.props;
     const uid = firebaseSDK.uid;
     const agendaPoint = {
       id: location.id,
@@ -63,27 +64,22 @@ export default class InfoScreen extends Component {
         this.setState(currentState => {
           return { isGoing: !currentState.isGoing };
         });
-        alert(
-          `added to agenda for:${date}. \nYou can now see this in your chats`
-        );
+        alert(`Added to agenda`);
+        navigation.navigate('Agenda');
       })
       .catch(console.log);
   };
 
   removeFromAgenda = () => {
-    // Having issues with delete method, will fix and implement this.
-
     const { location } = this.state;
     const uid = firebaseSDK.uid;
     const locationIDObj = { id: location.id };
-
     return api
       .updateAgenda(uid, locationIDObj)
       .then(data => {
         this.setState(currentState => {
           return { isGoing: !currentState.isGoing };
         });
-        alert('removed from agenda');
       })
       .catch(console.log);
   };
@@ -91,7 +87,6 @@ export default class InfoScreen extends Component {
   render() {
     const { isGoing, usersGoing, location, isLoading } = this.state;
     const { navigation } = this.props;
-
     return isLoading ? (
       <Loading />
     ) : (
@@ -119,12 +114,11 @@ export default class InfoScreen extends Component {
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
-                <Thumbnail source={wandr} />
+                <Thumbnail source={wandr} style={{ resizeMode: 'contain' }} />
                 <Body>
                   <Text style={{ fontSize: 24, fontWeight: '700' }}>
                     {location.name}
                   </Text>
-                  <Text note> 0.8km from you</Text>
                 </Body>
               </Left>
             </CardItem>
@@ -134,20 +128,15 @@ export default class InfoScreen extends Component {
                   source={{ uri: location.img }}
                   style={{ height: 200, width: 300, flex: 1 }}
                 />
-                <Text>
-                  Cathedral, formally the Cathedral and Collegiate Church of St
-                  Mary, St Denys and St George, in Manchester, England, is the
-                  mother church of the Anglican Diocese of Manchester, seat of
-                  the Bishop of Manchester and the city's parish church. It is
-                  on Victoria Street in Manchester city centre.
-                </Text>
               </Body>
             </CardItem>
-            <CardItem>
+            <CardItem style={{ flexDirection: 'column' }}>
               <Left>
                 <Button transparent>
                   <Icon active name='people' />
-                  <Text> {usersGoing.length} Going</Text>
+                  <Text>{usersGoing.length} Going</Text>
+                  <Text>{location.distanceFromUser}km from you</Text>
+                  <Text>Average user rating: {location.rating}</Text>
                 </Button>
               </Left>
               <Right>
