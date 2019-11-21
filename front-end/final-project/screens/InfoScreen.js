@@ -91,7 +91,7 @@ export default class InfoScreen extends Component {
       <Loading />
     ) : (
       <Container>
-        {/* <Header /> */}
+        <Header  style={{backgroundColor: '#DE4C5D'}}  />
         <Content>
           <View style={styles.titleBar}>
             <Ionicons

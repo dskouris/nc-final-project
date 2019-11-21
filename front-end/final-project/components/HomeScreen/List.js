@@ -8,11 +8,7 @@ export default class List extends Component {
   render() {
     const { locations, navigation, userCoords } = this.props;
     return (
-      <ScrollView style={{
-        justifyContent: "flex-start",
-        marginHorizontal: 10,
-        marginTop: 10
-      }} >
+      <ScrollView>
         <Content padder> 
         {locations.map(location => {
           return (
