@@ -30,7 +30,12 @@ class AgendaScreen extends React.Component {
 }
 
 AgendaScreen.navigationOptions = {
-  title: "Agenda"
+  title: "Wandr",
+  headerStyle: { backgroundColor: "#DE4C5D" },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "bold"
+  }
 };
 
 const styles = StyleSheet.create({

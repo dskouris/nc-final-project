@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import React, { Component } from "react";
+import { ScrollView, StyleSheet, Text, ImageBackground } from "react-native";
+import { ExpoLinksView } from "@expo/samples";
 
-import { GiftedChat } from 'react-native-gifted-chat';
-import firebaseSDK from '../components/firebaseSDK';
+import { GiftedChat } from "react-native-gifted-chat";
+import firebaseSDK from "../components/firebaseSDK";
 
 class ChatsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: (navigation.state.params || {}).name || 'Chat!'
+    title: (navigation.state.params || {}).name || "Chat!"
   });
 
   state = {
@@ -39,11 +39,16 @@ class ChatsScreen extends React.Component {
 
   render() {
     return (
-      <GiftedChat
-        messages={this.state.messages}
-        onSend={firebaseSDK.send}
-        user={this.user}
-      />
+      <ImageBackground
+        style={styles.container}
+        source={require("../components/images/landmarks.png")}
+      >
+        <GiftedChat
+          messages={this.state.messages}
+          onSend={firebaseSDK.send}
+          user={this.user}
+        />
+      </ImageBackground>
     );
   }
 }
@@ -51,12 +56,17 @@ class ChatsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff'
+
+    backgroundColor: "#fff"
   }
 });
 
 ChatsScreen.navigationOptions = {
-  title: 'Chats'
+  title: `Chat room`,
+  headerStyle: { backgroundColor: "#DE4C5D" },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "bold"
+  }
 };
 export default ChatsScreen;

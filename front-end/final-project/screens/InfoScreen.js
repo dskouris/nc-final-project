@@ -18,7 +18,7 @@ import {
   Right
 } from 'native-base';
 import Loading from '../components/HomeScreen/Loading';
-import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import wandr from './images/wandr.png';
 
 export default class InfoScreen extends Component {
@@ -71,10 +71,20 @@ export default class InfoScreen extends Component {
   };
 
   removeFromAgenda = () => {
+    // Having issues with delete method, will fix and implement this.
+
+    // const { location } = this.state;
+    // const uid = firebaseSDK.uid;
+    // const locationIDObj = { id: location.id };
+    // console.log(locationIDObj);
+    // return api
+    //   .removeFromAgenda(uid)
+    //   .then(data => {
+    //   })
+    //   .catch(console.log);
     this.setState(currentState => {
       return { isGoing: !currentState.isGoing };
     });
-    // filtering the location place from agenda
     alert('removed from agenda');
   };
 
