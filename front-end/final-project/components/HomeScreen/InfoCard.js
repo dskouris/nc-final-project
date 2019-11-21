@@ -49,15 +49,7 @@ class InfoCard extends Component {
           }
         >
           <Card>
-            <CardItem bordered
-              style={
-                {
-                  // borderBottomColor: '#444851',
-                  // borderTopColor: '#444851',
-                  // borderRadius: 5,
-                }
-              }
-            >
+            <CardItem bordered>
               <Left>
                 <Thumbnail
                   source={
