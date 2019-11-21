@@ -8,22 +8,23 @@ export default class List extends Component {
   render() {
     const { locations, navigation, userCoords } = this.props;
     return (
-      <ScrollView style={{
-        justifyContent: "flex-start",
-        marginHorizontal: 10,
-        marginTop: 10
-      }} >
-        <Content padder> 
-        {locations.map(location => {
-          return (
-            <InfoCard
-              navigation={navigation}
-              location={location}
-              userCoords={userCoords}
-              key={location.id}
-            />
-          );
-        })}
+      <ScrollView
+        style={{
+          marginHorizontal: 10,
+          marginTop: 10
+        }}
+      >
+        <Content padder>
+          {locations.map(location => {
+            return (
+              <InfoCard
+                navigation={navigation}
+                location={location}
+                userCoords={userCoords}
+                key={location.id}
+              />
+            );
+          })}
         </Content>
       </ScrollView>
     );
