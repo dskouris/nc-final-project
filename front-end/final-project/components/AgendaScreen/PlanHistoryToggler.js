@@ -42,8 +42,8 @@ export default class PlanHistoryToggler extends Component {
         <Tabs>
           <Tab
             heading={
-              <TabHeading style={{ backgroundColor: "#DE4C5D" }}>
-                <Text style={{ color: "#ffffff" }}>Plan</Text>
+              <TabHeading style={{ backgroundColor: "#ffffff" }}>
+                <Text style={{ color: "#DE4C5D" }}>Plan</Text>
               </TabHeading>
             }
           >
@@ -51,8 +51,8 @@ export default class PlanHistoryToggler extends Component {
           </Tab>
           <Tab
             heading={
-              <TabHeading style={{ backgroundColor: "#DE4C5D" }}>
-                <Text style={{ color: "#ffffff" }}>History</Text>
+              <TabHeading style={{ backgroundColor: "#ffffff" }}>
+                <Text style={{ color: "#DE4C5D" }}>History</Text>
               </TabHeading>
             }
           >

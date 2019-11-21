@@ -20,7 +20,7 @@ class Map extends Component {
       left: 0,
       right: 0,
       bottom: 0,
-      height: 400,
+      height: '100%',
       width: '100%'
     },
     markerWrap: {

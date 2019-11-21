@@ -4,7 +4,7 @@ import DatePicker from 'react-native-datepicker';
 
 class UpdateAgenda extends Component {
   state = {
-    date: ''
+    date: new Date().toISOString().split('T')[0]
   };
   render() {
     return (
@@ -20,7 +20,7 @@ class UpdateAgenda extends Component {
               style={{ width: 200 }}
               date={this.state.date}
               mode='date'
-              placeholder='select date'
+              placeholder={this.state.date}
               format='YYYY-MM-DD'
               minDate={new Date()}
               maxDate='2025-01-01'
@@ -38,7 +38,7 @@ class UpdateAgenda extends Component {
                 }
               }}
               onDateChange={date => {
-                this.setState({ date: date });
+                this.setState({ date });
               }}
             />
 
