@@ -104,7 +104,7 @@ SettingsStack.navigationOptions = {
       name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
     />
   ),
-  tabBarOptions: { activeTintColor: '#444851' }
+  tabBarOptions: { activeTintColor: '#DE4C5D' }
 };
 
 SettingsStack.path = '';

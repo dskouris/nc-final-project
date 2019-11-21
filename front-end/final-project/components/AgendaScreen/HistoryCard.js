@@ -17,7 +17,7 @@ export default function HistoryCard(props) {
       >
         <Card>
           <CardItem
-            style={{ backgroundColor: "#ffe4b5", paddingHorizontal: 10 }}
+            style={{ backgroundColor: "#fafad2", paddingHorizontal: 10 }}
           >
             <View>
               <Text style={{ fontSize: 16, fontWeight: "bold" }}>
