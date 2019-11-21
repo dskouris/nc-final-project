@@ -179,7 +179,16 @@ export default class InfoScreen extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={{ color: '#fff' }}> {location.name} </Title>
+            <Text
+              style={{
+                color: '#fff',
+                fontSize: 20,
+                fontWeight: 'bold',
+                justifyContent: 'center'
+              }}
+            >
+              {location.name}
+            </Text>
           </Body>
 
           <Right>
@@ -223,15 +232,8 @@ export default class InfoScreen extends Component {
                     justifyContent: 'center'
                   }}
                 />
-                {wandrRec && <Text>Wandr recommends this place for you!</Text>}
-                <Text
-                  style={{
-                    paddingVertical: 10,
-                    fontWeight: '300'
-                  }}
-                >
+                <Text style={{ paddingVertical: 10, fontWeight: '300' }}>
                   {' '}
-                  {this.state.user.email}
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Phasellus lobortis nulla vel posuere fermentum. Ut id lectus
                   ante. Nullam dignissim tellus nec tempus gravida. Nullam nec
