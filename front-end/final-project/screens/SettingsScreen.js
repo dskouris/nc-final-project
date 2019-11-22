@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import {
-  Text,
   View,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Image
 } from "react-native";
-import { Button } from "react-native-elements";
 
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
@@ -17,7 +15,16 @@ import firebaseSDK from "../components/firebaseSDK";
 import Loading from "../components/HomeScreen/Loading";
 
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
-import { Header, Left, Body, Title, Right, Container } from "native-base";
+import {
+  Header,
+  Button,
+  Text,
+  Left,
+  Body,
+  Title,
+  Right,
+  Container
+} from "native-base";
 
 export default class SettingsScreen extends Component {
   state = {
@@ -165,7 +172,7 @@ export default class SettingsScreen extends Component {
             ></Ionicons>
           </View> */}
 
-          <View style={{ alignSelf: "center", marginTop: 40 }}>
+          <View style={{ alignSelf: "center", marginTop: 50 }}>
             <View style={styles.profileImage}>
               {/* here is placement for actual image */}
 
@@ -219,10 +226,12 @@ export default class SettingsScreen extends Component {
               {email}
             </Text>
             <Button
-              title={quizShow.text}
+              style={{ backgroundColor: "#DE4C5D", marginTop: 20 }}
               disabled={quizShow.switch}
               onPress={this.goToQuiz}
-            ></Button>
+            >
+              <Text>{quizShow.text}</Text>
+            </Button>
           </View>
         </Container>
       </SafeAreaView>
