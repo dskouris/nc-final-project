@@ -2,7 +2,7 @@
 
 WANDR is an app designed for travellers looking to meet people to explore new locations with. The app allows you to see a map or list of nearby attractions, which are pulled from the Google Maps API.
 
-You are able to see info about the location and select a date yo’d like to go and visit. Once you’ve chosen to visit a location, you will automatically be entered into a chat with other users who will be going, so that you can arrange a time to meet up.
+You are able to see info about the location and select a date you’d like to go and visit. Once you’ve chosen to visit a location, you will automatically be entered into a chat with other users who will be going, so that you can arrange a time to meet up.
 
 We hope that WANDR would make life easier for travellers and give them the chance to meet new people with similar interests.  
 It also features an AI powered quiz, which builds a user profile which is then used to recommend specific locations based on the users interests.
