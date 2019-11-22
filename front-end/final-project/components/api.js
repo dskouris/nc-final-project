@@ -49,8 +49,19 @@ export const removeFromAgenda = (uuid, locationIDObj) => {
 };
 
 export const getPersonality = wordpool => {
+  return (
+    axios
+      // .post('https://wandr-ai-server.herokuapp.com/api/personality', wordpool)
+      .post('http://localhost:9090/api/personality', wordpool)
+      .then(({ data }) => {
+        return data;
+      })
+  );
+};
+
+export const getScrape = place => {
   return axios
-    .post('https://wandr-ai-server.herokuapp.com/api/personality', wordpool)
+    .post('https://wandr-ai-server.herokuapp.com/api/scrape', place)
     .then(({ data }) => {
       return data;
     });
