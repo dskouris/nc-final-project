@@ -32,7 +32,7 @@ export default class Chatrooms extends React.Component {
       <Container> 
       <ImageBackground
         style={styles.container}
-        source={require("../components/images/landmarks.png")}
+        source={require("../components/images/chatBackground.png")}
       >
         <View>
           {this.state.chatrooms.map(chatroom => {

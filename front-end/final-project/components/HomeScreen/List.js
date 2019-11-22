@@ -9,19 +9,6 @@ export default class List extends Component {
     const { locations, navigation, userCoords } = this.props;
     return (
       <ScrollView>
-<<<<<<< HEAD
-        <Content padder> 
-        {locations.map(location => {
-          return (
-            <InfoCard
-              navigation={navigation}
-              location={location}
-              userCoords={userCoords}
-              key={location.id}
-            />
-          );
-        })}
-=======
         <Content padder>
           {locations.map(location => {
             return (
@@ -33,7 +20,6 @@ export default class List extends Component {
               />
             );
           })}
->>>>>>> 0959840394aee4fe73cc72451503b76f72f8998e
         </Content>
       </ScrollView>
     );

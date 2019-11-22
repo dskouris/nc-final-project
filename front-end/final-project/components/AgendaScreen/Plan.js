@@ -6,7 +6,7 @@ export default function Plan(props) {
   return (
     <ImageBackground
       style={styles.container}
-      source={require("../images/landmarks.png")}
+      source={require("../images/mapLandmarks.png")}
     >
       <ScrollView>
         {props.user.Agenda.going.map(location => {

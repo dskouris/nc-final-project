@@ -67,7 +67,7 @@ class LoginScreen extends Component {
     return (
       <ImageBackground
         style={styles.container}
-        source={require("../components/images/landmarks.png")}
+        source={require("../components/images/loginLandmarks.png")}
       >
         <ScrollView>
           <KeyboardAvoidingView behavior="position">
