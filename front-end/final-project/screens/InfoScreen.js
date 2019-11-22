@@ -34,7 +34,9 @@ export default class InfoScreen extends Component {
     placePersonality: null,
     user: {},
     wandrRec: null,
-    matchChecked: false
+    matchChecked: false,
+    trigger1: false,
+    showRecommend: false
   };
 
   getRecommend = () => {
@@ -42,7 +44,10 @@ export default class InfoScreen extends Component {
     let place = { place: this.state.location.name };
     api.getScrape(place).then(returnedScrape => {
       console.log(returnedScrape);
-      if (returnedScrape.description === 'no data found for place') {
+      if (
+        returnedScrape.description === 'no data found for place' ||
+        returnedScrape.description.length < 1000
+      ) {
         this.setState({ locationFound: false, recommender: false });
       } else {
         let wordpool = { wordpool: returnedScrape.description };
@@ -76,7 +81,11 @@ export default class InfoScreen extends Component {
     console.log(matchAvg);
 
     if (matchAvg < 0.2) {
-      this.setState({ wandrRec: true, matchChecked: true });
+      this.setState({
+        wandrRec: true,
+        matchChecked: true,
+        trigger1: true
+      });
     } else {
       this.setState({ wandrRec: false, matchChecked: true });
     }
@@ -103,6 +112,12 @@ export default class InfoScreen extends Component {
         });
       })
       .then(console.log('mounted'));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.trigger1 !== prevState.trigger1) {
+      this.setState({ showRecommend: true });
+    }
   }
 
   addToAgenda = date => {
@@ -238,11 +253,7 @@ export default class InfoScreen extends Component {
                   Phasellus lobortis nulla vel posuere fermentum. Ut id lectus
                   ante. Nullam dignissim tellus nec tempus gravida. Nullam nec
                   turpis eget nisi rhoncus molestie quis vel libero. Sed in
-                  tellus ligula. Vestibulum pulvinar lectus libero, vel
-                  vulputate neque sollicitudin vitae. Ut cursus orci cursus
-                  commodo lacinia. Integer consectetur aliquet risus at pretium.
-                  Integer sollicitudin efficitur finibus. Sed blandit ex id nisl
-                  malesuada viverra. Sed at dapibus nisl.{' '}
+                  tellus ligula.{' '}
                 </Text>
               </Body>
             </CardItem>
