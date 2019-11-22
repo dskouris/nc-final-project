@@ -17,7 +17,9 @@ import * as api from '../api';
 import { Ionicons } from '@expo/vector-icons';
 
 class InfoCard extends Component {
-  state = { location: {} };
+  state = {
+    location: {}
+  };
   componentDidMount() {
     let { location } = this.props;
     if (location.photos) {
@@ -37,9 +39,11 @@ class InfoCard extends Component {
       this.setState({ location });
     }
   }
+
   render() {
     const { navigation } = this.props;
     const { location } = this.state;
+
     return (
       <View>
         <TouchableOpacity
@@ -80,9 +84,9 @@ class InfoCard extends Component {
               </Left>
 
               <Ionicons
-                name='ios-arrow-forward'
+                name="ios-arrow-forward"
                 size={24}
-                color='#DE4C5D'
+                color="#DE4C5D"
               ></Ionicons>
             </CardItem>
           </Card>

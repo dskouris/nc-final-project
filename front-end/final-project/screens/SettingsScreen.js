@@ -7,8 +7,8 @@ import {
   StyleSheet,
   Image
 } from 'react-native';
-import { Header, ListItem, Button } from 'react-native-elements';
-import ProfilePicture from '../components/SettingsScreen/ProfilePicture';
+import { Button } from 'react-native-elements';
+
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
@@ -17,6 +17,7 @@ import firebaseSDK from '../components/firebaseSDK';
 import Loading from '../components/HomeScreen/Loading';
 
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { Header, Left, Body, Title, Right, Container } from 'native-base';
 
 export default class SettingsScreen extends Component {
   state = {
@@ -110,11 +111,45 @@ export default class SettingsScreen extends Component {
     }
     return (
       <SafeAreaView style={styles.container}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.titleBar}>
+        <Container>
+          <Header style={{ backgroundColor: '#DE4C5D' }}>
+            <Left>
+              <Ionicons
+                onPress={() =>
+                  navigation.navigate(navigation.getParam('back', 'Home'))
+                }
+                name="ios-arrow-back"
+                size={24}
+                color="#fff"
+              ></Ionicons>
+            </Left>
+            <Body>
+              <Text
+                style={{
+                  color: '#fff',
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  justifyContent: 'center'
+                }}
+              >
+                Wandr Profile
+              </Text>
+            </Body>
+            {/* <Right>
+              <Ionicons
+                name="ios-home"
+                size={24}
+                color="#fff"
+                onPress={() =>
+                  navigation.navigate(navigation.getParam("back", "Home"))
+                }
+              ></Ionicons>
+            </Right> */}
+          </Header>
+          {/* <View style={styles.titleBar}>
             <Ionicons
               onPress={() =>
-                navigation.navigate(navigation.getParam('back', 'Home'))
+                navigation.navigate(navigation.getParam("back", "Home"))
               }
               name="ios-arrow-back"
               size={24}
@@ -125,12 +160,12 @@ export default class SettingsScreen extends Component {
               size={24}
               color="#DE4C5D"
               onPress={() =>
-                navigation.navigate(navigation.getParam('back', 'Home'))
+                navigation.navigate(navigation.getParam("back", "Home"))
               }
             ></Ionicons>
-          </View>
+          </View> */}
 
-          <View style={{ alignSelf: 'center' }}>
+          <View style={{ alignSelf: 'center', marginTop: 40 }}>
             <View style={styles.profileImage}>
               {/* here is placement for actual image */}
 
@@ -189,19 +224,14 @@ export default class SettingsScreen extends Component {
               onPress={this.goToQuiz}
             ></Button>
           </View>
-        </ScrollView>
+        </Container>
       </SafeAreaView>
     );
   }
 }
 
 SettingsScreen.navigationOptions = {
-  title: 'Profile',
-  headerStyle: { backgroundColor: '#DE4C5D' },
-  headerTintColor: '#fff',
-  headerTitleStyle: {
-    fontWeight: 'bold'
-  }
+  header: null
 };
 
 const styles = StyleSheet.create({
