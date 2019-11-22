@@ -17,7 +17,7 @@ The back end repo can be viewed here: [https://github.com/UpEight/be-nc-final-pr
 
 - Clone and download this repo
 - Install Expo
-- The app must be run from the folder /final-project using npm start / expo start
+- The app must be run from the folder /front-end/final-project using npm start / expo start
 
 ## Team Members
 
