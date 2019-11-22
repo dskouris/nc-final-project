@@ -274,7 +274,7 @@ export default class InfoScreen extends Component {
               </Right>
             </CardItem>
             {this.state.showRecommend && (
-              <Text>Wandr Recommends This Place For You!</Text>
+              <Text style={{alignSelf: 'center', flex: 1, marginVertical: 5}}>Wandr Recommends This Place For You!</Text>
             )}
           </Card>
           <View>
