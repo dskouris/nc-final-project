@@ -21,10 +21,10 @@ The back end repo can be viewed here: [https://github.com/UpEight/be-nc-final-pr
 
 ## Team Members
 
-Dimitris - github.com/dskouris  
-Krishan - github.com/MidknightMan  
-Paulina - github.com/poalina  
-Sara - github.com/UpEight  
-Tomas - github.com/tomkotlar
+Dimitris - https://github.com/dskouris  
+Krishan - https://github.com/MidknightMan  
+Paulina - https://github.com/poalina  
+Sara - https://github.com/UpEight  
+Tomas - https://github.com/tomkotlar
 
 Thanks for reading!
