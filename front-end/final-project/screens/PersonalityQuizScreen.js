@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import Slider from 'react-native-slider';
-import * as api from '../components/api';
-import firebaseSDK from '../components/firebaseSDK';
+import React, { Component } from "react";
+import { StyleSheet, View, ImageBackground } from "react-native";
+import { Button, Text } from "native-base";
+import Slider from "react-native-slider";
+import * as api from "../components/api";
+import firebaseSDK from "../components/firebaseSDK";
 
 export default class App extends React.Component {
   state = {
@@ -12,7 +13,7 @@ export default class App extends React.Component {
     slider4: 0.5,
     slider5: 0.5,
     slider6: 0.5,
-    wordPool: '',
+    wordPool: "",
     personality: null
   };
 
@@ -36,40 +37,40 @@ export default class App extends React.Component {
 
   createWordPool = async () => {
     const shyArr = new Array(Math.round((1 - this.state.slider1) * 100));
-    shyArr.fill('Shy');
+    shyArr.fill("Shy");
 
     const outgoingArr = new Array(Math.round(this.state.slider1 * 100));
-    outgoingArr.fill('Outgoing');
+    outgoingArr.fill("Outgoing");
 
     const indoorsArr = new Array(Math.round((1 - this.state.slider2) * 100));
-    indoorsArr.fill('Indoors');
+    indoorsArr.fill("Indoors");
 
     const outdoorsArr = new Array(Math.round(this.state.slider2 * 100));
-    outdoorsArr.fill('Outdoors');
+    outdoorsArr.fill("Outdoors");
 
     const cautiousArr = new Array(Math.round((1 - this.state.slider3) * 100));
-    cautiousArr.fill('Cautious');
+    cautiousArr.fill("Cautious");
 
     const adventurousArr = new Array(Math.round(this.state.slider3 * 100));
-    adventurousArr.fill('Adventurous');
+    adventurousArr.fill("Adventurous");
 
     const scienceArr = new Array(Math.round((1 - this.state.slider4) * 100));
-    scienceArr.fill('Science');
+    scienceArr.fill("Science");
 
     const artArr = new Array(Math.round(this.state.slider4 * 100));
-    artArr.fill('Art');
+    artArr.fill("Art");
 
     const classicalArr = new Array(Math.round((1 - this.state.slider5) * 100));
-    classicalArr.fill('Classical');
+    classicalArr.fill("Classical");
 
     const modernArr = new Array(Math.round(this.state.slider5 * 100));
-    modernArr.fill('Modern');
+    modernArr.fill("Modern");
 
     const structureArr = new Array(Math.round((1 - this.state.slider6) * 100));
-    structureArr.fill('Structure');
+    structureArr.fill("Structure");
 
     const explorerArr = new Array(Math.round(this.state.slider6 * 100));
-    explorerArr.fill('Explorer');
+    explorerArr.fill("Explorer");
 
     const wordPool = [
       ...shyArr,
@@ -84,7 +85,7 @@ export default class App extends React.Component {
       ...modernArr,
       ...structureArr,
       ...explorerArr
-    ].join(', ');
+    ].join(", ");
 
     // this.setState({ wordPool });
     console.log(wordPool);
@@ -112,10 +113,10 @@ export default class App extends React.Component {
         // })
         .then(object => {
           api.addPersonalityToUser(uuid, object).then(returnedUser => {
-            console.log('from the function', returnedUser);
+            console.log("from the function", returnedUser);
             if (returnedUser) {
-              alert('Thanks for taking the quiz!');
-              this.props.navigation.navigate('Settings', {
+              alert("Thanks for taking the quiz!");
+              this.props.navigation.navigate("Settings", {
                 newUserObj: returnedUser
               });
             }
@@ -137,110 +138,147 @@ export default class App extends React.Component {
   render() {
     console.log(this.props.navigation.state);
     return (
-      <View style={styles.container}>
-        <Text>I am more...</Text>
-        <View style={styles.sliderCon}>
-          <Text>Shy</Text>
-          <Slider
-            style={{ width: 150, height: 40 }}
-            minimumValue={0}
-            maximumValue={1}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#000000"
-            step={0.1}
-            value={this.state.slider1}
-            onValueChange={this.changeSlider1}
-          />
-          <Text>Outgoing</Text>
+      <ImageBackground
+        style={styles.container}
+        source={require("../components/images/landmarks.png")}
+      >
+        <View style={styles.container}>
+          <Button style={styles.button}>
+            <Text>I am more...</Text>
+          </Button>
+          <View style={styles.sliderCon}>
+            <Text>Shy</Text>
+            <Slider
+              style={{ width: 150, height: 40 }}
+              thumbTintColor="#DE4C5D"
+              minimumValue={0}
+              maximumValue={1}
+              minimumTrackTintColor="#ffe4c4"
+              maximumTrackTintColor="#eed5b7"
+              step={0.1}
+              value={this.state.slider1}
+              onValueChange={this.changeSlider1}
+            />
+            <Text>Outgoing</Text>
+          </View>
+          <View style={styles.sliderCon}>
+            <Text>Indoorsy</Text>
+            <Slider
+              style={{ width: 150, height: 40 }}
+              thumbTintColor="#DE4C5D"
+              minimumValue={0}
+              maximumValue={1}
+              minimumTrackTintColor="#ffe4c4"
+              maximumTrackTintColor="#eed5b7"
+              step={0.1}
+              value={this.state.slider2}
+              onValueChange={this.changeSlider2}
+            />
+            <Text>Outdoorsy</Text>
+          </View>
+          <View style={styles.sliderCon}>
+            <Text>Cautious</Text>
+            <Slider
+              style={{ width: 150, height: 40 }}
+              thumbTintColor="#DE4C5D"
+              minimumValue={0}
+              maximumValue={1}
+              minimumTrackTintColor="#ffe4c4"
+              maximumTrackTintColor="#eed5b7"
+              step={0.1}
+              value={this.state.slider3}
+              onValueChange={this.changeSlider3}
+            />
+            <Text>Adventurous</Text>
+          </View>
+          <View style={styles.sliderCon}>
+            <Text>Sciencey</Text>
+            <Slider
+              style={{ width: 150, height: 40 }}
+              thumbTintColor="#DE4C5D"
+              minimumValue={0}
+              maximumValue={1}
+              minimumTrackTintColor="#ffe4c4"
+              maximumTrackTintColor="#eed5b7"
+              step={0.1}
+              value={this.state.slider4}
+              onValueChange={this.changeSlider4}
+            />
+            <Text>Arty</Text>
+          </View>
+          <Button style={styles.button}>
+            <Text>I want to see...</Text>
+          </Button>
+          <View style={styles.sliderCon}>
+            <Text>Classic Things</Text>
+            <Slider
+              style={{ width: 150, height: 40 }}
+              thumbTintColor="#DE4C5D"
+              minimumValue={0}
+              maximumValue={1}
+              minimumTrackTintColor="#ffe4c4"
+              maximumTrackTintColor="#eed5b7"
+              step={0.1}
+              value={this.state.slider5}
+              onValueChange={this.changeSlider5}
+            />
+            <Text>Modern Things</Text>
+          </View>
+          <View style={styles.sliderCon}>
+            <Text>Structured Things</Text>
+            <Slider
+              style={{ width: 150, height: 40 }}
+              thumbTintColor="#DE4C5D"
+              minimumValue={0}
+              maximumValue={1}
+              minimumTrackTintColor="#ffe4c4"
+              maximumTrackTintColor="#eed5b7"
+              step={0.1}
+              value={this.state.slider6}
+              onValueChange={this.changeSlider6}
+            />
+            <Text>Exploratory Things</Text>
+          </View>
+          <View>
+            <Button
+              style={{
+                backgroundColor: "#DE4C5D",
+                marginTop: 30,
+                marginHorizontal: 120,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 4
+              }}
+              onPress={this.onPressAction}
+            >
+              <Text>Submit Choices</Text>
+            </Button>
+          </View>
         </View>
-        <View style={styles.sliderCon}>
-          <Text>Indoorsy</Text>
-          <Slider
-            style={{ width: 150, height: 40 }}
-            minimumValue={0}
-            maximumValue={1}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#000000"
-            step={0.1}
-            value={this.state.slider2}
-            onValueChange={this.changeSlider2}
-          />
-          <Text>Outdoorsy</Text>
-        </View>
-        <View style={styles.sliderCon}>
-          <Text>Cautious</Text>
-          <Slider
-            style={{ width: 150, height: 40 }}
-            minimumValue={0}
-            maximumValue={1}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#000000"
-            step={0.1}
-            value={this.state.slider3}
-            onValueChange={this.changeSlider3}
-          />
-          <Text>Adventurous</Text>
-        </View>
-        <View style={styles.sliderCon}>
-          <Text>Sciencey</Text>
-          <Slider
-            style={{ width: 150, height: 40 }}
-            minimumValue={0}
-            maximumValue={1}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#000000"
-            step={0.1}
-            value={this.state.slider4}
-            onValueChange={this.changeSlider4}
-          />
-          <Text>Arty</Text>
-        </View>
-        <Text>I want to see...</Text>
-        <View style={styles.sliderCon}>
-          <Text>Classic Things</Text>
-          <Slider
-            style={{ width: 150, height: 40 }}
-            minimumValue={0}
-            maximumValue={1}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#000000"
-            step={0.1}
-            value={this.state.slider5}
-            onValueChange={this.changeSlider5}
-          />
-          <Text>Modern Things</Text>
-        </View>
-        <View style={styles.sliderCon}>
-          <Text>Structured Things</Text>
-          <Slider
-            style={{ width: 150, height: 40 }}
-            minimumValue={0}
-            maximumValue={1}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#000000"
-            step={0.1}
-            value={this.state.slider6}
-            onValueChange={this.changeSlider6}
-          />
-          <Text>Exploratory Things</Text>
-        </View>
-        <Button title="Submit Choices" onPress={this.onPressAction}></Button>
-      </View>
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#ffff00',
-    alignItems: 'center',
-    justifyContent: 'center'
+    flex: 1
+    // backgroundColor: "#ffebcd",
   },
   sliderCon: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'space-evenly'
+    flexDirection: "row",
+    alignItems: "center",
+    alignContent: "center",
+    justifyContent: "space-evenly"
+  },
+  button: {
+    color: "#DE4C5D",
+    marginVertical: 20,
+    marginHorizontal: 130,
+    backgroundColor: "#eed5b7",
+    borderRadius: 4,
+    height: 20,
+    alignItems: "center",
+    justifyContent: "center"
   }
 });

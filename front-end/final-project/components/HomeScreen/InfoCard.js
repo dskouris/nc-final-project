@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Card,
   CardItem,
@@ -10,11 +10,11 @@ import {
   Subtitle,
   Content,
   Badge
-} from 'native-base';
-import { Text, View, TouchableOpacity } from 'react-native';
-import apiKey from '../../constants/keys';
-import * as api from '../api';
-import { Ionicons } from '@expo/vector-icons';
+} from "native-base";
+import { Text, View, TouchableOpacity } from "react-native";
+import apiKey from "../../constants/keys";
+import * as api from "../api";
+import { Ionicons } from "@expo/vector-icons";
 
 class InfoCard extends Component {
   state = {
@@ -36,6 +36,7 @@ class InfoCard extends Component {
       });
     } else {
       location.img = false;
+      location.usersGoing = 0;
       this.setState({ location });
     }
   }
@@ -48,8 +49,8 @@ class InfoCard extends Component {
       <View>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('Info', {
-              back: 'Home',
+            navigation.navigate("Info", {
+              back: "Home",
               location
             })
           }
@@ -61,7 +62,7 @@ class InfoCard extends Component {
                   source={
                     location.img
                       ? { uri: location.img }
-                      : require('../images/placeholder-img.png')
+                      : require("../images/placeholder-img.png")
                   }
                   style={{
                     width: 90,
@@ -70,13 +71,13 @@ class InfoCard extends Component {
                     marginRight: 10
                   }}
                 />
-                <View style={{ alignItems: 'flex-start', top: -10, flex: 1 }}>
-                  <Text style={{ fontSize: 16, fontWeight: '400' }}>
+                <View style={{ alignItems: "flex-start", top: -10, flex: 1 }}>
+                  <Text style={{ fontSize: 16, fontWeight: "400" }}>
                     {location.name}
                   </Text>
 
-                  <Text style={{ fontWeight: '200' }}>
-                    {' '}
+                  <Text style={{ fontWeight: "200" }}>
+                    {" "}
                     {location.usersGoing} going {location.distanceFromUser}km
                     away
                   </Text>
