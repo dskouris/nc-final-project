@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
-import apiKey from "../constants/keys";
-import UpdateAgenda from "../components/InfoScreen/UpdateAgenda";
-import * as api from "../components/api";
-import firebaseSDK from "../components/firebaseSDK";
+import React, { Component } from 'react';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import apiKey from '../constants/keys';
+import UpdateAgenda from '../components/InfoScreen/UpdateAgenda';
+import * as api from '../components/api';
+import firebaseSDK from '../components/firebaseSDK';
 import {
   Container,
   Header,
@@ -17,10 +17,10 @@ import {
   Body,
   Right,
   Title
-} from "native-base";
-import Loading from "../components/HomeScreen/Loading";
-import { Ionicons } from "@expo/vector-icons";
-import { Rating } from "react-native-elements";
+} from 'native-base';
+import Loading from '../components/HomeScreen/Loading';
+import { Ionicons } from '@expo/vector-icons';
+import { Rating } from 'react-native-elements';
 
 export default class InfoScreen extends Component {
   state = {
@@ -40,19 +40,16 @@ export default class InfoScreen extends Component {
   };
 
   getRecommend = () => {
-    console.log(this.state.location.name);
     let place = { place: this.state.location.name };
     api.getScrape(place).then(returnedScrape => {
-      console.log(returnedScrape);
       if (
-        returnedScrape.description === "no data found for place" ||
+        returnedScrape.description === 'no data found for place' ||
         returnedScrape.description.length < 1000
       ) {
         this.setState({ locationFound: false, recommender: false });
       } else {
         let wordpool = { wordpool: returnedScrape.description };
         api.getPersonality(wordpool).then(persObj => {
-          console.log(persObj);
           this.setState({
             locationFound: true,
             placePersonality: persObj.userP,
@@ -67,8 +64,6 @@ export default class InfoScreen extends Component {
     const placePersonality = this.state.placePersonality;
     const userPersonality = this.state.user.personality;
 
-    console.log(placePersonality, userPersonality);
-
     const arrAvg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
 
     let matchArr = [];
@@ -78,7 +73,6 @@ export default class InfoScreen extends Component {
     });
 
     const matchAvg = Math.abs(arrAvg(matchArr));
-    console.log(matchAvg);
 
     if (matchAvg < 0.2) {
       this.setState({
@@ -93,7 +87,7 @@ export default class InfoScreen extends Component {
 
   componentDidMount() {
     const uuid = firebaseSDK.uid;
-    const location = this.props.navigation.getParam("location", {});
+    const location = this.props.navigation.getParam('location', {});
     return Promise.all([
       location,
       fetch(
@@ -106,12 +100,12 @@ export default class InfoScreen extends Component {
         this.setState({
           location,
           isLoading: false,
-          isGoing: this.props.navigation.getParam("isGoing", false),
+          isGoing: this.props.navigation.getParam('isGoing', false),
           recommender: true,
           user
         });
       })
-      .then(console.log("mounted"));
+      .catch(console.log);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -137,8 +131,8 @@ export default class InfoScreen extends Component {
         this.setState(currentState => {
           return { isGoing: !currentState.isGoing };
         });
-       
-        navigation.navigate("Agenda");
+
+        navigation.navigate('Agenda');
       })
       .catch(console.log);
   };
@@ -180,40 +174,40 @@ export default class InfoScreen extends Component {
       <Loading />
     ) : (
       <Container>
-        <Header style={{ backgroundColor: "#DE4C5D" }}>
+        <Header style={{ backgroundColor: '#DE4C5D' }}>
           <Left>
             <Button transparent>
               <Ionicons
                 onPress={() =>
-                  navigation.navigate(navigation.getParam("back", "Home"))
+                  navigation.navigate(navigation.getParam('back', 'Home'))
                 }
-                name="ios-arrow-back"
+                name='ios-arrow-back'
                 size={24}
-                color="#fff"
+                color='#fff'
               ></Ionicons>
             </Button>
           </Left>
           <Body>
-            <Title
+            <Text
               style={{
-                color: "#fff"
+                color: '#fff'
                 //   fontSize: 20,
                 //   fontWeight: "bold",
                 //   justifyContent: "center"
               }}
             >
               {location.name}
-            </Title>
+            </Text>
           </Body>
 
           <Right>
             <Button transparent>
               <Ionicons
-                name="ios-home"
+                name='ios-home'
                 size={24}
-                color="#fff"
+                color='#fff'
                 onPress={() =>
-                  navigation.navigate(navigation.getParam("back", "Home"))
+                  navigation.navigate(navigation.getParam('back', 'Home'))
                 }
               ></Ionicons>
             </Button>
@@ -226,12 +220,12 @@ export default class InfoScreen extends Component {
               <Left>
                 {/* <Thumbnail source={wandr} style={{ resizeMode: "contain" }} /> */}
                 <Body>
-                  <Text style={{ fontSize: 18, fontWeight: "500" }}>
+                  <Text style={{ fontSize: 18, fontWeight: '500' }}>
                     {location.name}
                   </Text>
                   <Text note>{location.distanceFromUser}km from you</Text>
                   <Text note>
-                    {isGoing ? "You Are Going" : "You Are Not Going"}
+                    {isGoing ? 'You Are Going' : 'You Are Not Going'}
                   </Text>
                 </Body>
               </Left>
@@ -244,29 +238,29 @@ export default class InfoScreen extends Component {
                     flex: 1,
                     height: 300,
                     width: 380,
-                    justifyContent: "center"
+                    justifyContent: 'center'
                   }}
                 />
-                <Text style={{ paddingVertical: 10, fontWeight: "300" }}>
-                  {" "}
+                <Text style={{ paddingVertical: 10, fontWeight: '300' }}>
+                  {' '}
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Phasellus lobortis nulla vel posuere fermentum. Ut id lectus
                   ante. Nullam dignissim tellus nec tempus gravida. Nullam nec
                   turpis eget nisi rhoncus molestie quis vel libero. Sed in
-                  tellus ligula.{" "}
+                  tellus ligula.{' '}
                 </Text>
               </Body>
             </CardItem>
             <CardItem>
               <Left>
                 <Button transparent>
-                  <Icon active name="people" />
+                  <Icon active name='people' />
                   <Text>{usersGoing.length} Going</Text>
                 </Button>
               </Left>
               <Right>
                 <Button transparent>
-                  <Icon active name="star" />
+                  <Icon active name='star' />
                   <Text style={{ marginLeft: 5 }}>
                     User Rating: {location.rating}
                   </Text>
@@ -274,7 +268,9 @@ export default class InfoScreen extends Component {
               </Right>
             </CardItem>
             {this.state.showRecommend && (
-              <Text style={{alignSelf: 'center', flex: 1, marginVertical: 5}}>Wandr Recommends This Place For You!</Text>
+              <Text style={{ alignSelf: 'center', flex: 1, marginVertical: 5 }}>
+                Wandr Recommends This Place For You!
+              </Text>
             )}
           </Card>
           <View>
@@ -291,17 +287,17 @@ export default class InfoScreen extends Component {
 }
 
 InfoScreen.navigationOptions = {
-  title: "Wandr",
-  headerStyle: { backgroundColor: "#DE4C5D" },
-  headerTintColor: "#fff",
+  title: 'Wandr',
+  headerStyle: { backgroundColor: '#DE4C5D' },
+  headerTintColor: '#fff',
   headerTitleStyle: {
-    fontWeight: "bold"
+    fontWeight: 'bold'
   }
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   }
 });
