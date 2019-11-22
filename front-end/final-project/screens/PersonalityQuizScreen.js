@@ -142,9 +142,9 @@ export default class App extends React.Component {
         style={styles.container}
         source={require("../components/images/landmarks.png")}
       >
-        <View style={styles.container}>
+        <View style={styles.quiz}>
           <Button style={styles.button}>
-            <Text>I am more...</Text>
+            <Text style={{color: "black"}}>I am more...</Text>
           </Button>
           <View style={styles.sliderCon}>
             <Text>Shy</Text>
@@ -207,7 +207,7 @@ export default class App extends React.Component {
             <Text>Arty</Text>
           </View>
           <Button style={styles.button}>
-            <Text>I want to see...</Text>
+            <Text style={{color: "black"}}>I want to see...</Text>
           </Button>
           <View style={styles.sliderCon}>
             <Text>Classic Things</Text>
@@ -269,16 +269,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     alignContent: "center",
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
+   
   },
   button: {
     color: "#DE4C5D",
     marginVertical: 20,
-    marginHorizontal: 130,
+    marginHorizontal: 120,
     backgroundColor: "#eed5b7",
     borderRadius: 4,
-    height: 20,
+    height: 30,
     alignItems: "center",
     justifyContent: "center"
+  }, 
+  quiz: {
+    flex: 1, 
+    marginTop: 30, 
+    alignContent: 'center', 
+
+    
   }
 });

@@ -20,7 +20,7 @@ import {
 } from "native-base";
 import Loading from "../components/HomeScreen/Loading";
 import { Ionicons } from "@expo/vector-icons";
-import wandr from "./images/wandr.png";
+import { Rating } from "react-native-elements";
 
 export default class InfoScreen extends Component {
   state = {
@@ -137,7 +137,7 @@ export default class InfoScreen extends Component {
         this.setState(currentState => {
           return { isGoing: !currentState.isGoing };
         });
-        alert(`Added to agenda`);
+       
         navigation.navigate("Agenda");
       })
       .catch(console.log);
@@ -194,30 +194,30 @@ export default class InfoScreen extends Component {
             </Button>
           </Left>
           <Body>
-            <Text
+            <Title
               style={{
-                color: "#fff",
-                fontSize: 20,
-                fontWeight: "bold",
-                justifyContent: "center"
+                color: "#fff"
+                //   fontSize: 20,
+                //   fontWeight: "bold",
+                //   justifyContent: "center"
               }}
             >
               {location.name}
-            </Text>
+            </Title>
           </Body>
 
-          {/* <Right>
-            <Button>
+          <Right>
+            <Button transparent>
               <Ionicons
                 name="ios-home"
                 size={24}
                 color="#fff"
                 onPress={() =>
-                  navigation.navigate(navigation.getParam('back', 'Home'))
+                  navigation.navigate(navigation.getParam("back", "Home"))
                 }
               ></Ionicons>
             </Button>
-          </Right> */}
+          </Right>
         </Header>
 
         <Content style={{ marginTop: 10 }}>
@@ -265,7 +265,12 @@ export default class InfoScreen extends Component {
                 </Button>
               </Left>
               <Right>
-                <Text>Users rating: {location.rating}</Text>
+                <Button transparent>
+                  <Icon active name="star" />
+                  <Text style={{ marginLeft: 5 }}>
+                    User Rating: {location.rating}
+                  </Text>
+                </Button>
               </Right>
             </CardItem>
             {this.state.showRecommend && (

@@ -32,7 +32,7 @@ class UpdateAgenda extends Component {
         ) : (
           <>
             <DatePicker
-              style={{ width: 200 }}
+              style={{ width: 200, marginHorizontal: 100, marginTop: 20 }}
               date={this.state.date}
               mode='date'
               placeholder={this.state.date}

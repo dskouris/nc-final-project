@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     color: "#161F3D"
   },
   button: {
-    marginTop: 30,
+    marginTop: 60,
     marginHorizontal: 30,
     backgroundColor: "#E9446A",
     borderRadius: 4,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   image: {
     width: 80,
     height: 80,
-    marginTop: 60,
+    marginTop: 120,
     alignSelf: "center",
     resizeMode: "contain"
   }

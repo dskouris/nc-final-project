@@ -4,7 +4,8 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Image
+  Image,
+  ImageBackground
 } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
@@ -117,8 +118,7 @@ export default class SettingsScreen extends Component {
       return <Loading />;
     }
     return (
-      <SafeAreaView style={styles.container}>
-        <Container>
+      <Container>
           <Header style={{ backgroundColor: "#DE4C5D" }}>
             <Left>
               <Ionicons
@@ -131,46 +131,33 @@ export default class SettingsScreen extends Component {
               ></Ionicons>
             </Left>
             <Body>
-              <Text
+              <Title
                 style={{
                   color: "#fff",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  justifyContent: "center"
+                  // fontSize: 20,
+                  // fontWeight: "bold",
+                  // justifyContent: "center"
                 }}
               >
                 Wandr Profile
-              </Text>
+              </Title>
             </Body>
-            {/* <Right>
+            <Right > 
+              <Button transparent> 
               <Ionicons
                 name="ios-home"
                 size={24}
-                color="#fff"
+                color="#DE4C5D"
                 onPress={() =>
                   navigation.navigate(navigation.getParam("back", "Home"))
                 }
               ></Ionicons>
-            </Right> */}
+              </Button>
+            </Right>
           </Header>
-          {/* <View style={styles.titleBar}>
-            <Ionicons
-              onPress={() =>
-                navigation.navigate(navigation.getParam("back", "Home"))
-              }
-              name="ios-arrow-back"
-              size={24}
-              color="#DE4C5D"
-            ></Ionicons>
-            <Ionicons
-              name="ios-home"
-              size={24}
-              color="#DE4C5D"
-              onPress={() =>
-                navigation.navigate(navigation.getParam("back", "Home"))
-              }
-            ></Ionicons>
-          </View> */}
+         
+                <ImageBackground  style={styles.container}
+                source={require("../components/images/loginLandmarks.png")}>
 
           <View style={{ alignSelf: "center", marginTop: 50 }}>
             <View style={styles.profileImage}>
@@ -233,8 +220,8 @@ export default class SettingsScreen extends Component {
               <Text>{quizShow.text}</Text>
             </Button>
           </View>
+       </ImageBackground>
         </Container>
-      </SafeAreaView>
     );
   }
 }
@@ -246,7 +233,7 @@ SettingsScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
+
   },
   titleBar: {
     flexDirection: "row",
