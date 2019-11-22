@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Image, Text, ScrollView, View, Dimensions } from "react-native";
+import React, { Component } from 'react';
+import { Image, Text, ScrollView, View, Dimensions } from 'react-native';
 
-import InfoCard from "./InfoCard";
-import { Content } from "native-base";
+import InfoCard from './InfoCard';
+import { Content } from 'native-base';
 
 export default class List extends Component {
   render() {
