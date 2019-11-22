@@ -44,7 +44,10 @@ export default class InfoScreen extends Component {
     let place = { place: this.state.location.name };
     api.getScrape(place).then(returnedScrape => {
       console.log(returnedScrape);
-      if (returnedScrape.description === 'no data found for place') {
+      if (
+        returnedScrape.description === 'no data found for place' ||
+        returnedScrape.description.length < 1000
+      ) {
         this.setState({ locationFound: false, recommender: false });
       } else {
         let wordpool = { wordpool: returnedScrape.description };
